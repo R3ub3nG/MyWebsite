@@ -6,72 +6,43 @@ const BackgroundEffect = () => {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
 
-    // Define different shapes for the background
-    const shapes = [
-        { size: '300px', x: '10%', y: '15%', delay: 0, rotation: 15 },
-        { size: '250px', x: '85%', y: '10%', delay: 0.3, rotation: -20 },
-        { size: '200px', x: '75%', y: '45%', delay: 0.5, rotation: 25 },
-        { size: '350px', x: '5%', y: '65%', delay: 0.2, rotation: -15 },
-        { size: '180px', x: '50%', y: '85%', delay: 0.4, rotation: 10 },
-        { size: '220px', x: '60%', y: '30%', delay: 0.6, rotation: -5 },
-        { size: '280px', x: '25%', y: '40%', delay: 0.7, rotation: 20 },
+    // Tech symbols and keywords that will float in the background
+    const techElements = [
+        { content: '</>', size: '2.5rem' },
+        { content: '{...}', size: '2.2rem' },
+        { content: 'const', size: '2rem' },
+        { content: '=>', size: '2.2rem' },
+        { content: '01', size: '2rem' },
+        { content: '()', size: '2.2rem' },
+        { content: '[]', size: '2rem' },
+        { content: 'npm', size: '2.2rem' },
+        { content: 'git', size: '2rem' },
+        { content: '&&', size: '1.8rem' },
+        { content: '||', size: '1.8rem' },
+        { content: 'async', size: '2.2rem' },
+        { content: 'await', size: '2.2rem' },
+        { content: '===', size: '2rem' },
+        { content: '<div>', size: '2.5rem' }
     ];
 
-    // Animation variants
-    const floatAnimation = {
-        initial: { opacity: 0, scale: 0.8 },
-        animate: (i) => ({
-            opacity: isDarkMode ? 0.15 : 0.2, // Increased opacity for light mode
-            scale: 1,
-            rotate: i.rotation,
-            y: ['0%', '3%', '0%'],
-            transition: {
-                opacity: { duration: 1.5, delay: i.delay },
-                scale: { duration: 1.5, delay: i.delay },
-                y: {
-                    repeat: Infinity,
-                    duration: 8 + i.delay * 3,
-                    ease: 'easeInOut',
-                    repeatType: 'reverse',
-                },
-            },
-        }),
-    };
+    // Create random positions and animations for the elements
+    const elements = techElements.map((el, index) => {
+        // Helper function to get random position within viewport
+        const getRandomPosition = () => ({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight
+        });
 
-    // Get shape styles based on theme
-    const getShapeStyle = (index) => {
-        if (isDarkMode) {
-            // Dark mode shapes - cool blues and purples with more vibrant colors
-            const gradients = [
-                'linear-gradient(135deg, #4527a0 0%, #311b92 100%)',
-                'linear-gradient(135deg, #1565c0 0%, #0d47a1 100%)',
-                'linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%)',
-                'linear-gradient(135deg, #6a1b9a 0%, #4a148c 100%)',
-                'linear-gradient(135deg, #00838f 0%, #006064 100%)',
-                'linear-gradient(135deg, #283593 0%, #1a237e 100%)',
-                'linear-gradient(135deg, #0097a7 0%, #006064 100%)',
-            ];
-            return {
-                background: gradients[index % gradients.length],
-                borderRadius: '40% 60% 70% 30% / 40% 50% 60% 50%',
-            };
-        } else {
-            // Light mode shapes - more vibrant colors with interesting shapes
-            const gradients = [
-                'linear-gradient(135deg, #5c6bc0 0%, #3949ab 100%)', // More vibrant blue
-                'linear-gradient(135deg, #66bb6a 0%, #43a047 100%)', // More vibrant green
-                'linear-gradient(135deg, #ba68c8 0%, #9c27b0 100%)', // More vibrant purple
-                'linear-gradient(135deg, #4fc3f7 0%, #039be5 100%)', // More vibrant light blue
-                'linear-gradient(135deg, #ffb74d 0%, #ff9800 100%)', // More vibrant orange
-                'linear-gradient(135deg, #aed581 0%, #7cb342 100%)', // More vibrant light green
-                'linear-gradient(135deg, #f06292 0%, #e91e63 100%)', // More vibrant pink
-            ];
-            return {
-                background: gradients[index % gradients.length],
-                borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
-            };
-        }
-    };
+        // Generate multiple positions for animation
+        const positions = Array(4).fill(null).map(() => getRandomPosition());
+
+        return {
+            ...el,
+            positions,
+            duration: 10 + Math.random() * 10,
+            delay: index * 0.3
+        };
+    });
 
     return (
         <Box
@@ -81,43 +52,132 @@ const BackgroundEffect = () => {
                 left: 0,
                 right: 0,
                 bottom: 0,
+                width: '100vw',
+                height: '100vh',
                 zIndex: -1,
                 overflow: 'hidden',
-                background: isDarkMode 
-                    ? 'linear-gradient(135deg, #303030 0%, #212121 100%)' 
-                    : 'linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%)', // Slightly darker background for better contrast
             }}
         >
-            {shapes.map((shape, index) => (
-                <motion.div
-                    key={index}
-                    custom={{ delay: shape.delay, rotation: shape.rotation }}
-                    initial="initial"
-                    animate="animate"
-                    variants={floatAnimation}
-                    style={{
-                        position: 'absolute',
-                        left: shape.x,
-                        top: shape.y,
-                        width: shape.size,
-                        height: shape.size,
-                        ...getShapeStyle(index),
-                        filter: isDarkMode ? 'blur(60px)' : 'blur(70px)', // Slightly more blur for light mode
-                    }}
-                />
-            ))}
-            
-            {/* Subtle dot pattern overlay */}
-            <Box
-                sx={{
+            {/* Animated background gradient */}
+            <motion.div
+                animate={{
+                    background: isDarkMode 
+                        ? [
+                            'linear-gradient(135deg, #1a1a1a 0%, #3a506f 100%)',
+                            'linear-gradient(145deg, #1a1a1a 0%, #4a617f 100%)',
+                            'linear-gradient(135deg, #1a1a1a 0%, #3a506f 100%)'
+                          ]
+                        : [
+                            'linear-gradient(135deg, #ffffff 0%, #bbdefb 100%)',
+                            'linear-gradient(145deg, #ffffff 0%, #90caf9 100%)',
+                            'linear-gradient(135deg, #ffffff 0%, #bbdefb 100%)'
+                          ]
+                }}
+                transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                }}
+                style={{
                     position: 'absolute',
                     top: 0,
                     left: 0,
-                    right: 0,
-                    bottom: 0,
-                    opacity: isDarkMode ? 0.3 : 0.2,
-                    backgroundImage: `radial-gradient(${isDarkMode ? '#ffffff20' : '#00000015'} 1px, transparent 1px)`,
-                    backgroundSize: '30px 30px',
+                    width: '100%',
+                    height: '100%',
+                }}
+            />
+
+            {/* Floating tech elements */}
+            {elements.map((element, index) => (
+                <motion.div
+                    key={index}
+                    initial={{
+                        x: element.positions[0].x,
+                        y: element.positions[0].y,
+                        opacity: 0,
+                        scale: 0.5,
+                        rotate: 0
+                    }}
+                    animate={{
+                        x: element.positions.map(p => p.x),
+                        y: element.positions.map(p => p.y),
+                        opacity: isDarkMode ? 0.5 : 0.6,
+                        scale: [0.8, 1.2, 0.8],
+                        rotate: [-15, 15, -15],
+                    }}
+                    transition={{
+                        duration: element.duration,
+                        repeat: Infinity,
+                        repeatType: 'mirror',
+                        ease: 'easeInOut',
+                        delay: element.delay,
+                        times: [0, 0.33, 0.66, 1]
+                    }}
+                    style={{
+                        position: 'absolute',
+                        fontSize: element.size,
+                        fontFamily: 'Consolas, monospace',
+                        color: isDarkMode ? '#88ccff' : '#2196f3',
+                        fontWeight: '600',
+                        userSelect: 'none',
+                        textShadow: isDarkMode 
+                            ? '0 0 15px rgba(136, 204, 255, 0.7)'
+                            : '0 0 15px rgba(33, 150, 243, 0.5)',
+                        willChange: 'transform',
+                        transformOrigin: 'center center',
+                    }}
+                >
+                    {element.content}
+                </motion.div>
+            ))}
+
+            {/* Primary glow effect */}
+            <motion.div
+                animate={{
+                    opacity: [0.4, 0.7, 0.4],
+                    scale: [1, 1.2, 1],
+                }}
+                transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                }}
+                style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    width: '100%',
+                    height: '100%',
+                    transform: 'translate(-50%, -50%)',
+                    background: isDarkMode
+                        ? 'radial-gradient(circle at 50% 50%, rgba(136, 204, 255, 0.2) 0%, transparent 60%)'
+                        : 'radial-gradient(circle at 50% 50%, rgba(33, 150, 243, 0.15) 0%, transparent 60%)',
+                    pointerEvents: 'none',
+                }}
+            />
+
+            {/* Secondary glow effect */}
+            <motion.div
+                animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1.2, 1, 1.2],
+                }}
+                transition={{
+                    duration: 7,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                    delay: 1,
+                }}
+                style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    width: '100%',
+                    height: '100%',
+                    transform: 'translate(-50%, -50%)',
+                    background: isDarkMode
+                        ? 'radial-gradient(circle at 30% 70%, rgba(136, 204, 255, 0.15) 0%, transparent 50%)'
+                        : 'radial-gradient(circle at 30% 70%, rgba(33, 150, 243, 0.1) 0%, transparent 50%)',
                     pointerEvents: 'none',
                 }}
             />

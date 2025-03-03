@@ -1,65 +1,68 @@
-import React from 'react';
-import { 
-    Box, 
-    AppBar,
-    Toolbar,
-    Typography,
-    useTheme
-} from '@mui/material';
-import { motion } from 'framer-motion';
+import React from "react";
+import { Box, AppBar, Toolbar, Typography, useTheme } from "@mui/material";
+import { motion } from "framer-motion";
 
 // Import section components
-import Section from './Section';
-import ProfileSection from './sections/ProfileSection';
-import SkillsSection from './sections/SkillsSection';
-import ExperienceSection from './sections/ExperienceSection';
-import EducationSection from './sections/EducationSection';
-import ProjectsSection from './sections/ProjectsSection';
-import ThemeToggle from './ThemeToggle';
+import Section from "./Section";
+import ProfileSection from "./sections/ProfileSection";
+import SkillsSection from "./sections/SkillsSection";
+import ExperienceSection from "./sections/ExperienceSection";
+import EducationSection from "./sections/EducationSection";
+import ProjectsSection from "./sections/ProjectsSection";
+import ThemeToggle from "./ThemeToggle";
 
 // Animation variants for Framer Motion
 const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
         opacity: 1,
-        transition: { 
+        transition: {
             staggerChildren: 0.1,
-            delayChildren: 0.3
-        }
-    }
+            delayChildren: 0.3,
+        },
+    },
 };
 
 const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { 
-        y: 0, 
+    visible: {
+        y: 0,
         opacity: 1,
-        transition: { type: 'spring', stiffness: 100 }
-    }
+        transition: { type: "spring", stiffness: 100 },
+    },
 };
 
 const Dashboard = ({ toggleColorMode }) => {
     const theme = useTheme();
-    
+
     return (
         <>
-            <AppBar position="fixed" color="transparent" elevation={0} sx={{ zIndex: 1100 }}>
+            <AppBar
+                position="fixed"
+                color="transparent"
+                elevation={0}
+                sx={{ zIndex: 1100 }}
+            >
                 <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 600 }}>
+                    <Typography
+                        variant="h6"
+                        component="div"
+                        sx={{ flexGrow: 1, fontWeight: 600 }}
+                    >
                         My Portfolio
                     </Typography>
                     <ThemeToggle toggleColorMode={toggleColorMode} />
                 </Toolbar>
             </AppBar>
-            
-            <Box 
+
+            <Box
                 id="scrollContainer"
-                sx={{ 
-                    pt: '64px', // Height of AppBar
-                    scrollSnapType: { xs: 'none', md: 'y mandatory' }, // Enable snap scrolling on larger screens
-                    height: '100vh',
-                    overflowY: 'auto',
-                    scrollBehavior: 'smooth'
+                sx={{
+                    pt: "64px", // Height of AppBar
+                    scrollSnapType: { xs: "none", md: "y mandatory" }, // Enable snap scrolling on larger screens
+                    height: "100vh",
+                    overflowY: "auto",
+                    scrollBehavior: "smooth",
                 }}
             >
                 <motion.div
@@ -97,4 +100,4 @@ const Dashboard = ({ toggleColorMode }) => {
     );
 };
 
-export default Dashboard; 
+export default Dashboard;
