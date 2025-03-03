@@ -1,35 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useMemo } from 'react';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import Dashboard from './components/Dashboard';
+import './App.css';
+
+// Create a theme instance
+const getTheme = (mode) => createTheme({
+  palette: {
+    mode,
+    primary: {
+      main: mode === 'dark' ? '#90caf9' : '#1976d2',
+    },
+    secondary: {
+      main: mode === 'dark' ? '#f48fb1' : '#dc004e',
+    },
+    background: {
+        default: mode === 'dark' ? '#303030' : '#f5f5f5', // Changed from #121212 to #303030
+        paper: mode === 'dark' ? '#424242' : '#ffffff',   // Changed from #1e1e1e to #424242
+    },
+  },
+  typography: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    h4: {
+      fontWeight: 600,
+    },
+    h5: {
+      fontWeight: 500,
+    },
+    h6: {
+      fontWeight: 500,
+    },
+  },
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+        },
+      },
+    },
+  },
+});
 
 function App() {
-  const [count, setCount] = useState(0)
+  // State to track the current theme mode
+  const [mode, setMode] = useState('light');
+  
+  // Toggle between light and dark mode
+  const toggleColorMode = () => {
+    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+  };
+
+  // Memoize the theme to prevent unnecessary re-renders
+  const theme = useMemo(() => getTheme(mode), [mode]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Dashboard toggleColorMode={toggleColorMode} />
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App; 
