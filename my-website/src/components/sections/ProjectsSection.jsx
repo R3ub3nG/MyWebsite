@@ -1,0 +1,103 @@
+import React from 'react';
+import { 
+    Box,
+    Container, 
+    Grid, 
+    Paper, 
+    Typography, 
+    Divider,
+    Card,
+    CardContent,
+    IconButton,
+    useTheme
+} from '@mui/material';
+import { motion } from 'framer-motion';
+import { 
+    Code as CodeIcon,
+    GitHub as GitHubIcon
+} from '@mui/icons-material';
+
+const ProjectsSection = ({ itemVariants }) => {
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
+
+    // Projects data
+    const projects = [
+        {
+            title: "E-Commerce Platform",
+            tech: "React • Node.js • MongoDB",
+            description: "A full-featured e-commerce platform with product management, shopping cart, and payment processing capabilities.",
+            repoUrl: "https://github.com/yourusername/ecommerce-platform"
+        },
+        {
+            title: "AI Content Generator",
+            tech: "Python • TensorFlow • Flask",
+            description: "An AI-powered application that generates custom content based on user inputs using natural language processing.",
+            repoUrl: "https://github.com/yourusername/ai-content-generator"
+        },
+        {
+            title: "Portfolio Website",
+            tech: "React • Material UI • Framer Motion",
+            description: "A responsive personal portfolio website with smooth animations and dark mode support.",
+            repoUrl: "https://github.com/yourusername/portfolio-website"
+        }
+    ];
+
+    return (
+        <Container maxWidth="lg">
+            <motion.div variants={itemVariants}>
+                <Paper elevation={2} sx={{ p: 4, height: '100%', maxHeight: '80vh' }}>
+                    <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
+                        <CodeIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
+                        Featured Projects
+                    </Typography>
+                    <Divider sx={{ mb: 4 }} />
+                    
+                    <Grid container spacing={4}>
+                        {projects.map((project, index) => (
+                            <Grid item xs={12} md={4} key={index}>
+                                <motion.div 
+                                    whileHover={{ scale: 1.03 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                >
+                                    <Card sx={{ 
+                                        height: '100%',
+                                        display: 'flex',
+                                        flexDirection: 'column'
+                                    }}>
+                                        <CardContent sx={{ flexGrow: 1, p: 3 }}>
+                                            <Typography variant="h5" component="div" fontWeight="bold" gutterBottom>
+                                                {project.title}
+                                            </Typography>
+                                            <Typography sx={{ mb: 2 }} color={isDarkMode ? "grey.100" : "text.secondary"}>
+                                                {project.tech}
+                                            </Typography>
+                                            <Divider sx={{ my: 2 }} />
+                                            <Typography variant="body1" paragraph>
+                                                {project.description}
+                                            </Typography>
+                                            <Box sx={{ mt: 'auto', pt: 2, display: 'flex', justifyContent: 'flex-end' }}>
+                                                <IconButton 
+                                                    color="primary" 
+                                                    aria-label="github repository"
+                                                    component="a"
+                                                    href={project.repoUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <GitHubIcon />
+                                                </IconButton>
+                                            </Box>
+                                        </CardContent>
+                                    </Card>
+                                </motion.div>
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Paper>
+            </motion.div>
+        </Container>
+    );
+};
+
+export default ProjectsSection; 
