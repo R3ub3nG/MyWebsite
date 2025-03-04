@@ -5,11 +5,12 @@ import { motion } from "framer-motion";
 // Import section components
 import Section from "./Section";
 import ProfileSection from "./sections/ProfileSection";
-import SkillsSection from "./sections/SkillsSection";
 import ExperienceSection from "./sections/ExperienceSection";
 import EducationSection from "./sections/EducationSection";
 import ProjectsSection from "./sections/ProjectsSection";
 import ThemeToggle from "./ThemeToggle";
+import TechnicalSkillsSection from "./sections/TechnicalSkillsSection";
+import SoftSkillsSection from "./sections/SoftSkillsSection";
 
 // Animation variants for Framer Motion
 const containerVariants = {
@@ -75,9 +76,14 @@ const Dashboard = ({ toggleColorMode }) => {
                         <ProfileSection itemVariants={itemVariants} />
                     </Section>
 
-                    {/* Skills Section */}
-                    <Section id="skills">
-                        <SkillsSection itemVariants={itemVariants} />
+                    {/* Technical Skills Section */}
+                    <Section id="technical-skills">
+                        <TechnicalSkillsSection itemVariants={itemVariants} />
+                    </Section>
+
+                    {/* Soft Skills Section */}
+                    <Section id="soft-skills">
+                        <SoftSkillsSection itemVariants={itemVariants} />
                     </Section>
 
                     {/* Experience Section */}
@@ -94,6 +100,7 @@ const Dashboard = ({ toggleColorMode }) => {
                     <Section id="projects">
                         <ProjectsSection itemVariants={itemVariants} />
                     </Section>
+
                 </motion.div>
             </Box>
         </>

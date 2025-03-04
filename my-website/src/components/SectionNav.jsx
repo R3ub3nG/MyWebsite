@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 // Section definitions
 const sections = [
     { id: "profile", label: "Profile", icon: "👤" },
-    { id: "skills", label: "Skills", icon: "💻" },
+    { id: "technical-skills", label: "Technical Skills", icon: "💻" },
+    { id: "soft-skills", label: "Soft Skills", icon: "🤝" },
     { id: "experience", label: "Experience", icon: "💼" },
     { id: "education", label: "Education", icon: "🎓" },
     { id: "projects", label: "Projects", icon: "🚀" },
