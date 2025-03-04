@@ -6,6 +6,7 @@ import CustomAppBar from './CustomAppBar';
 // Import section components
 import Section from "./Section";
 import ProfileSection from "./sections/ProfileSection";
+import PassionsSection from "./sections/PassionsSection";
 import ExperienceSection from "./sections/ExperienceSection";
 import EducationSection from "./sections/EducationSection";
 import ProjectsSection from "./sections/ProjectsSection";
@@ -101,6 +102,11 @@ const Dashboard = ({ toggleColorMode }) => {
                     {/* Profile Section */}
                     <Section id="profile">
                         <ProfileSection itemVariants={itemVariants} />
+                    </Section>
+
+                    {/* Passions Section */}
+                    <Section id="passions">
+                        <PassionsSection itemVariants={itemVariants} />
                     </Section>
 
                     {/* Technical Skills Section */}

@@ -106,10 +106,8 @@ const SoftSkillsSection = ({ itemVariants }) => {
                                         TransitionComponent={Zoom}
                                         arrow
                                         placement="top"
-                                        enterDelay={100}
+                                        enterDelay={200}
                                         leaveDelay={0}
-                                        enterNextDelay={100}
-                                        followCursor
                                         componentsProps={{
                                             tooltip: {
                                                 sx: {
@@ -122,16 +120,6 @@ const SoftSkillsSection = ({ itemVariants }) => {
                                                     fontSize: '0.875rem',
                                                 }
                                             }
-                                        }}
-                                        PopperProps={{
-                                            modifiers: [
-                                                {
-                                                    name: 'offset',
-                                                    options: {
-                                                        offset: [0, -8],
-                                                    },
-                                                },
-                                            ],
                                         }}
                                     >
                                         <Card variant="outlined" sx={{ 

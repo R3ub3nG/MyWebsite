@@ -13,6 +13,7 @@ import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 // Import the sections data to maintain consistency
 const sections = [
     { id: "profile", label: "Profile", icon: "👤" },
+    { id: "passions", label: "My Passions", icon: "❤️" },
     { id: "technical-skills", label: "Technical Skills", icon: "💻" },
     { id: "soft-skills", label: "Soft Skills", icon: "🤝" },
     { id: "experience", label: "Experience", icon: "💼" },
