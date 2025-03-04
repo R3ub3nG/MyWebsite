@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { 
-    Button,
     Menu,
     MenuItem,
     ListItemIcon,
     ListItemText,
-    useTheme
+    useTheme,
+    Box,
+    Typography
 } from '@mui/material';
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 
@@ -23,12 +24,13 @@ const SectionsMenu = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
+    const buttonRef = useRef(null);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
+    const handleMouseEnter = () => {
+        setAnchorEl(buttonRef.current);
     };
 
-    const handleClose = () => {
+    const handleMouseLeave = () => {
         setAnchorEl(null);
     };
 
@@ -43,27 +45,51 @@ const SectionsMenu = () => {
                 behavior: "smooth",
             });
         }
-        handleClose();
+        setAnchorEl(null);
     };
 
     return (
-        <>
-            <Button
-                onClick={handleClick}
-                endIcon={<ExpandMoreIcon />}
+        <Box 
+            onMouseLeave={handleMouseLeave}
+            sx={{ 
+                display: 'inline-block',
+                position: 'relative'
+            }}
+        >
+            <Box
+                ref={buttonRef}
+                onMouseEnter={handleMouseEnter}
                 sx={{ 
-                    textTransform: 'none',
-                    fontSize: '1rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 0.5,
+                    px: 1.5,
+                    py: 0.75,
                     mr: 2,
-                    color: 'inherit'
+                    borderRadius: 1,
+                    cursor: 'default',
+                    color: 'inherit',
+                    transition: 'all 0.2s ease-in-out',
+                    '&:hover': {
+                        bgcolor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
+                    }
                 }}
             >
-                Sections
-            </Button>
+                <Typography sx={{ fontSize: '1rem' }}>
+                    Sections
+                </Typography>
+                <ExpandMoreIcon 
+                    sx={{ 
+                        fontSize: '1.25rem',
+                        transform: Boolean(anchorEl) ? 'rotate(180deg)' : 'rotate(0)',
+                        transition: 'transform 0.2s ease-in-out'
+                    }} 
+                />
+            </Box>
             <Menu
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
-                onClose={handleClose}
+                onClose={() => setAnchorEl(null)}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'right',
@@ -72,40 +98,76 @@ const SectionsMenu = () => {
                     vertical: 'top',
                     horizontal: 'right',
                 }}
-                PaperProps={{
-                    elevation: 3,
+                MenuListProps={{
+                    onMouseEnter: handleMouseEnter,
                     sx: {
-                        mt: 1,
-                        minWidth: 200,
-                        borderRadius: 2,
+                        py: 0
+                    }
+                }}
+                PaperProps={{
+                    elevation: 0,
+                    sx: {
+                        mt: 0.5,
+                        minWidth: 180,
+                        borderRadius: 1.5,
                         bgcolor: isDarkMode ? 'rgba(38, 38, 38, 0.95)' : 'rgba(255, 255, 255, 0.95)',
                         backdropFilter: 'blur(10px)',
                         color: isDarkMode ? 'white' : 'text.primary',
-                        border: 1,
-                        borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)',
+                        transition: 'all 0.2s ease-in-out',
+                        opacity: Boolean(anchorEl) ? 1 : 0,
+                        overflow: 'hidden',
+                        boxShadow: isDarkMode 
+                            ? `0 0 1px 0 rgba(0, 0, 0, 0.9),
+                               0 0 2px 0 rgba(0, 0, 0, 0.8),
+                               0 4px 8px -2px rgba(0, 0, 0, 0.6),
+                               0 8px 16px -4px rgba(0, 0, 0, 0.4)`
+                            : `0 0 1px 0 rgba(0, 0, 0, 0.2),
+                               0 0 2px 0 rgba(0, 0, 0, 0.15),
+                               0 4px 8px -2px rgba(0, 0, 0, 0.1),
+                               0 8px 16px -4px rgba(0, 0, 0, 0.05)`,
+                        '& .MuiList-root': {
+                            background: 'inherit'
+                        },
+                        '& .MuiTypography-root': {
+                            fontSize: '0.9rem'
+                        }
                     }
                 }}
+                transitionDuration={{
+                    enter: 200,
+                    exit: 200
+                }}
             >
-                {sections.map((section) => (
+                {sections.map((section, index) => (
                     <MenuItem 
                         key={section.id}
                         onClick={() => scrollToSection(section.id)}
                         sx={{
-                            py: 1,
+                            py: 1.25,
+                            px: 2,
                             color: 'inherit',
+                            transition: 'background-color 0.2s ease-in-out',
+                            borderBottom: index !== sections.length - 1 ? 1 : 0,
+                            borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)',
+                            cursor: 'pointer',
                             '&:hover': {
                                 bgcolor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
                             }
                         }}
                     >
-                        <ListItemIcon sx={{ fontSize: '1.25rem', minWidth: 36, color: 'inherit' }}>
+                        <ListItemIcon sx={{ 
+                            fontSize: '1.1rem', 
+                            minWidth: 32, 
+                            color: 'inherit',
+                            ml: 0.5
+                        }}>
                             {section.icon}
                         </ListItemIcon>
-                        <ListItemText primary={section.label} />
+                        <ListItemText primary={section.label} sx={{ ml: 1 }} />
                     </MenuItem>
                 ))}
             </Menu>
-        </>
+        </Box>
     );
 };
 

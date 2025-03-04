@@ -47,7 +47,22 @@ const EducationSection = ({ itemVariants }) => {
     return (
         <Container maxWidth="lg">
             <motion.div variants={itemVariants}>
-                <Paper elevation={2} sx={{ p: 4, height: '100%', maxHeight: '80vh' }}>
+                <Paper elevation={0} sx={{ 
+                    p: 4, 
+                    height: '100%', 
+                    maxHeight: '80vh',
+                    borderRadius: '16px',
+                    boxShadow: isDarkMode 
+                        ? '0 0 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.9), 0 -8px 24px rgba(0, 0, 0, 0.9)'
+                        : '0 0 2px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15), 0 -8px 24px rgba(0, 0, 0, 0.15)',
+                    transform: 'translate3d(0, 0, 0)',
+                    WebkitTransform: 'translate3d(0, 0, 0)',
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                    position: 'relative',
+                    zIndex: 1,
+                    backgroundColor: theme.palette.background.paper
+                }}>
                     <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
                         <SchoolIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
                         Education
@@ -66,7 +81,9 @@ const EducationSection = ({ itemVariants }) => {
                                         height: '100%',
                                         p: 3,
                                         '&:hover': {
-                                            boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+                                            boxShadow: isDarkMode 
+                                                ? '0 0 1px 0 rgba(0, 0, 0, 0.9), 0 0 2px 0 rgba(0, 0, 0, 0.8), 0 4px 8px -2px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.4)'
+                                                : '0 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 2px 0 rgba(0, 0, 0, 0.15), 0 4px 8px -2px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.05)'
                                         }
                                     }}>
                                         <CardContent>

@@ -49,7 +49,6 @@ const ProfileSection = ({ itemVariants }) => {
                         scale: 0.98,
                     }}
                     animate={{ 
-                        boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
                         scale: 1,
                     }}
                     transition={{
@@ -59,7 +58,7 @@ const ProfileSection = ({ itemVariants }) => {
                     style={{
                         width: '100%',
                         height: '100%',
-                        willChange: 'transform, box-shadow',
+                        willChange: 'transform',
                     }}
                 >
                     <Paper 
@@ -75,10 +74,15 @@ const ProfileSection = ({ itemVariants }) => {
                             position: 'relative',
                             height: { xs: 'auto', md: '70vh' },
                             maxHeight: '800px',
+                            borderRadius: '16px',
+                            boxShadow: isDarkMode 
+                                ? '0 0 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.9), 0 -8px 24px rgba(0, 0, 0, 0.9)'
+                                : '0 0 2px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15), 0 -8px 24px rgba(0, 0, 0, 0.15)',
                             transform: 'translate3d(0, 0, 0)',
                             WebkitTransform: 'translate3d(0, 0, 0)',
                             backfaceVisibility: 'hidden',
                             WebkitBackfaceVisibility: 'hidden',
+                            zIndex: 1
                         }}
                     >
                         {/* Decorative circles */}
