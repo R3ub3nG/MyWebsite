@@ -80,7 +80,9 @@ const PassionsSection = ({ itemVariants }) => {
                     backfaceVisibility: 'hidden',
                     WebkitBackfaceVisibility: 'hidden',
                     position: 'relative',
-                    zIndex: 1
+                    zIndex: 1,
+                    width: '100%',
+                    mb: 4
                 }}>
                     <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
                         <PassionsIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />

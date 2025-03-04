@@ -68,104 +68,131 @@ const SoftSkillsSection = ({ itemVariants }) => {
 
     return (
         <Container maxWidth="lg">
-            <motion.div variants={itemVariants}>
-                <Paper elevation={0} sx={{ 
-                    p: 4,
-                    borderRadius: '16px',
-                    boxShadow: isDarkMode 
-                        ? '0 0 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.9), 0 -8px 24px rgba(0, 0, 0, 0.9)'
-                        : '0 0 2px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15), 0 -8px 24px rgba(0, 0, 0, 0.15)',
-                    transform: 'translate3d(0, 0, 0)',
-                    WebkitTransform: 'translate3d(0, 0, 0)',
-                    backfaceVisibility: 'hidden',
-                    WebkitBackfaceVisibility: 'hidden'
-                }}>
-                    <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
-                        <PsychologyIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
-                        Soft Skills
-                    </Typography>
-                    <Divider sx={{ mb: 4 }} />
-                    
-                    <Grid container spacing={3}>
-                        {softSkills.map((skill, index) => (
-                            <Grid item xs={12} md={6} key={index}>
-                                <motion.div
-                                    whileHover={{ scale: 1.03 }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                                    style={{ width: '100%', height: '100%' }}
-                                >
-                                    <Tooltip 
-                                        title={
-                                            <Typography sx={{ 
-                                                p: 1,
-                                                color: isDarkMode ? 'white' : 'text.primary'
-                                            }}>
-                                                {skill.longDescription}
-                                            </Typography>
-                                        }
-                                        TransitionComponent={Zoom}
-                                        arrow
-                                        placement="top"
-                                        enterDelay={200}
-                                        leaveDelay={0}
-                                        componentsProps={{
-                                            tooltip: {
-                                                sx: {
-                                                    bgcolor: isDarkMode ? 'rgba(66, 66, 66, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-                                                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                                                    '& .MuiTooltip-arrow': {
-                                                        color: isDarkMode ? 'rgba(66, 66, 66, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-                                                    },
-                                                    maxWidth: 300,
-                                                    fontSize: '0.875rem',
-                                                }
-                                            }
-                                        }}
+            <motion.div 
+                variants={itemVariants}
+                initial={{ opacity: 1 }}
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    willChange: 'transform',
+                }}
+            >
+                <motion.div
+                    initial={{ 
+                        boxShadow: '0 0px 0px rgba(0,0,0,0)',
+                        scale: 0.98,
+                    }}
+                    animate={{ 
+                        scale: 1,
+                    }}
+                    transition={{
+                        duration: 0.3,
+                        ease: 'easeOut',
+                    }}
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        willChange: 'transform',
+                    }}
+                >
+                    <Paper elevation={0} sx={{ 
+                        p: 4,
+                        borderRadius: '16px',
+                        boxShadow: isDarkMode 
+                            ? '0 0 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.9), 0 -8px 24px rgba(0, 0, 0, 0.9)'
+                            : '0 0 2px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15), 0 -8px 24px rgba(0, 0, 0, 0.15)',
+                        transform: 'translate3d(0, 0, 0)',
+                        WebkitTransform: 'translate3d(0, 0, 0)',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden'
+                    }}>
+                        <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
+                            <PsychologyIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
+                            Soft Skills
+                        </Typography>
+                        <Divider sx={{ mb: 4 }} />
+                        
+                        <Grid container spacing={3}>
+                            {softSkills.map((skill, index) => (
+                                <Grid item xs={12} md={6} key={index}>
+                                    <motion.div
+                                        whileHover={{ scale: 1.03 }}
+                                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                        style={{ width: '100%', height: '100%' }}
                                     >
-                                        <Card variant="outlined" sx={{ 
-                                            height: '100%',
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            cursor: 'help',
-                                            '&:hover': {
-                                                boxShadow: isDarkMode 
-                                                    ? '0 0 1px 0 rgba(0, 0, 0, 0.9), 0 0 2px 0 rgba(0, 0, 0, 0.8), 0 4px 8px -2px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.4)'
-                                                    : '0 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 2px 0 rgba(0, 0, 0, 0.15), 0 4px 8px -2px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.05)',
-                                                bgcolor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)'
-                                            }
-                                        }}>
-                                            <CardContent sx={{ p: 3 }}>
-                                                <Box sx={{ 
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    gap: 2,
-                                                    mb: 2
+                                        <Tooltip 
+                                            title={
+                                                <Typography sx={{ 
+                                                    p: 1,
+                                                    color: isDarkMode ? 'white' : 'text.primary'
                                                 }}>
+                                                    {skill.longDescription}
+                                                </Typography>
+                                            }
+                                            TransitionComponent={Zoom}
+                                            arrow
+                                            placement="top"
+                                            enterDelay={200}
+                                            leaveDelay={0}
+                                            componentsProps={{
+                                                tooltip: {
+                                                    sx: {
+                                                        bgcolor: isDarkMode ? 'rgba(66, 66, 66, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+                                                        boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+                                                        '& .MuiTooltip-arrow': {
+                                                            color: isDarkMode ? 'rgba(66, 66, 66, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+                                                        },
+                                                        maxWidth: 300,
+                                                        fontSize: '0.875rem',
+                                                    }
+                                                }
+                                            }}
+                                        >
+                                            <Card variant="outlined" sx={{ 
+                                                height: '100%',
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                cursor: 'help',
+                                                '&:hover': {
+                                                    boxShadow: isDarkMode 
+                                                        ? '0 0 1px 0 rgba(0, 0, 0, 0.9), 0 0 2px 0 rgba(0, 0, 0, 0.8), 0 4px 8px -2px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.4)'
+                                                        : '0 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 2px 0 rgba(0, 0, 0, 0.15), 0 4px 8px -2px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.05)',
+                                                    bgcolor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)'
+                                                }
+                                            }}>
+                                                <CardContent sx={{ p: 3 }}>
                                                     <Box sx={{ 
                                                         display: 'flex',
                                                         alignItems: 'center',
-                                                        transition: 'transform 0.2s',
-                                                        '&:hover': {
-                                                            transform: 'scale(1.1)',
-                                                        }
+                                                        gap: 2,
+                                                        mb: 2
                                                     }}>
-                                                        {skill.icon}
+                                                        <Box sx={{ 
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            transition: 'transform 0.2s',
+                                                            '&:hover': {
+                                                                transform: 'scale(1.1)',
+                                                            }
+                                                        }}>
+                                                            {skill.icon}
+                                                        </Box>
+                                                        <Typography variant="h6" component="h3" fontWeight="bold">
+                                                            {skill.skill}
+                                                        </Typography>
                                                     </Box>
-                                                    <Typography variant="h6" component="h3" fontWeight="bold">
-                                                        {skill.skill}
+                                                    <Typography variant="body1" color={isDarkMode ? "grey.300" : "text.secondary"}>
+                                                        {skill.shortDescription}
                                                     </Typography>
-                                                </Box>
-                                                <Typography variant="body1" color={isDarkMode ? "grey.300" : "text.secondary"}>
-                                                    {skill.shortDescription}
-                                                </Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </Tooltip>
-                                </motion.div>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Paper>
+                                                </CardContent>
+                                            </Card>
+                                        </Tooltip>
+                                    </motion.div>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Paper>
+                </motion.div>
             </motion.div>
         </Container>
     );

@@ -82,7 +82,9 @@ const ProfileSection = ({ itemVariants }) => {
                             WebkitTransform: 'translate3d(0, 0, 0)',
                             backfaceVisibility: 'hidden',
                             WebkitBackfaceVisibility: 'hidden',
-                            zIndex: 1
+                            zIndex: 1,
+                            width: '100%',
+                            mb: 4
                         }}
                     >
                         {/* Decorative circles */}
