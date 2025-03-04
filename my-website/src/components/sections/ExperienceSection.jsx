@@ -55,30 +55,42 @@ const ExperienceSection = ({ itemVariants }) => {
                     <Grid container spacing={4}>
                         {experiences.map((experience, index) => (
                             <Grid item xs={12} md={6} key={index}>
-                                <Card sx={{ p: 3, height: '100%' }}>
-                                    <CardContent>
-                                        <Typography variant="h5" fontWeight="bold" gutterBottom>
-                                            {experience.title}
-                                        </Typography>
-                                        <Typography variant="h6" color={isDarkMode ? "grey.100" : "text.primary"} gutterBottom>
-                                            {experience.company}
-                                        </Typography>
-                                        <Typography variant="body1" color="text.secondary" gutterBottom>
-                                            {experience.period}
-                                        </Typography>
-                                        <Divider sx={{ my: 2 }} />
-                                        <Typography variant="body1" paragraph>
-                                            {experience.description}
-                                        </Typography>
-                                        <Typography variant="body1">
-                                            {experience.responsibilities.map((responsibility, i) => (
-                                                <React.Fragment key={i}>
-                                                    • {responsibility}<br />
-                                                </React.Fragment>
-                                            ))}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
+                                <motion.div
+                                    whileHover={{ scale: 1.03 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                    style={{ width: '100%', height: '100%' }}
+                                >
+                                    <Card sx={{ 
+                                        p: 3, 
+                                        height: '100%',
+                                        '&:hover': {
+                                            boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+                                        }
+                                    }}>
+                                        <CardContent>
+                                            <Typography variant="h5" fontWeight="bold" gutterBottom>
+                                                {experience.title}
+                                            </Typography>
+                                            <Typography variant="h6" color={isDarkMode ? "grey.100" : "text.primary"} gutterBottom>
+                                                {experience.company}
+                                            </Typography>
+                                            <Typography variant="body1" color="text.secondary" gutterBottom>
+                                                {experience.period}
+                                            </Typography>
+                                            <Divider sx={{ my: 2 }} />
+                                            <Typography variant="body1" paragraph>
+                                                {experience.description}
+                                            </Typography>
+                                            <Typography variant="body1">
+                                                {experience.responsibilities.map((responsibility, i) => (
+                                                    <React.Fragment key={i}>
+                                                        • {responsibility}<br />
+                                                    </React.Fragment>
+                                                ))}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </motion.div>
                             </Grid>
                         ))}
                     </Grid>

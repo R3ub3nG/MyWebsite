@@ -57,42 +57,46 @@ const EducationSection = ({ itemVariants }) => {
                     <Grid container spacing={4}>
                         {education.map((item, index) => (
                             <Grid item xs={12} md={6} key={index}>
-                                <Card variant="outlined" sx={{ 
-                                    height: '100%',
-                                    p: 3,
-                                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                                    '&:hover': {
-                                        transform: 'translateY(-5px)',
-                                        boxShadow: '0 10px 20px rgba(0,0,0,0.1)'
-                                    }
-                                }}>
-                                    <CardContent>
-                                        <Typography variant="h5" component="div" fontWeight="bold" gutterBottom>
-                                            {item.degree}
-                                        </Typography>
-                                        <Typography variant="h6" sx={{ mb: 1.5 }} color={isDarkMode ? "grey.100" : "text.secondary"}>
-                                            {item.institution}
-                                        </Typography>
-                                        {item.period && (
-                                            <Typography variant="body1" color="text.secondary" gutterBottom>
-                                                {item.period}
+                                <motion.div
+                                    whileHover={{ scale: 1.03 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                    style={{ width: '100%', height: '100%' }}
+                                >
+                                    <Card variant="outlined" sx={{ 
+                                        height: '100%',
+                                        p: 3,
+                                        '&:hover': {
+                                            boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+                                        }
+                                    }}>
+                                        <CardContent>
+                                            <Typography variant="h5" component="div" fontWeight="bold" gutterBottom>
+                                                {item.degree}
                                             </Typography>
-                                        )}
-                                        <Divider sx={{ my: 2 }} />
-                                        {item.intro && (
-                                            <Typography variant="body1" paragraph>
-                                                {item.intro}
+                                            <Typography variant="h6" sx={{ mb: 1.5 }} color={isDarkMode ? "grey.100" : "text.secondary"}>
+                                                {item.institution}
                                             </Typography>
-                                        )}
-                                        <Typography variant="body1">
-                                            {item.details.map((detail, i) => (
-                                                <React.Fragment key={i}>
-                                                    • {detail}<br />
-                                                </React.Fragment>
-                                            ))}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
+                                            {item.period && (
+                                                <Typography variant="body1" color="text.secondary" gutterBottom>
+                                                    {item.period}
+                                                </Typography>
+                                            )}
+                                            <Divider sx={{ my: 2 }} />
+                                            {item.intro && (
+                                                <Typography variant="body1" paragraph>
+                                                    {item.intro}
+                                                </Typography>
+                                            )}
+                                            <Typography variant="body1">
+                                                {item.details.map((detail, i) => (
+                                                    <React.Fragment key={i}>
+                                                        • {detail}<br />
+                                                    </React.Fragment>
+                                                ))}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </motion.div>
                             </Grid>
                         ))}
                     </Grid>

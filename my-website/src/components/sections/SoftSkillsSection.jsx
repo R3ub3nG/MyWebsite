@@ -56,23 +56,29 @@ const SoftSkillsSection = ({ itemVariants }) => {
                     <Grid container spacing={3}>
                         {softSkills.map((skill, index) => (
                             <Grid item xs={12} md={6} key={index}>
-                                <Card variant="outlined" sx={{ 
-                                    height: '100%',
-                                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                                    '&:hover': {
-                                        transform: 'translateY(-5px)',
-                                        boxShadow: '0 10px 20px rgba(0,0,0,0.1)'
-                                    }
-                                }}>
-                                    <CardContent sx={{ p: 3 }}>
-                                        <Typography variant="h6" component="h3" gutterBottom fontWeight="bold">
-                                            {skill.skill}
-                                        </Typography>
-                                        <Typography variant="body1" color={isDarkMode ? "grey.300" : "text.secondary"}>
-                                            {skill.description}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
+                                <motion.div
+                                    whileHover={{ scale: 1.03 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                    style={{ width: '100%', height: '100%' }}
+                                >
+                                    <Card variant="outlined" sx={{ 
+                                        height: '100%',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        '&:hover': {
+                                            boxShadow: '0 8px 16px rgba(0,0,0,0.1)'
+                                        }
+                                    }}>
+                                        <CardContent sx={{ p: 3 }}>
+                                            <Typography variant="h6" component="h3" gutterBottom fontWeight="bold">
+                                                {skill.skill}
+                                            </Typography>
+                                            <Typography variant="body1" color={isDarkMode ? "grey.300" : "text.secondary"}>
+                                                {skill.description}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </motion.div>
                             </Grid>
                         ))}
                     </Grid>

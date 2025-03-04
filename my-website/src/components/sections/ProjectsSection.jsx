@@ -55,27 +55,36 @@ const ProjectsSection = ({ itemVariants }) => {
                     
                     <Grid container spacing={4}>
                         {projects.map((project, index) => (
-                            <Grid item xs={12} md={4} key={index}>
+                            <Grid item xs={12} md={4} key={index} sx={{ display: 'flex' }}>
                                 <motion.div 
                                     whileHover={{ scale: 1.03 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                    style={{ width: '100%' }}
                                 >
                                     <Card sx={{ 
                                         height: '100%',
                                         display: 'flex',
-                                        flexDirection: 'column'
+                                        flexDirection: 'column',
+                                        minHeight: '300px'
                                     }}>
-                                        <CardContent sx={{ flexGrow: 1, p: 3 }}>
-                                            <Typography variant="h5" component="div" fontWeight="bold" gutterBottom>
-                                                {project.title}
-                                            </Typography>
-                                            <Typography sx={{ mb: 2 }} color={isDarkMode ? "grey.100" : "text.secondary"}>
-                                                {project.tech}
-                                            </Typography>
-                                            <Divider sx={{ my: 2 }} />
-                                            <Typography variant="body1" paragraph>
-                                                {project.description}
-                                            </Typography>
+                                        <CardContent sx={{ 
+                                            flexGrow: 1, 
+                                            p: 3,
+                                            display: 'flex',
+                                            flexDirection: 'column'
+                                        }}>
+                                            <Box>
+                                                <Typography variant="h5" component="div" fontWeight="bold" gutterBottom>
+                                                    {project.title}
+                                                </Typography>
+                                                <Typography sx={{ mb: 2 }} color={isDarkMode ? "grey.100" : "text.secondary"}>
+                                                    {project.tech}
+                                                </Typography>
+                                                <Divider sx={{ my: 2 }} />
+                                                <Typography variant="body1" paragraph>
+                                                    {project.description}
+                                                </Typography>
+                                            </Box>
                                             <Box sx={{ mt: 'auto', pt: 2, display: 'flex', justifyContent: 'flex-end' }}>
                                                 <IconButton 
                                                     color="primary" 
