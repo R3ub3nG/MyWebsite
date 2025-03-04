@@ -14,6 +14,7 @@ const sections = [
 
 const SectionNav = () => {
     const [activeSection, setActiveSection] = useState("profile");
+    const [hoveredSection, setHoveredSection] = useState(null);
     const [isManuallySet, setIsManuallySet] = useState(false);
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === "dark";
@@ -151,6 +152,7 @@ const SectionNav = () => {
         >
             {sections.map((section) => {
                 const isActive = activeSection === section.id;
+                const isHovered = hoveredSection === section.id;
 
                 return (
                     <Box
@@ -162,10 +164,12 @@ const SectionNav = () => {
                             gap: 1,
                             position: "relative",
                         }}
+                        onMouseEnter={() => setHoveredSection(section.id)}
+                        onMouseLeave={() => setHoveredSection(null)}
                     >
-                        {/* Section label that appears when active */}
+                        {/* Section label that appears on hover */}
                         <AnimatePresence>
-                            {isActive && (
+                            {isHovered && (
                                 <motion.div
                                     initial={{ opacity: 0, x: 10 }}
                                     animate={{ opacity: 1, x: 0 }}

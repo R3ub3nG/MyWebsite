@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, AppBar, Toolbar, Typography, useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
+import CustomAppBar from './CustomAppBar';
 
 // Import section components
 import Section from "./Section";
@@ -11,28 +12,40 @@ import ProjectsSection from "./sections/ProjectsSection";
 import ThemeToggle from "./ThemeToggle";
 import TechnicalSkillsSection from "./sections/TechnicalSkillsSection";
 import SoftSkillsSection from "./sections/SoftSkillsSection";
+import SectionNav from "./SectionNav";
 
 // Animation variants for Framer Motion
 const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { 
+        opacity: 0,
+        willChange: 'opacity, transform' // Optimize performance
+    },
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.05,
-            when: "beforeChildren"
+            duration: 0.3,
+            ease: 'easeOut',
+            staggerChildren: 0.1,
+            when: "beforeChildren",
+            delayChildren: 0.1
         },
     },
 };
 
 const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { 
+        y: 10, 
+        opacity: 0,
+        willChange: 'opacity, transform'
+    },
     visible: {
         y: 0,
         opacity: 1,
         transition: { 
             type: "spring", 
-            stiffness: 100,
-            duration: 0.5
+            stiffness: 70,
+            damping: 20,
+            duration: 0.4
         },
     },
 };
@@ -41,33 +54,43 @@ const Dashboard = ({ toggleColorMode }) => {
     const theme = useTheme();
 
     return (
-        <>
-            <AppBar
-                position="fixed"
-                color="transparent"
-                elevation={0}
-                sx={{ zIndex: 1100 }}
-            >
-                <Toolbar>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1, fontWeight: 600 }}
-                    >
-                        My Portfolio
-                    </Typography>
-                    <ThemeToggle toggleColorMode={toggleColorMode} />
-                </Toolbar>
-            </AppBar>
-
+        <Box sx={{ height: '100vh', overflow: 'hidden' }}>
+            <CustomAppBar toggleColorMode={toggleColorMode} />
             <Box
                 id="scrollContainer"
                 sx={{
-                    pt: "64px", // Height of AppBar
-                    scrollSnapType: { xs: "none", md: "y mandatory" }, // Enable snap scrolling on larger screens
-                    height: "100vh",
-                    overflowY: "auto",
-                    scrollBehavior: "smooth",
+                    height: 'calc(100vh - 64px)',
+                    mt: '64px',
+                    overflowY: 'auto',
+                    overflowX: 'hidden',
+                    scrollBehavior: 'smooth',
+                    scrollSnapType: { xs: 'none', md: 'y mandatory' },
+                    WebkitOverflowScrolling: 'touch', // Improve mobile scrolling
+                    '& > div': {
+                        height: '100%',
+                        backfaceVisibility: 'hidden', // Prevent flickering
+                        WebkitBackfaceVisibility: 'hidden',
+                        transform: 'translate3d(0, 0, 0)', // Force GPU acceleration
+                        WebkitTransform: 'translate3d(0, 0, 0)',
+                    },
+                    '& > div > section': {
+                        scrollSnapAlign: 'start',
+                        scrollSnapStop: 'always',
+                        height: '100%',
+                    },
+                    '&::-webkit-scrollbar': {
+                        width: '8px',
+                    },
+                    '&::-webkit-scrollbar-track': {
+                        background: 'transparent',
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                        background: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)',
+                        borderRadius: '4px',
+                    },
+                    '&::-webkit-scrollbar-thumb:hover': {
+                        background: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
+                    },
                 }}
             >
                 <motion.div
@@ -104,10 +127,10 @@ const Dashboard = ({ toggleColorMode }) => {
                     <Section id="projects">
                         <ProjectsSection itemVariants={itemVariants} />
                     </Section>
-
                 </motion.div>
             </Box>
-        </>
+            <SectionNav />
+        </Box>
     );
 };
 

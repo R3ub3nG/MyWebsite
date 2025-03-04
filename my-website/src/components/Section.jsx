@@ -13,17 +13,38 @@ const Section = ({ children, id, bgcolor }) => {
     
     return (
         <Box
+            component="section"
             id={id}
             data-section={id}
             sx={{
-                minHeight: '100vh',
+                height: { xs: 'auto', md: 'calc(100vh - 64px)' },
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
-                py: 4,
+                alignItems: 'center',
+                py: { xs: 4, md: 0 },
                 position: 'relative',
-                scrollSnapAlign: 'start', // For smooth snap scrolling
-                bgcolor: bgcolor || 'transparent'
+                scrollSnapAlign: { xs: 'none', md: 'start' },
+                scrollSnapStop: 'always',
+                bgcolor: bgcolor || 'transparent',
+                '&:first-of-type': {
+                    scrollMarginTop: '64px',
+                },
+                overflow: 'hidden',
+                transform: 'translate3d(0, 0, 0)',
+                WebkitTransform: 'translate3d(0, 0, 0)',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                perspective: 1000,
+                WebkitPerspective: 1000,
+                '& > *': {
+                    width: '100%',
+                    maxHeight: '100%',
+                    overflow: 'auto',
+                    willChange: 'transform, opacity',
+                    transform: 'translate3d(0, 0, 0)',
+                    WebkitTransform: 'translate3d(0, 0, 0)',
+                }
             }}
         >
             {children}
