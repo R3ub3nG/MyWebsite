@@ -6,13 +6,15 @@ import {
     Typography, 
     Avatar, 
     IconButton,
-    useTheme
+    useTheme,
+    Tooltip
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import { 
     Email as EmailIcon,
     GitHub as GitHubIcon,
-    LinkedIn as LinkedInIcon
+    LinkedIn as LinkedInIcon,
+    Phone as PhoneIcon
 } from '@mui/icons-material';
 
 const ProfileSection = ({ itemVariants }) => {
@@ -23,6 +25,12 @@ const ProfileSection = ({ itemVariants }) => {
     const headerGradient = isDarkMode 
         ? 'linear-gradient(135deg, rgba(63, 81, 181, 0.85), rgba(100, 181, 246, 0.85))' 
         : 'linear-gradient(135deg, rgba(144, 202, 249, 0.85), rgba(33, 150, 243, 0.85))';
+
+    const handlePhoneClick = () => {
+        // You can replace this with your actual phone number
+        const phoneNumber = '+1234567890';
+        navigator.clipboard.writeText(phoneNumber);
+    };
 
     return (
         <Container maxWidth="lg">
@@ -104,11 +112,16 @@ const ProfileSection = ({ itemVariants }) => {
                                     sx={{ 
                                         color: 'white', 
                                         bgcolor: 'rgba(255,255,255,0.1)',
-                                        p: 2
+                                        p: 2,
+                                        '&:hover': {
+                                            bgcolor: 'rgba(255,255,255,0.2)'
+                                        }
                                     }} 
                                     aria-label="github" 
                                     component="a" 
                                     href="https://github.com/yourusername"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     <GitHubIcon fontSize="large" />
                                 </IconButton>
@@ -116,11 +129,16 @@ const ProfileSection = ({ itemVariants }) => {
                                     sx={{ 
                                         color: 'white', 
                                         bgcolor: 'rgba(255,255,255,0.1)',
-                                        p: 2
+                                        p: 2,
+                                        '&:hover': {
+                                            bgcolor: 'rgba(255,255,255,0.2)'
+                                        }
                                     }} 
                                     aria-label="linkedin" 
                                     component="a" 
                                     href="https://linkedin.com/in/yourusername"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     <LinkedInIcon fontSize="large" />
                                 </IconButton>
@@ -128,7 +146,10 @@ const ProfileSection = ({ itemVariants }) => {
                                     sx={{ 
                                         color: 'white', 
                                         bgcolor: 'rgba(255,255,255,0.1)',
-                                        p: 2
+                                        p: 2,
+                                        '&:hover': {
+                                            bgcolor: 'rgba(255,255,255,0.2)'
+                                        }
                                     }} 
                                     aria-label="email" 
                                     component="a" 
@@ -136,6 +157,22 @@ const ProfileSection = ({ itemVariants }) => {
                                 >
                                     <EmailIcon fontSize="large" />
                                 </IconButton>
+                                <Tooltip title="Click to copy phone number" arrow>
+                                    <IconButton 
+                                        sx={{ 
+                                            color: 'white', 
+                                            bgcolor: 'rgba(255,255,255,0.1)',
+                                            p: 2,
+                                            '&:hover': {
+                                                bgcolor: 'rgba(255,255,255,0.2)'
+                                            }
+                                        }} 
+                                        aria-label="phone" 
+                                        onClick={handlePhoneClick}
+                                    >
+                                        <PhoneIcon fontSize="large" />
+                                    </IconButton>
+                                </Tooltip>
                             </Box>
                         </Box>
                     </Box>
