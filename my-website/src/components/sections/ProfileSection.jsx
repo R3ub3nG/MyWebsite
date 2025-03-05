@@ -75,9 +75,9 @@ const ProfileSection = ({ itemVariants }) => {
                             height: { xs: 'auto', md: '70vh' },
                             maxHeight: '800px',
                             borderRadius: '16px',
-                            boxShadow: isDarkMode 
-                                ? '0 0 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.9), 0 -8px 24px rgba(0, 0, 0, 0.9)'
-                                : '0 0 2px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15), 0 -8px 24px rgba(0, 0, 0, 0.15)',
+                            boxShadow: theme => theme.palette.mode === 'dark'
+                                ? '0 0 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.9)'
+                                : '0 0 2px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15)',
                             transform: 'translate3d(0, 0, 0)',
                             WebkitTransform: 'translate3d(0, 0, 0)',
                             backfaceVisibility: 'hidden',

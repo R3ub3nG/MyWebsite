@@ -68,44 +68,26 @@ const SoftSkillsSection = ({ itemVariants }) => {
 
     return (
         <Container maxWidth="lg">
-            <motion.div 
-                variants={itemVariants}
-                initial={{ opacity: 1 }}
-                style={{
-                    width: '100%',
-                    height: '100%',
-                    willChange: 'transform',
-                }}
-            >
+            <motion.div variants={itemVariants} initial={{ opacity: 1 }}>
                 <motion.div
-                    initial={{ 
-                        boxShadow: '0 0px 0px rgba(0,0,0,0)',
-                        scale: 0.98,
-                    }}
-                    animate={{ 
-                        scale: 1,
-                    }}
-                    transition={{
-                        duration: 0.3,
-                        ease: 'easeOut',
-                    }}
-                    style={{
-                        width: '100%',
-                        height: '100%',
-                        willChange: 'transform',
-                    }}
+                    initial={{ scale: 0.98 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
                 >
-                    <Paper elevation={0} sx={{ 
-                        p: 4,
-                        borderRadius: '16px',
-                        boxShadow: isDarkMode 
-                            ? '0 0 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.9), 0 -8px 24px rgba(0, 0, 0, 0.9)'
-                            : '0 0 2px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15), 0 -8px 24px rgba(0, 0, 0, 0.15)',
-                        transform: 'translate3d(0, 0, 0)',
-                        WebkitTransform: 'translate3d(0, 0, 0)',
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden'
-                    }}>
+                    <Paper 
+                        elevation={0} 
+                        sx={{ 
+                            p: 4,
+                            borderRadius: '16px',
+                            boxShadow: theme => theme.palette.mode === 'dark'
+                                ? '0 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 24px rgba(0, 0, 0, 0.2)'
+                                : '0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 24px rgba(0, 0, 0, 0.05)',
+                            transform: 'translate3d(0, 0, 0)',
+                            WebkitTransform: 'translate3d(0, 0, 0)',
+                            backfaceVisibility: 'hidden',
+                            WebkitBackfaceVisibility: 'hidden'
+                        }}
+                    >
                         <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
                             <PsychologyIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
                             Soft Skills

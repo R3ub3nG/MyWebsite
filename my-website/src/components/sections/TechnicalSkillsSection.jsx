@@ -265,14 +265,14 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
                                                     <Typography variant="h6" fontWeight="medium">
                                                         {skill.skill}
                                                     </Typography>
-                                                    <ExpandMoreIcon 
+                                                    {/* <ExpandMoreIcon 
                                                         fontSize="small" 
                                                         sx={{ 
                                                             opacity: 0.7,
                                                             color: theme.palette.primary.main,
                                                             display: { xs: 'none', sm: 'block' }
                                                         }} 
-                                                    />
+                                                    /> */}
                                                 </Box>
                                             </CardContent>
                                         </Card>
