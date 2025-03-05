@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
     Container, 
     Grid, 
@@ -8,11 +8,10 @@ import {
     Card,
     CardContent,
     useTheme,
-    Tooltip,
-    Zoom,
-    Box
+    Box,
+    IconButton
 } from '@mui/material';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
     Code as CodeIcon,
     SportsFootball as FootballIcon,
@@ -21,12 +20,14 @@ import {
     MusicNote as MusicIcon,
     People as FriendsIcon,
     Favorite as PassionsIcon,
-    LiveTv as AnimeIcon
+    LiveTv as AnimeIcon,
+    Close as CloseIcon
 } from '@mui/icons-material';
 
 const PassionsSection = ({ itemVariants }) => {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
+    const [expandedPassion, setExpandedPassion] = useState(null);
 
     const passions = [
         {
@@ -66,71 +67,58 @@ const PassionsSection = ({ itemVariants }) => {
         }
     ];
 
+    const handleCardClick = (passion) => {
+        setExpandedPassion(passion);
+    };
+
+    const handleCloseExpanded = (e) => {
+        e.stopPropagation();
+        setExpandedPassion(null);
+    };
+
     return (
         <Container maxWidth="lg">
-            <motion.div variants={itemVariants}>
-                <Paper elevation={0} sx={{ 
-                    p: 4,
-                    borderRadius: '16px',
-                    boxShadow: isDarkMode 
-                        ? '0 0 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.9), 0 -8px 24px rgba(0, 0, 0, 0.9)'
-                        : '0 0 2px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15), 0 -8px 24px rgba(0, 0, 0, 0.15)',
-                    transform: 'translate3d(0, 0, 0)',
-                    WebkitTransform: 'translate3d(0, 0, 0)',
-                    backfaceVisibility: 'hidden',
-                    WebkitBackfaceVisibility: 'hidden',
-                    position: 'relative',
-                    zIndex: 1,
-                    width: '100%',
-                    mb: 4
-                }}>
-                    <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
-                        <PassionsIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
-                        My Passions
-                    </Typography>
-                    <Divider sx={{ mb: 4 }} />
-                    
-                    <Grid container spacing={3}>
-                        {passions.map((passion, index) => (
-                            <Grid item xs={12} sm={6} md={4} key={index}>
-                                <motion.div
-                                    whileHover={{ scale: 1.03 }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                                    style={{ height: '100%' }}
-                                >
-                                    <Tooltip
-                                        title={
-                                            <Typography sx={{ 
-                                                p: 1,
-                                                color: isDarkMode ? 'white' : 'text.primary'
-                                            }}>
-                                                {passion.description}
-                                            </Typography>
-                                        }
-                                        TransitionComponent={Zoom}
-                                        arrow
-                                        placement="top"
-                                        enterDelay={200}
-                                        leaveDelay={0}
-                                        componentsProps={{
-                                            tooltip: {
-                                                sx: {
-                                                    bgcolor: isDarkMode ? 'rgba(66, 66, 66, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-                                                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                                                    '& .MuiTooltip-arrow': {
-                                                        color: isDarkMode ? 'rgba(66, 66, 66, 0.95)' : 'rgba(255, 255, 255, 0.95)',
-                                                    },
-                                                    maxWidth: 300,
-                                                    fontSize: '0.875rem',
-                                                }
-                                            }
-                                        }}
+            <motion.div variants={itemVariants} initial={{ opacity: 1 }}>
+                <motion.div
+                    initial={{ scale: 0.98 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                >
+                    <Paper elevation={0} sx={{ 
+                        p: 4,
+                        borderRadius: '16px',
+                        boxShadow: isDarkMode 
+                            ? '0 0 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.9), 0 -8px 24px rgba(0, 0, 0, 0.9)'
+                            : '0 0 2px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15), 0 -8px 24px rgba(0, 0, 0, 0.15)',
+                        transform: 'translate3d(0, 0, 0)',
+                        WebkitTransform: 'translate3d(0, 0, 0)',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        position: 'relative',
+                        zIndex: 1,
+                        width: '100%',
+                        mb: 4
+                    }}>
+                        <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
+                            <PassionsIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
+                            My Passions
+                        </Typography>
+                        <Divider sx={{ mb: 4 }} />
+                        
+                        <Grid container spacing={3}>
+                            {passions.map((passion, index) => (
+                                <Grid item xs={12} sm={6} md={4} key={index}>
+                                    <motion.div
+                                        whileHover={{ scale: 1.03 }}
+                                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                        onClick={() => handleCardClick(passion)}
+                                        style={{ cursor: 'pointer' }}
                                     >
                                         <Card sx={{ 
                                             height: '100%',
                                             display: 'flex',
                                             flexDirection: 'column',
-                                            cursor: 'help',
+                                            cursor: 'pointer',
                                             '&:hover': {
                                                 boxShadow: isDarkMode 
                                                     ? '0 0 1px 0 rgba(0, 0, 0, 0.9), 0 0 2px 0 rgba(0, 0, 0, 0.8), 0 4px 8px -2px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.4)'
@@ -164,13 +152,116 @@ const PassionsSection = ({ itemVariants }) => {
                                                 </Typography>
                                             </CardContent>
                                         </Card>
-                                    </Tooltip>
-                                </motion.div>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Paper>
+                                    </motion.div>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Paper>
+                </motion.div>
             </motion.div>
+
+            {/* Expanded Card Overlay */}
+            <AnimatePresence>
+                {expandedPassion && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            zIndex: 1000,
+                            padding: '2rem',
+                            backgroundColor: isDarkMode 
+                                ? 'rgba(0, 0, 0, 0.75)' 
+                                : 'rgba(255, 255, 255, 0.75)',
+                            borderRadius: '16px',
+                        }}
+                        onClick={handleCloseExpanded}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.8, y: 50 }}
+                            animate={{ scale: 1, y: 0 }}
+                            exit={{ scale: 0.8, y: 50 }}
+                            transition={{ 
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 25
+                            }}
+                            style={{
+                                width: '100%',
+                                maxWidth: '800px',
+                                maxHeight: '80vh',
+                                overflow: 'auto',
+                                borderRadius: '16px',
+                                position: 'relative',
+                                zIndex: 1001,
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <Card sx={{ 
+                                height: '100%',
+                                borderRadius: '16px',
+                                backgroundColor: theme.palette.background.paper,
+                            }}>
+                                <CardContent sx={{ p: 4 }}>
+                                    <Box sx={{ 
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'flex-start',
+                                        mb: 3
+                                    }}>
+                                        <Box sx={{ 
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: 2
+                                        }}>
+                                            <Box sx={{ 
+                                                fontSize: '3rem',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                            }}>
+                                                {expandedPassion.icon}
+                                            </Box>
+                                            <Typography variant="h3" fontWeight="bold">
+                                                {expandedPassion.name}
+                                            </Typography>
+                                        </Box>
+                                        
+                                        <IconButton 
+                                            onClick={handleCloseExpanded}
+                                            size="large"
+                                            sx={{ 
+                                                '&:hover': { 
+                                                    backgroundColor: isDarkMode 
+                                                        ? 'rgba(255, 255, 255, 0.1)' 
+                                                        : 'rgba(0, 0, 0, 0.05)' 
+                                                } 
+                                            }}
+                                        >
+                                            <CloseIcon />
+                                        </IconButton>
+                                    </Box>
+                                    
+                                    <Divider sx={{ mb: 3 }} />
+                                    
+                                    <Typography variant="body1" paragraph sx={{ mb: 4, fontSize: '1.1rem' }}>
+                                        {expandedPassion.description}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </Container>
     );
 };
