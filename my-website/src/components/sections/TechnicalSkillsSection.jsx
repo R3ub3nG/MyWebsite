@@ -222,7 +222,9 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
                                         style={{ 
                                             height: '100%',
                                             width: '100%',
-                                            cursor: 'pointer'
+                                            cursor: 'pointer',
+                                            WebkitTapHighlightColor: 'transparent',
+                                            outline: 'none'
                                         }}
                                     >
                                         <Card 
@@ -231,12 +233,17 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
                                                 display: 'flex',
                                                 flexDirection: 'column',
                                                 outline: 'none',
+                                                WebkitTapHighlightColor: 'transparent',
+                                                '&:focus': {
+                                                    outline: 'none',
+                                                },
                                                 '&:hover': {
                                                     boxShadow: isDarkMode 
                                                         ? '0 0 1px 0 rgba(0, 0, 0, 0.9), 0 0 2px 0 rgba(0, 0, 0, 0.8), 0 4px 8px -2px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.4)'
                                                         : '0 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 2px 0 rgba(0, 0, 0, 0.15), 0 4px 8px -2px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.05)',
-                                                bgcolor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)'
-                                            }}}
+                                                    bgcolor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)'
+                                                }
+                                            }}
                                         >
                                             <CardContent sx={{ 
                                                 display: 'flex', 

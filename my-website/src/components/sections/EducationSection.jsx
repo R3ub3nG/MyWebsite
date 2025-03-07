@@ -72,7 +72,7 @@ const EducationSection = ({ itemVariants }) => {
                     >
                         <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
                             <SchoolIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
-                            Education
+                            Education & Certification
                         </Typography>
                         <Divider sx={{ mb: 4 }} />
                         
