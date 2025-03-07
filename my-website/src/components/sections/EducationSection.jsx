@@ -7,7 +7,8 @@ import {
     Divider,
     Card,
     CardContent,
-    useTheme
+    useTheme,
+    Box
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import { School as SchoolIcon } from '@mui/icons-material';
@@ -26,7 +27,7 @@ const EducationSection = ({ itemVariants }) => {
                 "GPA: 3.8/4.0",
                 "Dean's List: All semesters",
                 "Senior Project: AI-powered recommendation system",
-                "Relevant coursework: Data Structures, Algorithms, Database Systems, Web Development, Machine Learning"
+                "Relevant coursework: Data Structures, Algorithms, Database Systems"
             ]
         },
         {
@@ -38,8 +39,18 @@ const EducationSection = ({ itemVariants }) => {
                 "AWS Certified Developer (2022)",
                 "Google Cloud Professional (2021)",
                 "React Advanced Certification (2020)",
-                "MongoDB Database Administrator (2019)",
-                "Certified Scrum Master (2018)"
+                "MongoDB Database Administrator (2019)"
+            ]
+        },
+        {
+            degree: "High School Diploma",
+            institution: "High School Name",
+            period: "2010 - 2014",
+            details: [
+                "Valedictorian",
+                "Advanced Placement: Computer Science, Mathematics",
+                "President of Computer Science Club",
+                "Science Fair Winner - Programming Category"
             ]
         }
     ];
@@ -52,78 +63,145 @@ const EducationSection = ({ itemVariants }) => {
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.3, ease: 'easeOut' }}
                 >
-                    <Paper 
-                        elevation={0} 
-                        sx={{ 
-                            p: 4,
-                            borderRadius: '16px',
-                            boxShadow: theme => theme.palette.mode === 'dark'
-                                ? '0 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 24px rgba(0, 0, 0, 0.2)'
-                                : '0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 24px rgba(0, 0, 0, 0.05)',
-                            height: '100%',
-                            maxHeight: '80vh',
-                            transform: 'translate3d(0, 0, 0)',
-                            WebkitTransform: 'translate3d(0, 0, 0)',
-                            backfaceVisibility: 'hidden',
-                            WebkitBackfaceVisibility: 'hidden',
-                            position: 'relative',
-                            zIndex: 1,
-                        }}
-                    >
+                    <Paper elevation={0} sx={{ 
+                        p: 4,
+                        borderRadius: '16px',
+                        backgroundColor: theme => theme.palette.mode === 'dark'
+                            ? 'rgba(22, 28, 36, 0.8)'
+                            : 'rgba(255, 255, 255, 0.8)',
+                        boxShadow: theme => theme.palette.mode === 'dark'
+                            ? '0 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 24px rgba(0, 0, 0, 0.2)'
+                            : '0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 24px rgba(0, 0, 0, 0.05)',
+                    }}>
                         <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
                             <SchoolIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
                             Education & Certification
                         </Typography>
                         <Divider sx={{ mb: 4 }} />
                         
-                        <Grid container spacing={4}>
-                            {education.map((item, index) => (
-                                <Grid item xs={12} md={6} key={index}>
-                                    <motion.div
-                                        whileHover={{ scale: 1.03 }}
-                                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                                        style={{ width: '100%', height: '100%' }}
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                gap: 3,
+                                overflowX: 'auto',
+                                pb: 2,
+                                scrollSnapType: 'x mandatory',
+                                backgroundColor: 'transparent',
+                                '::-webkit-scrollbar': {
+                                    height: 6,
+                                },
+                                '::-webkit-scrollbar-thumb': {
+                                    backgroundColor: theme => theme.palette.mode === 'dark' 
+                                        ? 'rgba(255, 255, 255, 0.8)' 
+                                        : 'rgba(0, 0, 0, 0.3)',
+                                    borderRadius: '10px',
+                                    '&:hover': {
+                                        backgroundColor: theme => theme.palette.mode === 'dark'
+                                            ? 'rgba(255, 255, 255, 0.4)'
+                                            : 'rgba(0, 0, 0, 0.4)'
+                                    }
+                                },
+                                scrollbarWidth: 'thin',
+                                px: 12,
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    gap: 3,
+                                    width: 'fit-content',
+                                    py: 6,
+                                    pl: 8,
+                                    pr: 8,
+                                    mx: 4,
+                                }}
+                            >
+                                {education.map((edu, index) => (
+                                    <Box
+                                        key={index}
+                                        sx={{
+                                            width: {
+                                                xs: '85%',
+                                                sm: 'calc((100vw - 160px - 24px) / 2)',
+                                                md: 'calc((1200px - 160px - 24px) / 2)',
+                                            },
+                                            flexShrink: 0,
+                                            scrollSnapAlign: 'start',
+                                            paddingLeft: 6,
+                                        }}
                                     >
-                                        <Card variant="outlined" sx={{ 
-                                            height: '100%',
-                                            p: 3,
-                                            '&:hover': {
-                                                boxShadow: isDarkMode 
-                                                    ? '0 0 1px 0 rgba(0, 0, 0, 0.9), 0 0 2px 0 rgba(0, 0, 0, 0.8), 0 4px 8px -2px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.4)'
-                                                    : '0 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 2px 0 rgba(0, 0, 0, 0.15), 0 4px 8px -2px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.05)'
-                                            }
-                                        }}>
-                                            <CardContent>
-                                                <Typography variant="h5" component="div" fontWeight="bold" gutterBottom>
-                                                    {item.degree}
-                                                </Typography>
-                                                <Typography variant="h6" sx={{ mb: 1.5 }} color={isDarkMode ? "grey.100" : "text.secondary"}>
-                                                    {item.institution}
-                                                </Typography>
-                                                {item.period && (
-                                                    <Typography variant="body1" color="text.secondary" gutterBottom>
-                                                        {item.period}
+                                        <motion.div
+                                            whileHover={{ scale: 1.03 }}
+                                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                            style={{ width: '100%', height: '100%' }}
+                                        >
+                                            <Card sx={{ 
+                                                p: 3, 
+                                                height: '400px',
+                                                overflow: 'auto',
+                                                '::-webkit-scrollbar': {
+                                                    width: 8,
+                                                    bgcolor: 'transparent',
+                                                    display: 'none'
+                                                },
+                                                '&:hover::-webkit-scrollbar': {
+                                                    display: 'block'
+                                                },
+                                                '::-webkit-scrollbar-thumb': {
+                                                    backgroundColor: theme => theme.palette.mode === 'dark' 
+                                                        ? 'rgba(255, 255, 255, 0.3)' 
+                                                        : 'rgba(0, 0, 0, 0.3)',
+                                                    borderRadius: '4px',
+                                                    '&:hover': {
+                                                        backgroundColor: theme => theme.palette.mode === 'dark'
+                                                            ? 'rgba(255, 255, 255, 0.4)'
+                                                            : 'rgba(0, 0, 0, 0.4)'
+                                                    }
+                                                },
+                                                '::-webkit-scrollbar-track': {
+                                                    backgroundColor: theme => theme.palette.mode === 'dark'
+                                                        ? 'rgba(255, 255, 255, 0.05)'
+                                                        : 'rgba(0, 0, 0, 0.05)',
+                                                    borderRadius: '4px'
+                                                },
+                                                '&:hover': {
+                                                    boxShadow: isDarkMode 
+                                                        ? '0 0 1px 0 rgba(0, 0, 0, 0.9), 0 0 2px 0 rgba(0, 0, 0, 0.8), 0 4px 8px -2px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.4)'
+                                                        : '0 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 2px 0 rgba(0, 0, 0, 0.15), 0 4px 8px -2px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.05)'
+                                                }
+                                            }}>
+                                                <CardContent>
+                                                    <Typography variant="h5" component="div" fontWeight="bold" gutterBottom>
+                                                        {edu.degree}
                                                     </Typography>
-                                                )}
-                                                <Divider sx={{ my: 2 }} />
-                                                {item.intro && (
-                                                    <Typography variant="body1" paragraph>
-                                                        {item.intro}
+                                                    <Typography variant="h6" sx={{ mb: 1.5 }} color={isDarkMode ? "grey.100" : "text.secondary"}>
+                                                        {edu.institution}
                                                     </Typography>
-                                                )}
-                                                <Typography variant="body1">
-                                                    {item.details.map((detail, i) => (
-                                                        <React.Fragment key={i}>
-                                                            • {detail}<br />
-                                                        </React.Fragment>
-                                                    ))}
-                                                </Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </motion.div>
-                                </Grid>
-                            ))}
-                        </Grid>
+                                                    {edu.period && (
+                                                        <Typography variant="body1" color="text.secondary" gutterBottom>
+                                                            {edu.period}
+                                                        </Typography>
+                                                    )}
+                                                    <Divider sx={{ my: 2 }} />
+                                                    {edu.intro && (
+                                                        <Typography variant="body1" paragraph>
+                                                            {edu.intro}
+                                                        </Typography>
+                                                    )}
+                                                    <Typography variant="body1">
+                                                        {edu.details.map((detail, i) => (
+                                                            <React.Fragment key={i}>
+                                                                • {detail}<br />
+                                                            </React.Fragment>
+                                                        ))}
+                                                    </Typography>
+                                                </CardContent>
+                                            </Card>
+                                        </motion.div>
+                                    </Box>
+                                ))}
+                            </Box>
+                        </Box>
                     </Paper>
                 </motion.div>
             </motion.div>
