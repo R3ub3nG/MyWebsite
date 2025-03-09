@@ -14,7 +14,8 @@ import {
     Email as EmailIcon,
     GitHub as GitHubIcon,
     LinkedIn as LinkedInIcon,
-    Phone as PhoneIcon
+    Phone as PhoneIcon,
+    Description as ResumeIcon
 } from '@mui/icons-material';
 
 const ProfileSection = ({ itemVariants }) => {
@@ -156,69 +157,110 @@ const ProfileSection = ({ itemVariants }) => {
                                     I specialize in web development, machine learning, and building intuitive user interfaces.
                                 </Typography>
                                 <Box sx={{ mt: 2, display: 'flex', gap: 2 }}>
-                                    <IconButton 
-                                        sx={{ 
-                                            color: 'white', 
-                                            bgcolor: 'rgba(255,255,255,0.1)',
-                                            p: 2,
-                                            '&:hover': {
-                                                bgcolor: 'rgba(255,255,255,0.2)'
-                                            }
-                                        }} 
-                                        aria-label="github" 
-                                        component="a" 
-                                        href="https://github.com/yourusername"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <GitHubIcon fontSize="large" />
-                                    </IconButton>
-                                    <IconButton 
-                                        sx={{ 
-                                            color: 'white', 
-                                            bgcolor: 'rgba(255,255,255,0.1)',
-                                            p: 2,
-                                            '&:hover': {
-                                                bgcolor: 'rgba(255,255,255,0.2)'
-                                            }
-                                        }} 
-                                        aria-label="linkedin" 
-                                        component="a" 
-                                        href="https://linkedin.com/in/yourusername"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        <LinkedInIcon fontSize="large" />
-                                    </IconButton>
-                                    <IconButton 
-                                        sx={{ 
-                                            color: 'white', 
-                                            bgcolor: 'rgba(255,255,255,0.1)',
-                                            p: 2,
-                                            '&:hover': {
-                                                bgcolor: 'rgba(255,255,255,0.2)'
-                                            }
-                                        }} 
-                                        aria-label="email" 
-                                        component="a" 
-                                        href="mailto:your.email@example.com"
-                                    >
-                                        <EmailIcon fontSize="large" />
-                                    </IconButton>
-                                    <Tooltip title="Click to copy phone number" arrow>
+                                    <Tooltip title="Visit my GitHub Profile" arrow placement="bottom">
                                         <IconButton 
                                             sx={{ 
                                                 color: 'white', 
                                                 bgcolor: 'rgba(255,255,255,0.1)',
                                                 p: 2,
+                                                transition: 'all 0.3s ease',
                                                 '&:hover': {
-                                                    bgcolor: 'rgba(255,255,255,0.2)'
+                                                    bgcolor: 'rgba(255,255,255,0.2)',
+                                                    transform: 'scale(1.15) rotate(5deg)',
+                                                    boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+                                                }
+                                            }} 
+                                            aria-label="github" 
+                                            component="a" 
+                                            href="https://github.com/yourusername"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <GitHubIcon fontSize="large" />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Connect with me on LinkedIn" arrow placement="bottom">
+                                        <IconButton 
+                                            sx={{ 
+                                                color: 'white', 
+                                                bgcolor: 'rgba(255,255,255,0.1)',
+                                                p: 2,
+                                                transition: 'all 0.3s ease',
+                                                '&:hover': {
+                                                    bgcolor: 'rgba(255,255,255,0.2)',
+                                                    transform: 'scale(1.15) rotate(5deg)',
+                                                    boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+                                                }
+                                            }} 
+                                            aria-label="linkedin" 
+                                            component="a" 
+                                            href="https://linkedin.com/in/yourusername"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <LinkedInIcon fontSize="large" />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Send me an Email" arrow placement="bottom">
+                                        <IconButton 
+                                            sx={{ 
+                                                color: 'white', 
+                                                bgcolor: 'rgba(255,255,255,0.1)',
+                                                p: 2,
+                                                transition: 'all 0.3s ease',
+                                                '&:hover': {
+                                                    bgcolor: 'rgba(255,255,255,0.2)',
+                                                    transform: 'scale(1.15) rotate(5deg)',
+                                                    boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+                                                }
+                                            }} 
+                                            aria-label="email" 
+                                            component="a" 
+                                            href="mailto:your.email@example.com"
+                                        >
+                                            <EmailIcon fontSize="large" />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Click to copy phone number" arrow placement="bottom">
+                                        <IconButton 
+                                            sx={{ 
+                                                color: 'white', 
+                                                bgcolor: 'rgba(255,255,255,0.1)',
+                                                p: 2,
+                                                transition: 'all 0.3s ease',
+                                                '&:hover': {
+                                                    bgcolor: 'rgba(255,255,255,0.2)',
+                                                    transform: 'scale(1.15) rotate(5deg)',
+                                                    boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
                                                 }
                                             }} 
                                             aria-label="phone" 
                                             onClick={handlePhoneClick}
                                         >
                                             <PhoneIcon fontSize="large" />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Download my Resume" arrow placement="bottom">
+                                        <IconButton 
+                                            sx={{ 
+                                                color: 'white', 
+                                                bgcolor: 'rgba(255,255,255,0.1)',
+                                                p: 2,
+                                                transition: 'all 0.3s ease',
+                                                '&:hover': {
+                                                    bgcolor: 'rgba(255,255,255,0.2)',
+                                                    transform: 'scale(1.15) rotate(5deg)',
+                                                    boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+                                                }
+                                            }} 
+                                            aria-label="download resume" 
+                                            component="a"
+                                            href="/path-to-your-resume.pdf"
+                                            download="YourName_Resume.pdf"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <ResumeIcon fontSize="large" />
                                         </IconButton>
                                     </Tooltip>
                                 </Box>

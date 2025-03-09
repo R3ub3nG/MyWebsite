@@ -68,12 +68,18 @@ const ExperienceSection = ({ itemVariants }) => {
                         px: 4,
                         pt: 4,
                         borderRadius: '16px',
-                        backgroundColor: theme => theme.palette.mode === 'dark'
-                            ? 'rgba(22, 28, 36, 0.8)'
-                            : 'rgba(255, 255, 255, 0.8)',
-                        boxShadow: theme => theme.palette.mode === 'dark'
-                            ? '0 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 24px rgba(0, 0, 0, 0.2)'
-                            : '0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 24px rgba(0, 0, 0, 0.05)',
+                        boxShadow: isDarkMode 
+                            ? '0 0 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.9), 0 -8px 24px rgba(0, 0, 0, 0.9)'
+                            : '0 0 2px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15), 0 -8px 24px rgba(0, 0, 0, 0.15)',
+                        transform: 'translate3d(0, 0, 0)',
+                        WebkitTransform: 'translate3d(0, 0, 0)',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                        position: 'relative',
+                        zIndex: 1,
+                        width: '100%',
+                        mb: 4,
+                        overflow: 'hidden'
                     }}>
                         <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
                             <WorkIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
