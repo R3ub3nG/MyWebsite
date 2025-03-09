@@ -90,17 +90,13 @@ const PassionsSection = ({ itemVariants }) => {
                     <Paper elevation={0} sx={{ 
                         p: 4,
                         borderRadius: '16px',
-                        boxShadow: isDarkMode 
-                            ? '0 0 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.9), 0 -8px 24px rgba(0, 0, 0, 0.9)'
-                            : '0 0 2px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15), 0 -8px 24px rgba(0, 0, 0, 0.15)',
-                        transform: 'translate3d(0, 0, 0)',
-                        WebkitTransform: 'translate3d(0, 0, 0)',
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden',
+                        backgroundColor: theme => theme.palette.mode === 'dark'
+                            ? 'rgba(22, 28, 36, 0.8)'
+                            : 'rgba(255, 255, 255, 0.8)',
+                        boxShadow: theme => theme.palette.mode === 'dark'
+                            ? '0 0 0 1px rgba(255, 255, 255, 0.1), 0 2px 24px rgba(0, 0, 0, 0.2)'
+                            : '0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 24px rgba(0, 0, 0, 0.05)',
                         position: 'relative',
-                        zIndex: 1,
-                        width: '100%',
-                        mb: 4
                     }}>
                         <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
                             <PassionsIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
@@ -111,7 +107,13 @@ const PassionsSection = ({ itemVariants }) => {
                                     sx={{ 
                                         ml: 2, 
                                         verticalAlign: 'middle',
-                                        color: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)'
+                                        color: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)',
+                                        transition: 'all 0.3s ease',
+                                        '&:hover': {
+                                            transform: 'rotate(15deg) scale(1.2)',
+                                            color: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.8)',
+                                            backgroundColor: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'
+                                        }
                                     }}
                                 >
                                     <InfoIcon fontSize="small" />
@@ -139,6 +141,10 @@ const PassionsSection = ({ itemVariants }) => {
                                                     ? '0 0 1px 0 rgba(0, 0, 0, 0.9), 0 0 2px 0 rgba(0, 0, 0, 0.8), 0 4px 8px -2px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.4)'
                                                     : '0 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 2px 0 rgba(0, 0, 0, 0.15), 0 4px 8px -2px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.05)',
                                                 bgcolor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)'
+                                            },
+                                            '&:hover .passion-icon': {
+                                                transform: 'scale(1.2) rotate(5deg)',
+                                                filter: 'drop-shadow(0 0 3px rgba(0, 0, 0, 0.3))'
                                             }
                                         }}>
                                             <CardContent sx={{ 
@@ -155,11 +161,8 @@ const PassionsSection = ({ itemVariants }) => {
                                                     justifyContent: 'center',
                                                     alignItems: 'center',
                                                     fontSize: '2rem',
-                                                    transition: 'transform 0.2s',
-                                                    '&:hover': {
-                                                        transform: 'scale(1.1)',
-                                                    }
-                                                }}>
+                                                    transition: 'all 0.3s ease',
+                                                }} className="passion-icon">
                                                     {passion.icon}
                                                 </Box>
                                                 <Typography variant="h6" fontWeight="medium">

@@ -84,7 +84,13 @@ const ExperienceSection = ({ itemVariants }) => {
                                     sx={{ 
                                         ml: 2, 
                                         verticalAlign: 'middle',
-                                        color: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)'
+                                        color: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)',
+                                        transition: 'all 0.3s ease',
+                                        '&:hover': {
+                                            transform: 'rotate(15deg) scale(1.2)',
+                                            color: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.8)',
+                                            backgroundColor: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'
+                                        }
                                     }}
                                 >
                                     <InfoIcon fontSize="small" />

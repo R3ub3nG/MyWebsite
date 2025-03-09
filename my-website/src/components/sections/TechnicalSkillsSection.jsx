@@ -206,7 +206,13 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
                                     sx={{ 
                                         ml: 2, 
                                         verticalAlign: 'middle',
-                                        color: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)'
+                                        color: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)',
+                                        transition: 'all 0.3s ease',
+                                        '&:hover': {
+                                            transform: 'rotate(15deg) scale(1.2)',
+                                            color: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.8)',
+                                            backgroundColor: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'
+                                        }
                                     }}
                                 >
                                     <InfoIcon fontSize="small" />
@@ -256,6 +262,10 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
                                                         ? '0 0 1px 0 rgba(0, 0, 0, 0.9), 0 0 2px 0 rgba(0, 0, 0, 0.8), 0 4px 8px -2px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.4)'
                                                         : '0 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 2px 0 rgba(0, 0, 0, 0.15), 0 4px 8px -2px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.05)',
                                                     bgcolor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)'
+                                                },
+                                                '&:hover .tech-icon': {
+                                                    transform: 'scale(1.2) rotate(5deg)',
+                                                    filter: 'drop-shadow(0 0 3px rgba(0, 0, 0, 0.3))'
                                                 }
                                             }}
                                         >
@@ -274,7 +284,8 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
                                                     display: 'flex',
                                                     alignItems: 'center',
                                                     justifyContent: 'center',
-                                                }}>
+                                                    transition: 'all 0.3s ease',
+                                                }} className="tech-icon">
                                                     {skill.icon}
                                                 </Box>
                                                 <Box sx={{
