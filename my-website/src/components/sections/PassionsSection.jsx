@@ -7,8 +7,10 @@ import {
     Divider,
     Card,
     CardContent,
+    CardMedia,
     useTheme,
     Box,
+    Tooltip,
     IconButton
 } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,7 +23,8 @@ import {
     People as FriendsIcon,
     Favorite as PassionsIcon,
     LiveTv as AnimeIcon,
-    Close as CloseIcon
+    Close as CloseIcon,
+    Info as InfoIcon
 } from '@mui/icons-material';
 
 const PassionsSection = ({ itemVariants }) => {
@@ -102,6 +105,18 @@ const PassionsSection = ({ itemVariants }) => {
                         <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
                             <PassionsIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
                             My Passions
+                            <Tooltip title="Click on cards to learn more" arrow placement="top">
+                                <IconButton 
+                                    size="small" 
+                                    sx={{ 
+                                        ml: 2, 
+                                        verticalAlign: 'middle',
+                                        color: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)'
+                                    }}
+                                >
+                                    <InfoIcon fontSize="small" />
+                                </IconButton>
+                            </Tooltip>
                         </Typography>
                         <Divider sx={{ mb: 4 }} />
                         

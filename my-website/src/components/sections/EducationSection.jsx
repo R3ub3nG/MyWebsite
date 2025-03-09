@@ -8,10 +8,12 @@ import {
     Card,
     CardContent,
     useTheme,
-    Box
+    Box,
+    Tooltip,
+    IconButton
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import { School as SchoolIcon } from '@mui/icons-material';
+import { School as SchoolIcon, Info as InfoIcon } from '@mui/icons-material';
 
 const EducationSection = ({ itemVariants }) => {
     const theme = useTheme();
@@ -77,6 +79,18 @@ const EducationSection = ({ itemVariants }) => {
                         <Typography variant="h3" component="h2" gutterBottom fontWeight="bold" sx={{ mb: 4 }}>
                             <SchoolIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
                             Education & Certification
+                            <Tooltip title="Scroll to see more" arrow placement="top">
+                                <IconButton 
+                                    size="small" 
+                                    sx={{ 
+                                        ml: 2, 
+                                        verticalAlign: 'middle',
+                                        color: theme => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.6)'
+                                    }}
+                                >
+                                    <InfoIcon fontSize="small" />
+                                </IconButton>
+                            </Tooltip>
                         </Typography>
                         <Divider sx={{ mb: 2 }} />
                         
