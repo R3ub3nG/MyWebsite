@@ -63,7 +63,8 @@ const ExperienceSection = ({ itemVariants }) => {
                     transition={{ duration: 0.3, ease: 'easeOut' }}
                 >
                     <Paper elevation={0} sx={{ 
-                        p: 4,
+                        px: 4,
+                        pt: 4,
                         borderRadius: '16px',
                         backgroundColor: theme => theme.palette.mode === 'dark'
                             ? 'rgba(22, 28, 36, 0.8)'
@@ -76,7 +77,7 @@ const ExperienceSection = ({ itemVariants }) => {
                             <WorkIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
                             Experience
                         </Typography>
-                        <Divider sx={{ mb: 4 }} />
+                        <Divider sx={{ mb: 2 }} />
                         
                         <Box
                             sx={{
@@ -85,6 +86,8 @@ const ExperienceSection = ({ itemVariants }) => {
                                 overflowX: 'auto',
                                 pb: 2,
                                 scrollSnapType: 'x mandatory',
+                                scrollPadding: '0 24px',
+                                scrollPaddingRight: '24px',
                                 backgroundColor: 'transparent',
                                 '::-webkit-scrollbar': {
                                     height: 6,
@@ -107,10 +110,10 @@ const ExperienceSection = ({ itemVariants }) => {
                             <Box
                                 sx={{
                                     display: 'flex',
-                                    gap: 3,
+                                    gap: 6,
                                     width: 'fit-content',
-                                    py: 6,
-                                    pl: 8,
+                                    py: 3,
+                                    pl: 0,
                                     pr: 8,
                                     mx: 4,
                                 }}
@@ -121,12 +124,14 @@ const ExperienceSection = ({ itemVariants }) => {
                                         sx={{
                                             width: {
                                                 xs: '85%',
-                                                sm: 'calc((100vw - 160px - 24px) / 2)',
-                                                md: 'calc((1200px - 160px - 24px) / 2)',
+                                                sm: 'calc((100vw - 180px - 32px) / 2)',
+                                                md: 'calc((1200px - 180px - 32px) / 2)',
                                             },
                                             flexShrink: 0,
                                             scrollSnapAlign: 'start',
-                                            paddingLeft: 6,
+                                            '&:last-child': {
+                                                scrollSnapAlign: 'end',
+                                            },
                                         }}
                                     >
                                         <motion.div

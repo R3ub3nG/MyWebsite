@@ -64,7 +64,8 @@ const EducationSection = ({ itemVariants }) => {
                     transition={{ duration: 0.3, ease: 'easeOut' }}
                 >
                     <Paper elevation={0} sx={{ 
-                        p: 4,
+                        px: 4,
+                        pt: 4,
                         borderRadius: '16px',
                         backgroundColor: theme => theme.palette.mode === 'dark'
                             ? 'rgba(22, 28, 36, 0.8)'
@@ -77,7 +78,7 @@ const EducationSection = ({ itemVariants }) => {
                             <SchoolIcon sx={{ mr: 1, verticalAlign: 'middle', fontSize: 'inherit' }} />
                             Education & Certification
                         </Typography>
-                        <Divider sx={{ mb: 4 }} />
+                        <Divider sx={{ mb: 2 }} />
                         
                         <Box
                             sx={{
@@ -86,6 +87,8 @@ const EducationSection = ({ itemVariants }) => {
                                 overflowX: 'auto',
                                 pb: 2,
                                 scrollSnapType: 'x mandatory',
+                                scrollPadding: '0 24px',
+                                scrollPaddingRight: '24px',
                                 backgroundColor: 'transparent',
                                 '::-webkit-scrollbar': {
                                     height: 6,
@@ -108,10 +111,10 @@ const EducationSection = ({ itemVariants }) => {
                             <Box
                                 sx={{
                                     display: 'flex',
-                                    gap: 3,
+                                    gap: 6,
                                     width: 'fit-content',
-                                    py: 6,
-                                    pl: 8,
+                                    py: 3,
+                                    pl: 0,
                                     pr: 8,
                                     mx: 4,
                                 }}
@@ -122,12 +125,14 @@ const EducationSection = ({ itemVariants }) => {
                                         sx={{
                                             width: {
                                                 xs: '85%',
-                                                sm: 'calc((100vw - 160px - 24px) / 2)',
-                                                md: 'calc((1200px - 160px - 24px) / 2)',
+                                                sm: 'calc((100vw - 180px - 32px) / 2)',
+                                                md: 'calc((1200px - 180px - 32px) / 2)',
                                             },
                                             flexShrink: 0,
                                             scrollSnapAlign: 'start',
-                                            paddingLeft: 6,
+                                            '&:last-child': {
+                                                scrollSnapAlign: 'end',
+                                            },
                                         }}
                                     >
                                         <motion.div
@@ -136,7 +141,7 @@ const EducationSection = ({ itemVariants }) => {
                                             style={{ width: '100%', height: '100%' }}
                                         >
                                             <Card sx={{ 
-                                                p: 3, 
+                                                p: 4, 
                                                 height: '400px',
                                                 overflow: 'auto',
                                                 '::-webkit-scrollbar': {
