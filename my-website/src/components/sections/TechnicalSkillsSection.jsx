@@ -335,14 +335,27 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
                             justifyContent: 'center',
                             zIndex: 1000,
                             padding: '2rem',
-                            // Simple solid background with opacity, NO blur effects
-                            backgroundColor: isDarkMode 
-                                ? 'rgba(0, 0, 0, 0.75)' 
-                                : 'rgba(255, 255, 255, 0.75)',
-                            borderRadius: '16px',
                         }}
                         onClick={handleCloseExpanded}
                     >
+                        <div 
+                            style={{
+                                position: 'absolute',
+                                top: '50%',
+                                left: '50%',
+                                transform: 'translate(-50%, -50%)',
+                                width: 'calc(100% - 48px)',
+                                maxWidth: '1200px',
+                                height: 'auto',
+                                borderRadius: '16px',
+                                backgroundColor: isDarkMode 
+                                    ? 'rgba(0, 0, 0, 0.75)' 
+                                    : 'rgba(255, 255, 255, 0.75)',
+                                backdropFilter: 'blur(10px)',
+                                WebkitBackdropFilter: 'blur(10px)',
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                        />
                         <motion.div
                             initial={{ scale: 0.8, y: 50 }}
                             animate={{ scale: 1, y: 0 }}
