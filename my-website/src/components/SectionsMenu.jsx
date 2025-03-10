@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
     Menu,
     MenuItem,
@@ -26,13 +26,28 @@ const SectionsMenu = () => {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
     const buttonRef = useRef(null);
+    const timeoutRef = useRef(null);
+
+    // Clear timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
+    }, []);
 
     const handleMouseEnter = () => {
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
         setAnchorEl(buttonRef.current);
     };
 
     const handleMouseLeave = () => {
-        setAnchorEl(null);
+        timeoutRef.current = setTimeout(() => {
+            setAnchorEl(null);
+        }, 150); // Small delay to prevent accidental closing
     };
 
     const scrollToSection = (id) => {
@@ -101,6 +116,7 @@ const SectionsMenu = () => {
                 }}
                 MenuListProps={{
                     onMouseEnter: handleMouseEnter,
+                    onMouseLeave: handleMouseLeave,
                     sx: {
                         py: 0
                     }
