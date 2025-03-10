@@ -4,10 +4,12 @@ import {
     Toolbar,
     Box,
     Typography,
-    useTheme
+    useTheme,
+    Avatar
 } from '@mui/material';
 import ThemeToggle from './ThemeToggle';
 import SectionsMenu from './SectionsMenu';
+import logoImage from '../images/MyLogo.png';
 
 const CustomAppBar = ({ toggleColorMode }) => {
     const theme = useTheme();
@@ -26,18 +28,29 @@ const CustomAppBar = ({ toggleColorMode }) => {
             }}
         >
             <Toolbar>
-                <Typography
-                    variant="h6"
-                    component="div"
-                    sx={{ 
-                        flexGrow: 0, 
-                        fontWeight: 600,
-                        mr: 4,
-                        color: 'inherit'
-                    }}
-                >
-                    My Portfolio
-                </Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Avatar 
+                        src={logoImage} 
+                        alt="Logo" 
+                        sx={{ 
+                            width: 40, 
+                            height: 40, 
+                            mr: 2,
+                        }} 
+                    />
+                    <Typography
+                        variant="h6"
+                        component="div"
+                        sx={{ 
+                            flexGrow: 0, 
+                            fontWeight: 600,
+                            mr: 4,
+                            color: 'inherit'
+                        }}
+                    >
+                        My Portfolio
+                    </Typography>
+                </Box>
                 <Box sx={{ flexGrow: 1 }} />
                 <Box sx={{ 
                     display: 'flex', 
