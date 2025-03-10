@@ -117,20 +117,33 @@ const ExperienceSection = ({ itemVariants }) => {
                                 backgroundColor: 'transparent',
                                 '::-webkit-scrollbar': {
                                     height: 6,
+                                    backgroundColor: 'transparent',
+                                },
+                                '::-webkit-scrollbar-track': {
+                                    backgroundColor: 'transparent',
                                 },
                                 '::-webkit-scrollbar-thumb': {
                                     backgroundColor: theme => theme.palette.mode === 'dark' 
                                         ? 'rgba(255, 255, 255, 0.5)' 
-                                        : 'rgba(0, 0, 0, 0.3)',
+                                        : 'rgba(0, 0, 0, 0.5)',
                                     borderRadius: '10px',
                                     '&:hover': {
                                         backgroundColor: theme => theme.palette.mode === 'dark'
                                             ? 'rgba(255, 255, 255, 0.7)'
-                                            : 'rgba(0, 0, 0, 0.4)'
+                                            : 'rgba(0, 0, 0, 0.7)'
                                     }
                                 },
                                 scrollbarWidth: 'thin',
+                                scrollbarColor: 'rgba(0, 0, 0, 0.5) transparent',
                                 px: 12,
+                                '&:hover::-webkit-scrollbar-thumb': {
+                                    backgroundColor: theme => theme.palette.mode === 'dark' 
+                                        ? 'rgba(255, 255, 255, 0.5)' 
+                                        : 'rgba(0, 0, 0, 0.5)',
+                                },
+                                '&::-webkit-scrollbar-thumb:window-inactive': {
+                                    backgroundColor: 'transparent',
+                                }
                             }}
                         >
                             <Box
@@ -171,33 +184,26 @@ const ExperienceSection = ({ itemVariants }) => {
                                                 overflow: 'auto',
                                                 '::-webkit-scrollbar': {
                                                     width: 8,
-                                                    bgcolor: 'transparent',
-                                                    display: 'none'
-                                                },
-                                                '&:hover::-webkit-scrollbar': {
-                                                    display: 'block'
-                                                },
-                                                '::-webkit-scrollbar-thumb': {
-                                                    backgroundColor: theme => theme.palette.mode === 'dark' 
-                                                        ? 'rgba(255, 255, 255, 0.3)' 
-                                                        : 'rgba(0, 0, 0, 0.3)',
-                                                    borderRadius: '4px',
-                                                    '&:hover': {
-                                                        backgroundColor: theme => theme.palette.mode === 'dark'
-                                                            ? 'rgba(255, 255, 255, 0.4)'
-                                                            : 'rgba(0, 0, 0, 0.4)'
-                                                    }
+                                                    backgroundColor: 'transparent',
                                                 },
                                                 '::-webkit-scrollbar-track': {
-                                                    backgroundColor: theme => theme.palette.mode === 'dark'
-                                                        ? 'rgba(255, 255, 255, 0.05)'
-                                                        : 'rgba(0, 0, 0, 0.05)',
-                                                    borderRadius: '4px'
+                                                    backgroundColor: 'transparent',
                                                 },
+                                                '::-webkit-scrollbar-thumb': {
+                                                    backgroundColor: 'transparent',
+                                                    borderRadius: '4px',
+                                                },
+                                                '&:hover::-webkit-scrollbar-thumb': {
+                                                    backgroundColor: theme => theme.palette.mode === 'dark' 
+                                                        ? 'rgba(255, 255, 255, 0.5)' 
+                                                        : 'rgba(0, 0, 0, 0.5)',
+                                                },
+                                                scrollbarWidth: 'thin',
+                                                scrollbarColor: 'transparent transparent',
                                                 '&:hover': {
-                                                    boxShadow: isDarkMode 
-                                                        ? '0 0 1px 0 rgba(0, 0, 0, 0.9), 0 0 2px 0 rgba(0, 0, 0, 0.8), 0 4px 8px -2px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.4)'
-                                                        : '0 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 2px 0 rgba(0, 0, 0, 0.15), 0 4px 8px -2px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.05)'
+                                                    scrollbarColor: theme => theme.palette.mode === 'dark'
+                                                        ? 'rgba(255, 255, 255, 0.5) transparent'
+                                                        : 'rgba(0, 0, 0, 0.5) transparent',
                                                 }
                                             }}>
                                                 <CardContent>

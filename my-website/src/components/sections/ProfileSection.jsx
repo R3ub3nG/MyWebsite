@@ -28,8 +28,7 @@ const ProfileSection = ({ itemVariants }) => {
         : 'linear-gradient(135deg, rgba(144, 202, 249, 0.85), rgba(33, 150, 243, 0.85))';
 
     const handlePhoneClick = () => {
-        // You can replace this with your actual phone number
-        const phoneNumber = '+1234567890';
+        const phoneNumber = '+61468633718';
         navigator.clipboard.writeText(phoneNumber);
     };
 
@@ -172,7 +171,7 @@ const ProfileSection = ({ itemVariants }) => {
                                             }} 
                                             aria-label="github" 
                                             component="a" 
-                                            href="https://github.com/yourusername"
+                                            href="https://github.com/R3ub3nG"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
@@ -194,7 +193,7 @@ const ProfileSection = ({ itemVariants }) => {
                                             }} 
                                             aria-label="linkedin" 
                                             component="a" 
-                                            href="https://linkedin.com/in/yourusername"
+                                            href="https://linkedin.com/in/reuben-gue-0a0b94205"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
@@ -216,7 +215,7 @@ const ProfileSection = ({ itemVariants }) => {
                                             }} 
                                             aria-label="email" 
                                             component="a" 
-                                            href="mailto:your.email@example.com"
+                                            href="mailto:r3ubng@gmail.com"
                                         >
                                             <EmailIcon fontSize="large" />
                                         </IconButton>
