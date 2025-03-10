@@ -16,7 +16,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Code as CodeIcon,
-    SportsFootball as FootballIcon,
+    SportsSoccer as FootballIcon,
     SportsBasketball as BasketballIcon,
     SportsEsports as GamingIcon,
     MusicNote as MusicIcon,
@@ -25,6 +25,8 @@ import {
     LiveTv as AnimeIcon,
     Close as CloseIcon,
     Info as InfoIcon,
+    DirectionsCar as CarIcon,
+    Restaurant as FoodIcon,
 } from "@mui/icons-material";
 
 const PassionsSection = ({ itemVariants }) => {
@@ -35,45 +37,55 @@ const PassionsSection = ({ itemVariants }) => {
     const passions = [
         {
             name: "Coding",
-            icon: <CodeIcon sx={{ color: "#00C853" }} />,
+            icon: <CodeIcon sx={{ color: "#00C853", width: "2rem", height: "2rem" }} />,
             description:
                 "Building innovative solutions and learning new technologies. I love the creative process of turning ideas into reality through code.",
         },
         {
             name: "Football",
-            icon: <FootballIcon sx={{ color: "#1565C0" }} />,
+            icon: <FootballIcon sx={{ color: "#1565C0", width: "2rem", height: "2rem"  }} />,
             description:
                 "The beautiful game! Playing as a midfielder, watching Premier League matches, and following tactical analyses of different playing styles.",
         },
         {
             name: "Basketball",
-            icon: <BasketballIcon sx={{ color: "#FF6D00" }} />,
+            icon: <BasketballIcon sx={{ color: "#FF6D00", width: "2rem", height: "2rem"  }} />,
             description:
                 "Playing pickup games, following the NBA, and admiring the strategic elements of the game. The fast-paced nature and team dynamics make it exciting.",
         },
         {
             name: "Gaming",
-            icon: <GamingIcon sx={{ color: "#7C4DFF" }} />,
+            icon: <GamingIcon sx={{ color: "#7C4DFF", width: "2rem", height: "2rem"  }} />,
             description:
                 "Exploring virtual worlds, enjoying competitive multiplayer games, and appreciating the artistry in game design and storytelling.",
         },
         {
             name: "Music",
-            icon: <MusicIcon sx={{ color: "#F50057" }} />,
+            icon: <MusicIcon sx={{ color: "#F50057", width: "2rem", height: "2rem"  }} />,
             description:
                 "A constant companion in life. Whether working, relaxing, or exercising, music sets the perfect mood and atmosphere.",
         },
         {
             name: "Friends",
-            icon: <FriendsIcon sx={{ color: "#00BCD4" }} />,
+            icon: <FriendsIcon sx={{ color: "#00BCD4", width: "2rem", height: "2rem"  }} />,
             description:
                 "Creating memories, sharing experiences, and growing together. Nothing beats quality time with good friends.",
         },
         {
             name: "Anime",
-            icon: <AnimeIcon sx={{ color: "#EC407A" }} />,
+            icon: <AnimeIcon sx={{ color: "#EC407A", width: "2rem", height: "2rem"  }} />,
             description:
                 "Appreciating the unique storytelling, art styles, and cultural elements. Following both classic and contemporary series.",
+        },
+        {
+            name: "Cars",
+            icon: <CarIcon sx={{ color: "#818181", width: "2rem", height: "2rem" }} />,
+            description: "Fascinated by automotive engineering, design, and performance. Enjoying everything from classic cars to modern supercars and the latest EV technology.",
+        },
+        {
+            name: "Food",
+            icon: <FoodIcon sx={{ color: "#FF9800", width: "2rem", height: "2rem" }} />,
+            description: "Exploring diverse cuisines, trying new recipes, and appreciating the cultural significance of food. Both cooking at home and discovering local restaurants.",
         },
     ];
 
