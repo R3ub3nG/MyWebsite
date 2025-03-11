@@ -66,18 +66,24 @@ const Dashboard = ({ toggleColorMode }) => {
                     overflowX: 'hidden',
                     scrollBehavior: 'smooth',
                     scrollSnapType: { xs: 'none', md: 'y mandatory' },
-                    WebkitOverflowScrolling: 'touch', // Improve mobile scrolling
+                    WebkitOverflowScrolling: 'touch',
+                    position: 'relative',
+                    zIndex: 1,
                     '& > div': {
                         height: '100%',
-                        backfaceVisibility: 'hidden', // Prevent flickering
+                        backfaceVisibility: 'hidden',
                         WebkitBackfaceVisibility: 'hidden',
-                        transform: 'translate3d(0, 0, 0)', // Force GPU acceleration
+                        transform: 'translate3d(0, 0, 0)',
                         WebkitTransform: 'translate3d(0, 0, 0)',
+                        position: 'relative',
+                        zIndex: 'auto'
                     },
                     '& > div > section': {
                         scrollSnapAlign: 'start',
                         scrollSnapStop: 'always',
                         height: '100%',
+                        position: 'relative',
+                        zIndex: 'auto'
                     },
                     '&::-webkit-scrollbar': {
                         width: '8px',

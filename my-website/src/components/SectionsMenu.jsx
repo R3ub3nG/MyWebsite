@@ -56,6 +56,7 @@ const SectionsMenu = () => {
 
         if (scrollContainer && element) {
             const elementTop = element.offsetTop - scrollContainer.offsetTop;
+            console.log(elementTop)
             scrollContainer.scrollTo({
                 top: elementTop,
                 behavior: "smooth",
@@ -147,9 +148,11 @@ const SectionsMenu = () => {
                         },
                         '& .MuiTypography-root': {
                             fontSize: '0.9rem'
-                        }
+                        },
+                        zIndex: 1300
                     }
                 }}
+                style={{ zIndex: 1300 }}
                 transitionDuration={{
                     enter: 200,
                     exit: 200
@@ -169,7 +172,8 @@ const SectionsMenu = () => {
                             cursor: 'pointer',
                             '&:hover': {
                                 bgcolor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
-                            }
+                            },
+                            zIndex: 2000,
                         }}
                     >
                         <ListItemIcon sx={{ 

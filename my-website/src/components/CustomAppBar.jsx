@@ -25,6 +25,7 @@ const CustomAppBar = ({ toggleColorMode }) => {
                 borderBottom: 1,
                 borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)',
                 color: isDarkMode ? 'white' : 'text.primary',
+                zIndex: 1200,
             }}
         >
             <Toolbar>

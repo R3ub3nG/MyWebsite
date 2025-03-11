@@ -37,6 +37,7 @@ const Section = ({ children, id, bgcolor }) => {
                 WebkitBackfaceVisibility: 'hidden',
                 perspective: 1000,
                 WebkitPerspective: 1000,
+                zIndex: 'auto',
                 '& > *': {
                     width: '100%',
                     maxHeight: '100%',
@@ -44,6 +45,7 @@ const Section = ({ children, id, bgcolor }) => {
                     willChange: 'transform, opacity',
                     transform: 'translate3d(0, 0, 0)',
                     WebkitTransform: 'translate3d(0, 0, 0)',
+                    zIndex: 'auto'
                 }
             }}
         >
