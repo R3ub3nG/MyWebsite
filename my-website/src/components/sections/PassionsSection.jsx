@@ -16,8 +16,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Code as CodeIcon,
-    SportsSoccer as FootballIcon,
-    SportsBasketball as BasketballIcon,
+    SportsSoccer as SportsIcon,
     SportsEsports as GamingIcon,
     MusicNote as MusicIcon,
     People as FriendsIcon,
@@ -27,6 +26,7 @@ import {
     Info as InfoIcon,
     DirectionsCar as CarIcon,
     Restaurant as FoodIcon,
+    Translate as TranslateIcon,
 } from "@mui/icons-material";
 
 const PassionsSection = ({ itemVariants }) => {
@@ -36,26 +36,20 @@ const PassionsSection = ({ itemVariants }) => {
 
     const passions = [
         {
+            name: "Sports",
+            icon: <SportsIcon sx={{ color: "#2196F3", width: "2rem", height: "2rem" }} />,
+            description:
+                "Passionate about various sports including basketball and football. Playing, watching, and following professional leagues. Appreciating the teamwork, strategy, and physical excellence in sports.",
+        },
+        {
             name: "Coding",
-            icon: <CodeIcon sx={{ color: "#00C853", width: "2rem", height: "2rem" }} />,
+            icon: <CodeIcon sx={{ color: "#4CAF50", width: "2rem", height: "2rem" }} />,
             description:
-                "Building innovative solutions and learning new technologies. I love the creative process of turning ideas into reality through code.",
-        },
-        {
-            name: "Football",
-            icon: <FootballIcon sx={{ color: "#1565C0", width: "2rem", height: "2rem"  }} />,
-            description:
-                "The beautiful game! Playing as a midfielder, watching Premier League matches, and following tactical analyses of different playing styles.",
-        },
-        {
-            name: "Basketball",
-            icon: <BasketballIcon sx={{ color: "#FF6D00", width: "2rem", height: "2rem"  }} />,
-            description:
-                "Playing pickup games, following the NBA, and admiring the strategic elements of the game. The fast-paced nature and team dynamics make it exciting.",
+                "Building applications and solving problems through code. Exploring new technologies and frameworks to expand my skill set.",
         },
         {
             name: "Gaming",
-            icon: <GamingIcon sx={{ color: "#7C4DFF", width: "2rem", height: "2rem"  }} />,
+            icon: <GamingIcon sx={{ color: "#7C4DFF", width: "2rem", height: "2rem" }} />,
             description:
                 "Exploring virtual worlds, enjoying competitive multiplayer games, and appreciating the artistry in game design and storytelling.",
         },
@@ -86,6 +80,11 @@ const PassionsSection = ({ itemVariants }) => {
             name: "Food",
             icon: <FoodIcon sx={{ color: "#FF9800", width: "2rem", height: "2rem" }} />,
             description: "Exploring diverse cuisines, trying new recipes, and appreciating the cultural significance of food. Both cooking at home and discovering local restaurants.",
+        },
+        {
+            name: "Languages",
+            icon: <TranslateIcon sx={{ color: "#9C27B0", width: "2rem", height: "2rem" }} />,
+            description: "Fascinated by different languages and cultures. Currently learning and practicing multiple languages to connect with people from around the world and gain new perspectives.",
         },
     ];
 
