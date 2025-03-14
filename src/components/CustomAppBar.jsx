@@ -31,6 +31,7 @@ const CustomAppBar = ({ toggleColorMode }) => {
             <Toolbar>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Avatar 
+                        id="logo-image"
                         src={logoImage} 
                         alt="Logo" 
                         sx={{ 

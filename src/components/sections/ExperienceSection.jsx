@@ -130,6 +130,8 @@ const ExperienceSection = ({ itemVariants }) => {
     const isDarkMode = theme.palette.mode === "dark";
     const [activeStep, setActiveStep] = useState(0);
     const cardRef = useRef(null);
+    const sectionRef = useRef(null);
+    const [isInView, setIsInView] = useState(false);
 
     // Experience data
     const experiences = [
@@ -173,6 +175,8 @@ const ExperienceSection = ({ itemVariants }) => {
 
     // Handle next and previous navigation
     const handleNext = () => {
+        if (!isInView) return;
+        
         setActiveStep((prevActiveStep) =>
             prevActiveStep < experiences.length - 1
                 ? prevActiveStep + 1
@@ -181,6 +185,8 @@ const ExperienceSection = ({ itemVariants }) => {
     };
 
     const handleBack = () => {
+        if (!isInView) return;
+        
         setActiveStep((prevActiveStep) =>
             prevActiveStep > 0 ? prevActiveStep - 1 : prevActiveStep
         );
@@ -188,6 +194,8 @@ const ExperienceSection = ({ itemVariants }) => {
 
     // Handle timeline step click
     const handleStepClick = (step) => {
+        if (!isInView) return;
+        
         setActiveStep(step);
     };
 
@@ -220,15 +228,118 @@ const ExperienceSection = ({ itemVariants }) => {
     // Track direction for animations
     const [direction, setDirection] = useState("right");
 
+    // Set up intersection observer to track when the section is in view
     useEffect(() => {
-        // Reset card scroll position when changing cards
-        if (cardRef.current) {
+        if (!sectionRef.current) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    // Only update if the state is changing to prevent unnecessary rerenders
+                    if (entry.isIntersecting !== isInView) {
+                        console.log(`Experience section is ${entry.isIntersecting ? 'in view' : 'out of view'}`);
+                        setIsInView(entry.isIntersecting);
+                        
+                        // If section is no longer in view, reset any active animations or interactions
+                        if (!entry.isIntersecting) {
+                            // This helps prevent the section from trying to regain focus
+                            document.activeElement.blur();
+                        }
+                    }
+                });
+            },
+            { 
+                threshold: 0.1, // Consider in view when at least 10% is visible
+                rootMargin: "-10% 0px" // Add some margin to ensure we detect leaving the view earlier
+            }
+        );
+
+        observer.observe(sectionRef.current);
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, [isInView]);
+
+    // Reset card scroll position when changing cards
+    useEffect(() => {
+        // Only scroll if the section is in view
+        if (cardRef.current && isInView) {
             cardRef.current.scrollTop = 0;
         }
-    }, [activeStep]);
+    }, [activeStep, isInView]);
+
+    // Completely disable the component when not in view
+    if (!isInView) {
+        return (
+            <Container maxWidth="lg" ref={sectionRef} id="experience">
+                <motion.div variants={itemVariants} initial={{ opacity: 1 }}>
+                    <motion.div
+                        initial={{ scale: 0.98 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                    >
+                        <Paper
+                            elevation={0}
+                            sx={{
+                                px: { xs: 2, sm: 3, md: 4 },
+                                pt: 3,
+                                borderRadius: "16px",
+                                boxShadow: isDarkMode
+                                    ? "0 0 2px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.9), 0 -8px 24px rgba(0, 0, 0, 0.9)"
+                                    : "0 0 2px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15), 0 -8px 24px rgba(0, 0, 0, 0.15)",
+                                transform: "translate3d(0, 0, 0)",
+                                WebkitTransform: "translate3d(0, 0, 0)",
+                                backfaceVisibility: "hidden",
+                                WebkitBackfaceVisibility: "hidden",
+                                position: "relative",
+                                zIndex: "auto",
+                                width: "100%",
+                                mb: 4,
+                                overflow: "hidden",
+                                height: {
+                                    xs: "500px",
+                                    sm: "550px",
+                                    md: "600px",
+                                },
+                            }}
+                        >
+                            {/* Placeholder content when not in view */}
+                            <Typography
+                                variant="h3"
+                                component="h2"
+                                gutterBottom
+                                fontWeight="bold"
+                                sx={{
+                                    mb: 2,
+                                    fontSize: {
+                                        xs: "1.75rem",
+                                        sm: "2.25rem",
+                                        md: "2.5rem",
+                                    },
+                                }}
+                            >
+                                <WorkIcon
+                                    sx={{
+                                        mr: 1,
+                                        verticalAlign: "middle",
+                                        fontSize: "inherit",
+                                    }}
+                                />
+                                Experience
+                            </Typography>
+                            <Divider sx={{ mb: 3 }} />
+                        </Paper>
+                    </motion.div>
+                </motion.div>
+            </Container>
+        );
+    }
 
     return (
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" ref={sectionRef} id="experience">
             <motion.div variants={itemVariants} initial={{ opacity: 1 }}>
                 <motion.div
                     initial={{ scale: 0.98 }}
@@ -324,6 +435,8 @@ const ExperienceSection = ({ itemVariants }) => {
                                     marginLeft: { xs: 0, sm: 0 },
                                     marginRight: { xs: 0, sm: 0 },
                                 },
+                                // Ensure pointer events work properly
+                                pointerEvents: "auto"
                             }}
                         >
                             {experiences.map((experience, index) => (
@@ -333,7 +446,11 @@ const ExperienceSection = ({ itemVariants }) => {
                                 >
                                     <TimelineStepLabel
                                         StepIconComponent={TimelineStepIcon}
-                                        onClick={() => handleStepClick(index)}
+                                        onClick={(e) => {
+                                            // Stop propagation to prevent event bubbling
+                                            e.stopPropagation();
+                                            handleStepClick(index);
+                                        }}
                                         sx={{ cursor: "pointer" }}
                                     >
                                         {experience.period}
@@ -360,6 +477,7 @@ const ExperienceSection = ({ itemVariants }) => {
                                 mb: 5,
                                 zIndex: 1,
                                 isolation: "isolate",
+                                pointerEvents: "auto"
                             }}
                         >
                             <AnimatePresence
@@ -367,98 +485,105 @@ const ExperienceSection = ({ itemVariants }) => {
                                 custom={direction}
                                 mode="wait"
                             >
-                                <motion.div
-                                    key={activeStep}
-                                    custom={direction}
-                                    variants={cardVariants}
-                                    initial="hidden"
-                                    animate="visible"
-                                    exit="exit"
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        position: "absolute",
-                                        zIndex: 1,
-                                    }}
-                                >
-                                    <Card
-                                        sx={{
-                                            p: { xs: 2, sm: 3 },
+                                {/* Only render the motion.div when the section is in view */}
+                                {isInView && (
+                                    <motion.div
+                                        key={activeStep}
+                                        custom={direction}
+                                        variants={cardVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                        exit="exit"
+                                        style={{
+                                            width: "100%",
                                             height: "100%",
-                                            overflow: "auto",
-                                            position: "relative",
+                                            position: "absolute",
                                             zIndex: 1,
                                         }}
-                                        ref={cardRef}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                        }}
                                     >
-                                        <CardContent
-                                            sx={{ p: { xs: 1, sm: 2 } }}
+                                        <Card
+                                            sx={{
+                                                p: { xs: 2, sm: 3 },
+                                                height: "100%",
+                                                overflow: "auto",
+                                                position: "relative",
+                                                zIndex: 1,
+                                                pointerEvents: "auto"
+                                            }}
+                                            ref={cardRef}
                                         >
-                                            <Typography
-                                                variant="h5"
-                                                fontWeight="bold"
-                                                gutterBottom
-                                                sx={{
-                                                    fontSize: {
-                                                        xs: "1.25rem",
-                                                        sm: "1.5rem",
-                                                    },
-                                                }}
+                                            <CardContent
+                                                sx={{ p: { xs: 1, sm: 2 } }}
                                             >
-                                                {experiences[activeStep].title}
-                                            </Typography>
-                                            <Typography
-                                                variant="h6"
-                                                color={
-                                                    isDarkMode
-                                                        ? "grey.100"
-                                                        : "text.primary"
-                                                }
-                                                gutterBottom
-                                                sx={{
-                                                    fontSize: {
-                                                        xs: "1rem",
-                                                        sm: "1.25rem",
-                                                    },
-                                                }}
-                                            >
-                                                {
-                                                    experiences[activeStep]
-                                                        .company
-                                                }
-                                            </Typography>
-                                            <Typography
-                                                variant="body1"
-                                                color="text.secondary"
-                                                gutterBottom
-                                            >
-                                                {experiences[activeStep].period}
-                                            </Typography>
-                                            <Divider sx={{ my: 1.5 }} />
-                                            <Typography
-                                                variant="body1"
-                                                paragraph
-                                            >
-                                                {
-                                                    experiences[activeStep]
-                                                        .description
-                                                }
-                                            </Typography>
-                                            <Typography variant="body1">
-                                                {experiences[
-                                                    activeStep
-                                                ].responsibilities.map(
-                                                    (responsibility, i) => (
-                                                        <React.Fragment key={i}>
-                                                            • {responsibility}
-                                                            <br />
-                                                        </React.Fragment>
-                                                    )
-                                                )}
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                </motion.div>
+                                                <Typography
+                                                    variant="h5"
+                                                    fontWeight="bold"
+                                                    gutterBottom
+                                                    sx={{
+                                                        fontSize: {
+                                                            xs: "1.25rem",
+                                                            sm: "1.5rem",
+                                                        },
+                                                    }}
+                                                >
+                                                    {experiences[activeStep].title}
+                                                </Typography>
+                                                <Typography
+                                                    variant="h6"
+                                                    color={
+                                                        isDarkMode
+                                                            ? "grey.100"
+                                                            : "text.primary"
+                                                    }
+                                                    gutterBottom
+                                                    sx={{
+                                                        fontSize: {
+                                                            xs: "1rem",
+                                                            sm: "1.25rem",
+                                                        },
+                                                    }}
+                                                >
+                                                    {
+                                                        experiences[activeStep]
+                                                            .company
+                                                    }
+                                                </Typography>
+                                                <Typography
+                                                    variant="body1"
+                                                    color="text.secondary"
+                                                    gutterBottom
+                                                >
+                                                    {experiences[activeStep].period}
+                                                </Typography>
+                                                <Divider sx={{ my: 1.5 }} />
+                                                <Typography
+                                                    variant="body1"
+                                                    paragraph
+                                                >
+                                                    {
+                                                        experiences[activeStep]
+                                                            .description
+                                                    }
+                                                </Typography>
+                                                <Typography variant="body1">
+                                                    {experiences[
+                                                        activeStep
+                                                    ].responsibilities.map(
+                                                        (responsibility, i) => (
+                                                            <React.Fragment key={i}>
+                                                                • {responsibility}
+                                                                <br />
+                                                            </React.Fragment>
+                                                        )
+                                                    )}
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                    </motion.div>
+                                )}
                             </AnimatePresence>
                         </Box>
                         {/* Navigation Buttons */}
@@ -472,10 +597,15 @@ const ExperienceSection = ({ itemVariants }) => {
                                 justifyContent: "center",
                                 gap: 2,
                                 pb: 2,
+                                // Only show buttons when section is in view
+                                opacity: isInView ? 1 : 0,
+                                pointerEvents: isInView ? "auto" : "none",
+                                transition: "opacity 0.3s ease"
                             }}
                         >
                             <Button
-                                onClick={() => {
+                                onClick={(e) => {
+                                    e.stopPropagation();
                                     setDirection("left");
                                     handleBack();
                                 }}
@@ -500,7 +630,8 @@ const ExperienceSection = ({ itemVariants }) => {
                                 Prev
                             </Button>
                             <Button
-                                onClick={() => {
+                                onClick={(e) => {
+                                    e.stopPropagation();
                                     setDirection("right");
                                     handleNext();
                                 }}

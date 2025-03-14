@@ -51,18 +51,27 @@ const SectionsMenu = () => {
     };
 
     const scrollToSection = (id) => {
-        const scrollContainer = document.getElementById("scrollContainer");
-        const element = document.getElementById(id);
-
-        if (scrollContainer && element) {
-            const elementTop = element.offsetTop - scrollContainer.offsetTop;
-            console.log(elementTop)
-            scrollContainer.scrollTo({
-                top: elementTop,
-                behavior: "smooth",
-            });
-        }
+        // Close the menu first
         setAnchorEl(null);
+        
+        // Simple timeout to ensure menu is closed before scrolling
+        setTimeout(() => {
+            const scrollContainer = document.getElementById("scrollContainer");
+            const element = document.getElementById(id);
+
+            if (scrollContainer && element) {
+                console.log(`Scrolling to section: ${id}`);
+                
+                // Calculate the scroll position
+                const elementTop = element.offsetTop - scrollContainer.offsetTop;
+                
+                // Scroll to the section
+                scrollContainer.scrollTo({
+                    top: elementTop,
+                    behavior: "smooth",
+                });
+            }
+        }, 50);
     };
 
     return (
@@ -132,7 +141,6 @@ const SectionsMenu = () => {
                         backdropFilter: 'blur(10px)',
                         color: isDarkMode ? 'white' : 'text.primary',
                         transition: 'all 0.2s ease-in-out',
-                        opacity: Boolean(anchorEl) ? 1 : 0,
                         overflow: 'hidden',
                         boxShadow: isDarkMode 
                             ? `0 0 1px 0 rgba(0, 0, 0, 0.9),
@@ -157,6 +165,9 @@ const SectionsMenu = () => {
                     enter: 200,
                     exit: 200
                 }}
+                // Close when clicked outside
+                onBackdropClick={() => setAnchorEl(null)}
+                onClick={(e) => e.stopPropagation()}
             >
                 {sections.map((section, index) => (
                     <MenuItem 
@@ -172,8 +183,7 @@ const SectionsMenu = () => {
                             cursor: 'pointer',
                             '&:hover': {
                                 bgcolor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
-                            },
-                            zIndex: 2000,
+                            }
                         }}
                     >
                         <ListItemIcon sx={{ 
