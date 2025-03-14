@@ -63,6 +63,15 @@ const TimelineDot = styled("div")(({ theme, ownerState }) => ({
     borderRadius: "50%",
     justifyContent: "center",
     alignItems: "center",
+    transition: "all 0.3s ease",
+    cursor: "pointer",
+    padding: 0,
+    boxSizing: "border-box",
+    "&:hover": {
+        transform: "scale(1.15)",
+        boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+        backgroundColor: "rgba(33,150,243,0.8)",
+    },
     ...(ownerState.active && {
         backgroundImage:
             "linear-gradient(136deg, rgba(33,150,243,1) 0%, rgba(33,150,243,0.6) 100%)",
@@ -76,6 +85,7 @@ const TimelineDot = styled("div")(({ theme, ownerState }) => ({
 
 // Custom StepLabel component
 const TimelineStepLabel = styled(StepLabel)(({ theme }) => ({
+    cursor: "pointer",
     "& .MuiStepLabel-label": {
         marginTop: "8px",
         fontSize: "0.75rem",
@@ -83,6 +93,7 @@ const TimelineStepLabel = styled(StepLabel)(({ theme }) => ({
             theme.palette.mode === "dark"
                 ? "rgba(255,255,255,0.6)"
                 : "rgba(0,0,0,0.6)",
+        transition: "all 0.3s ease",
         "&.Mui-active": {
             color: "rgba(33,150,243,1)",
             fontWeight: "bold",
@@ -90,37 +101,84 @@ const TimelineStepLabel = styled(StepLabel)(({ theme }) => ({
         "&.Mui-completed": {
             color: "rgba(33,150,243,0.8)",
         },
+        "&:hover": {
+            color: "rgba(33,150,243,1)",
+        },
+    },
+    "&:hover": {
+        "& .MuiStepLabel-label": {
+            color: "rgba(33,150,243,1)",
+        },
     },
 }));
 
 // Custom StepIcon component
 const TimelineStepIcon = (props) => {
     const { active, completed, className } = props;
+    const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <TimelineDot ownerState={{ active, completed }} className={className}>
-            {completed ? (
-                <WorkIcon
-                    style={{
-                        color: "#fff",
-                        fontSize: "1.2rem",
-                    }}
-                />
-            ) : active ? (
-                <WorkIcon
-                    style={{
-                        color: "#fff",
-                        fontSize: "1.2rem",
-                    }}
-                />
-            ) : (
-                <WorkIcon
-                    style={{
-                        color: "rgba(0,0,0,0.5)",
-                        fontSize: "1.2rem",
-                    }}
-                />
-            )}
+        <TimelineDot 
+            ownerState={{ active, completed }} 
+            className={className}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
+        >
+            <motion.div
+                animate={{
+                    rotate: isHovered ? [0, -10, 10, -5, 5, 0] : 0,
+                    scale: isHovered ? 1.2 : 1,
+                }}
+                transition={{
+                    duration: 0.5,
+                    ease: "easeInOut",
+                }}
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100%",
+                    width: "100%",
+                    position: "relative",
+                    top: "1px", // Slight adjustment to center the icon vertically
+                    lineHeight: 0, // Remove any line-height that might affect positioning
+                }}
+            >
+                {completed ? (
+                    <WorkIcon
+                        style={{
+                            color: "#fff",
+                            fontSize: "1.2rem",
+                            display: "block",
+                            marginBottom: "1px", // Fine-tune vertical alignment
+                        }}
+                    />
+                ) : active ? (
+                    <WorkIcon
+                        style={{
+                            color: "#fff",
+                            fontSize: "1.2rem",
+                            display: "block",
+                            marginBottom: "1px", // Fine-tune vertical alignment
+                        }}
+                    />
+                ) : (
+                    <WorkIcon
+                        style={{
+                            color: isHovered ? "#fff" : "rgba(0,0,0,0.5)",
+                            fontSize: "1.2rem",
+                            transition: "color 0.3s ease",
+                            display: "block",
+                            marginBottom: "1px", // Fine-tune vertical alignment
+                        }}
+                    />
+                )}
+            </motion.div>
         </TimelineDot>
     );
 };
@@ -436,25 +494,51 @@ const ExperienceSection = ({ itemVariants }) => {
                                     marginRight: { xs: 0, sm: 0 },
                                 },
                                 // Ensure pointer events work properly
-                                pointerEvents: "auto"
+                                pointerEvents: "auto",
+                                "& .MuiStep-root": {
+                                    cursor: "pointer",
+                                    transition: "transform 0.3s ease",
+                                    "&:hover": {
+                                        transform: "translateY(-2px)",
+                                    },
+                                },
                             }}
                         >
                             {experiences.map((experience, index) => (
                                 <Step
                                     key={index}
                                     completed={index < activeStep}
+                                    sx={{
+                                        cursor: "pointer",
+                                        "& .MuiStepLabel-root": {
+                                            cursor: "pointer",
+                                        },
+                                    }}
                                 >
-                                    <TimelineStepLabel
-                                        StepIconComponent={TimelineStepIcon}
-                                        onClick={(e) => {
-                                            // Stop propagation to prevent event bubbling
-                                            e.stopPropagation();
-                                            handleStepClick(index);
-                                        }}
-                                        sx={{ cursor: "pointer" }}
+                                    <Tooltip
+                                        title={`View ${experience.title} at ${experience.company}`}
+                                        placement="top"
+                                        arrow
                                     >
-                                        {experience.period}
-                                    </TimelineStepLabel>
+                                        <TimelineStepLabel
+                                            StepIconComponent={TimelineStepIcon}
+                                            onClick={(e) => {
+                                                // Stop propagation to prevent event bubbling
+                                                e.stopPropagation();
+                                                handleStepClick(index);
+                                            }}
+                                            sx={{ 
+                                                cursor: "pointer",
+                                                "&:hover": {
+                                                    "& .MuiStepLabel-label": {
+                                                        color: "rgba(33,150,243,1)",
+                                                    },
+                                                },
+                                            }}
+                                        >
+                                            {experience.period}
+                                        </TimelineStepLabel>
+                                    </Tooltip>
                                 </Step>
                             ))}
                         </Stepper>
