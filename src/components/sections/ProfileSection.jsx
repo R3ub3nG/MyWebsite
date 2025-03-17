@@ -17,6 +17,8 @@ import {
     Phone as PhoneIcon,
     Description as ResumeIcon
 } from '@mui/icons-material';
+import profilePic from '../../images/pfp.png';
+import resumePDF from '../../docs/CV - Reuben Gue.pdf';
 
 const ProfileSection = ({ itemVariants }) => {
     const theme = useTheme();
@@ -140,20 +142,19 @@ const ProfileSection = ({ itemVariants }) => {
                                         border: '4px solid rgba(255,255,255,0.8)',
                                         transform: 'translate3d(0, 0, 0)',
                                     }}
-                                    alt="Your Name"
-                                    src="/path-to-your-photo.jpg" // Replace with your photo path
+                                    alt="Reuben Gue"
+                                    src={profilePic}
                                 />
                             </motion.div>
                             <Box>
                                 <Typography variant="h2" component="h1" gutterBottom fontWeight="bold" sx={{ fontSize: { xs: '2.5rem', md: '3.5rem' } }}>
-                                    Your Name
+                                    Reuben Gue
                                 </Typography>
                                 <Typography variant="h4" color="rgba(255,255,255,0.9)" gutterBottom sx={{ mb: 3 }}>
-                                    Software Developer
+                                    Software Engineer
                                 </Typography>
                                 <Typography variant="body1" color="rgba(255,255,255,0.9)" paragraph sx={{ fontSize: '1.1rem', maxWidth: '600px', mb: 4 }}>
-                                    Passionate about creating elegant solutions to complex problems.
-                                    I specialize in web development, machine learning, and building intuitive user interfaces.
+                                    I am an innovative and hard-working student in my final year of a Bachelor of Engineering (Honours), specialising in Software Engineering. I have a strong passion for Software Development and I am driven by the positive impact my work can have within my organisation and throughout the wider community.
                                 </Typography>
                                 <Box sx={{ mt: 2, display: 'flex', gap: 2 }}>
                                     <Tooltip title="Visit my GitHub Profile" arrow placement="bottom">
@@ -200,7 +201,7 @@ const ProfileSection = ({ itemVariants }) => {
                                             <LinkedInIcon fontSize="large" />
                                         </IconButton>
                                     </Tooltip>
-                                    <Tooltip title="Send me an Email" arrow placement="bottom">
+                                    <Tooltip title="Send me an Email at r3ubng@gmail.com" arrow placement="bottom">
                                         <IconButton 
                                             sx={{ 
                                                 color: 'white', 
@@ -220,7 +221,7 @@ const ProfileSection = ({ itemVariants }) => {
                                             <EmailIcon fontSize="large" />
                                         </IconButton>
                                     </Tooltip>
-                                    <Tooltip title="Click to copy phone number" arrow placement="bottom">
+                                    <Tooltip title="Click to copy phone number (+61 468 633 718)" arrow placement="bottom">
                                         <IconButton 
                                             sx={{ 
                                                 color: 'white', 
@@ -239,7 +240,7 @@ const ProfileSection = ({ itemVariants }) => {
                                             <PhoneIcon fontSize="large" />
                                         </IconButton>
                                     </Tooltip>
-                                    <Tooltip title="Download my Resume" arrow placement="bottom">
+                                    <Tooltip title="View my Resume" arrow placement="bottom">
                                         <IconButton 
                                             sx={{ 
                                                 color: 'white', 
@@ -252,10 +253,9 @@ const ProfileSection = ({ itemVariants }) => {
                                                     boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
                                                 }
                                             }} 
-                                            aria-label="download resume" 
+                                            aria-label="view resume" 
                                             component="a"
-                                            href="/path-to-your-resume.pdf"
-                                            download="YourName_Resume.pdf"
+                                            href={resumePDF}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
