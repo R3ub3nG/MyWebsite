@@ -39,52 +39,52 @@ const PassionsSection = ({ itemVariants }) => {
             name: "Sports",
             icon: <SportsIcon sx={{ color: "#2196F3", width: "2rem", height: "2rem" }} />,
             description:
-                "Passionate about various sports including basketball and football. Playing, watching, and following professional leagues. Appreciating the teamwork, strategy, and physical excellence in sports.",
+                "Passionate about various sports including Football(Soccer), Basketball and pretty much all of them. I love playing and watching the professional leagues, appreciating the teamwork, strategy, and physical excellence in sports.",
         },
         {
             name: "Coding",
             icon: <CodeIcon sx={{ color: "#4CAF50", width: "2rem", height: "2rem" }} />,
             description:
-                "Building applications and solving problems through code. Exploring new technologies and frameworks to expand my skill set.",
+                "Unsuprisingly, I have a strong passion for building applications and solving problems through code. I enjoy exploring and learning new technologies and frameworks to expand my skill set so I can apply them to real-world projects.",
         },
         {
             name: "Gaming",
             icon: <GamingIcon sx={{ color: "#7C4DFF", width: "2rem", height: "2rem" }} />,
             description:
-                "Exploring virtual worlds, enjoying competitive multiplayer games, and appreciating the artistry in game design and storytelling.",
+                "Exploring virtual worlds, enjoying competitive multiplayer games, and appreciating the artistry in game design and storytelling. Some of my favorite games are FIFA, NBA 2K, Rainbow6Siege, Assasins Creed, and Ghost of Tsushima.",
         },
         {
             name: "Music",
             icon: <MusicIcon sx={{ color: "#F50057", width: "2rem", height: "2rem"  }} />,
             description:
-                "A constant companion in life. Whether working, relaxing, or exercising, music sets the perfect mood and atmosphere.",
+                "A constant companion in life. Whether working, relaxing, or exercising, music sets the perfect mood and atmosphere. I mostly listen to Hip-Hop and R&B in both the old school or new school era. Some of my favorite artists are Kendrick Lamar, Bryson Tiller, Nas, Lauryn Hill and Musiq Soulchild. View my spotify profile <a href='https://open.spotify.com/user/r3ubeng?si=4f5092e6c98c4496' target='_blank' rel='noopener noreferrer' style={{color: 'inherit', fontWeight: 'bold', textDecoration: 'underline'}}>here</a>.",
         },
         {
             name: "Friends",
             icon: <FriendsIcon sx={{ color: "#00BCD4", width: "2rem", height: "2rem"  }} />,
             description:
-                "Creating memories, sharing experiences, and growing together. Nothing beats quality time with good friends.",
+                "Creating memories, sharing experiences, and growing together. Nothing beats quality time with good friends. I value deep, meaningful connections and believe friendships enrich our lives in countless ways. Whether it's exploring new places, engaging in thoughtful conversations, or simply enjoying each other's company over food and drinks, these moments of connection are what make life truly fulfilling.",
         },
         {
             name: "Anime",
             icon: <AnimeIcon sx={{ color: "#EC407A", width: "2rem", height: "2rem"  }} />,
             description:
-                "Appreciating the unique storytelling, art styles, and cultural elements. Following both classic and contemporary series.",
+                "Appreciating the unique storytelling, art styles, and cultural elements. Following both classic and contemporary series. I enjoy anime for its ability to tackle complex themes while creating vibrant worlds. Some of my favorites include One Piece, HxH, Naruto, Violet Evergarden and Black Clover.",
         },
         {
             name: "Cars",
             icon: <CarIcon sx={{ color: "#818181", width: "2rem", height: "2rem" }} />,
-            description: "Fascinated by automotive engineering, design, and performance. Enjoying everything from classic cars to modern supercars and the latest EV technology.",
+            description: "Fascinated by automotive engineering, design, and performance. Enjoying everything from JDM, euros to modern supercars. My favourite cars are the Silvia S15, R32 GTR and the FD RX-7 ",
         },
         {
             name: "Food",
             icon: <FoodIcon sx={{ color: "#FF9800", width: "2rem", height: "2rem" }} />,
-            description: "Exploring diverse cuisines, trying new recipes, and appreciating the cultural significance of food. Both cooking at home and discovering local restaurants.",
+            description: "Exploring diverse cuisines, trying new recipes, and appreciating the cultural significance of food. Both cooking at home and discovering local restaurants. My personal favorites are Char Kuey Teow, Smash Burgers and Gozleme",
         },
         {
             name: "Languages",
             icon: <TranslateIcon sx={{ color: "#9C27B0", width: "2rem", height: "2rem" }} />,
-            description: "Fascinated by different languages and cultures. Currently learning and practicing multiple languages to connect with people from around the world and gain new perspectives.",
+            description: "Fascinated by different languages and cultures. Currently learning and practicing multiple languages to connect with people from around the world and gain new perspectives. Some of the languages I can have a basic conversation in are Cantonese, Greek, Japanese, Arabic, Farsi, and German. Many more to come!",
         },
     ];
 
@@ -375,9 +375,8 @@ const PassionsSection = ({ itemVariants }) => {
                                         variant="body1"
                                         paragraph
                                         sx={{ mb: 4, fontSize: "1.1rem" }}
-                                    >
-                                        {expandedPassion.description}
-                                    </Typography>
+                                        dangerouslySetInnerHTML={{ __html: expandedPassion.description }}
+                                    />
                                 </CardContent>
                             </Card>
                         </motion.div>
