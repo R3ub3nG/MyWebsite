@@ -28,14 +28,14 @@ import {
     FaGitAlt, 
     FaJs, 
     FaHtml5, 
-    FaCss3Alt 
+    FaCss3Alt,
+    FaJava
 } from 'react-icons/fa';
 import { 
     SiTypescript, 
-    SiMongodb, 
-    SiPostgresql, 
-    SiAmazonwebservices, 
-    SiGooglecloud 
+    SiGraphql,
+    SiPostgresql,
+    SiAmazonwebservices
 } from 'react-icons/si';
 
 const TechnicalSkillsSection = ({ itemVariants }) => {
@@ -83,16 +83,16 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
             icon: <FaPython color="#3776AB" />
         },
         {
-            skill: 'MongoDB',
+            skill: 'GraphQL',
             proficiency: 85,
-            description: 'Experienced in designing and optimizing MongoDB databases, including schema design, indexing strategies, and aggregation pipelines for complex data operations.',
-            icon: <SiMongodb color="#47A248" />
+            description: 'Proficient in designing and implementing GraphQL APIs, including schema design, resolvers, and efficient data fetching patterns. Experienced with Apollo Client and Server.',
+            icon: <SiGraphql color="#E535AB" />
         },
         {
-            skill: 'PostgreSQL',
+            skill: 'SQL',
             proficiency: 78,
-            description: 'Proficient in relational database design, complex SQL queries, and performance optimization. Experience with advanced features like stored procedures and triggers.',
-            icon: <SiPostgresql color="#336791" />
+            description: 'Strong understanding of relational database concepts, complex SQL queries, and database optimization. Experience with multiple SQL dialects and database management systems.',
+            icon: <SiPostgresql color="#4479A1" />
         },
         {
             skill: 'AWS',
@@ -113,10 +113,10 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
             icon: <FaGitAlt color="#F05032" />
         },
         {
-            skill: 'Google Cloud',
+            skill: 'Java',
             proficiency: 70,
-            description: 'Working knowledge of Google Cloud Platform services including Compute Engine, Cloud Functions, and Firebase. Experience deploying and managing applications on GCP.',
-            icon: <SiGooglecloud color="#4285F4" />
+            description: 'Experienced in Java development for building robust, scalable applications. Familiar with core Java concepts, OOP principles, and common frameworks like Spring and Hibernate.',
+            icon: <FaJava color="#007396" />
         }
     ];
 
