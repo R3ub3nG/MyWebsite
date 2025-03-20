@@ -40,7 +40,8 @@ const BackgroundEffect = () => {
             ...el,
             positions,
             duration: 10 + Math.random() * 10,
-            delay: index * 0.3
+            // Reduce delay between elements to make them appear faster
+            delay: index * 0.1
         };
     });
 
@@ -60,6 +61,11 @@ const BackgroundEffect = () => {
         >
             {/* Animated background gradient */}
             <motion.div
+                initial={{
+                    background: isDarkMode 
+                        ? 'linear-gradient(135deg, #1a1a1a 0%, #3a506f 100%)'
+                        : 'linear-gradient(135deg, #ffffff 0%, #bbdefb 100%)'
+                }}
                 animate={{
                     background: isDarkMode 
                         ? [
@@ -77,6 +83,8 @@ const BackgroundEffect = () => {
                     duration: 8,
                     repeat: Infinity,
                     ease: 'easeInOut',
+                    // Start animation immediately
+                    delay: 0
                 }}
                 style={{
                     position: 'absolute',
@@ -94,8 +102,9 @@ const BackgroundEffect = () => {
                     initial={{
                         x: element.positions[0].x,
                         y: element.positions[0].y,
-                        opacity: 0,
-                        scale: 0.5,
+                        // Start with partial opacity for immediate visibility
+                        opacity: isDarkMode ? 0.3 : 0.4,
+                        scale: 0.8,
                         rotate: 0
                     }}
                     animate={{
@@ -133,6 +142,10 @@ const BackgroundEffect = () => {
 
             {/* Primary glow effect */}
             <motion.div
+                initial={{
+                    opacity: 0.4,
+                    scale: 1
+                }}
                 animate={{
                     opacity: [0.4, 0.7, 0.4],
                     scale: [1, 1.2, 1],
@@ -141,6 +154,8 @@ const BackgroundEffect = () => {
                     duration: 5,
                     repeat: Infinity,
                     ease: 'easeInOut',
+                    // Start immediately
+                    delay: 0 
                 }}
                 style={{
                     position: 'absolute',
@@ -158,6 +173,10 @@ const BackgroundEffect = () => {
 
             {/* Secondary glow effect */}
             <motion.div
+                initial={{
+                    opacity: 0.3,
+                    scale: 1.2
+                }}
                 animate={{
                     opacity: [0.3, 0.6, 0.3],
                     scale: [1.2, 1, 1.2],
@@ -166,7 +185,8 @@ const BackgroundEffect = () => {
                     duration: 7,
                     repeat: Infinity,
                     ease: 'easeInOut',
-                    delay: 1,
+                    // Reduced delay for quicker start
+                    delay: 0.2,
                 }}
                 style={{
                     position: 'absolute',
