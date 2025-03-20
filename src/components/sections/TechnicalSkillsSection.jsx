@@ -46,77 +46,80 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
 
     // Technical skills data with proficiency levels (0-100)
     const technicalSkills = [
+        // Programming Languages
         {
             skill: 'JavaScript',
             proficiency: 90,
-            description: 'Expert in modern JavaScript (ES6+) with extensive experience in asynchronous programming, functional programming patterns, and performance optimization techniques.',
+            description: 'Expert-level proficiency with modern JavaScript (ES6+), including deep understanding of asynchronous programming, closures, prototypes, and functional paradigms. Consistently apply best practices for performance optimization and maintainable code architecture.',
             icon: <FaJs color="#F7DF1E" />
-        },
-        {
-            skill: 'React',
-            proficiency: 95,
-            description: 'Advanced React developer with deep knowledge of hooks, context API, custom hooks, and state management solutions like Redux. Experienced in building complex, performant UIs with React.',
-            icon: <FaReact color="#61DAFB" />
         },
         {
             skill: 'TypeScript',
             proficiency: 85,
-            description: 'Strong TypeScript skills with experience in type definitions, interfaces, generics, and advanced type manipulation. Used to enhance code quality and developer experience.',
+            description: 'Advanced TypeScript developer with strong typing skills for complex systems. Skilled in leveraging type definitions, interfaces, generics, and utility types to build robust applications with improved maintainability and reduced runtime errors.',
             icon: <SiTypescript color="#3178C6" />
         },
         {
-            skill: 'Node.js',
-            proficiency: 88,
-            description: 'Proficient in building scalable backend services with Node.js, including RESTful APIs, authentication systems, and real-time applications with WebSockets.',
-            icon: <FaNodeJs color="#339933" />
-        },
-        {
-            skill: 'HTML/CSS',
-            proficiency: 92,
-            description: 'Expert in semantic HTML and modern CSS, including Flexbox, Grid, animations, and responsive design. Experienced with CSS preprocessors like SASS and CSS-in-JS solutions.',
-            icon: <FaHtml5 color="#E34F26" />
-        },
-        {
             skill: 'Python',
-            proficiency: 80,
-            description: 'Skilled in Python development for data analysis, automation, and backend services. Experience with frameworks like Flask and libraries such as Pandas and NumPy.',
+            proficiency: 90,
+            description: 'Expert Python developer with comprehensive knowledge of the language ecosystem. Proficient in data analysis with Pandas/NumPy, web development with Flask/Django, and automation scripting, applying best practices for clean, efficient, and maintainable code.',
             icon: <FaPython color="#3776AB" />
         },
         {
-            skill: 'GraphQL',
+            skill: 'Java',
             proficiency: 85,
-            description: 'Proficient in designing and implementing GraphQL APIs, including schema design, resolvers, and efficient data fetching patterns. Experienced with Apollo Client and Server.',
-            icon: <SiGraphql color="#E535AB" />
+            description: 'Advanced Java programmer with strong object-oriented design principles. Experienced in developing enterprise applications using Spring Boot, implementing design patterns, and optimizing performance for JVM-based systems.',
+            icon: <FaJava color="#007396" />
+        },
+        {
+            skill: 'HTML/CSS',
+            proficiency: 95,
+            description: 'Expert in semantic HTML5 markup and modern CSS techniques. Mastery of responsive design, animations, Flexbox, Grid, and CSS preprocessors. Able to build pixel-perfect, accessible, and cross-browser compatible interfaces following W3C standards.',
+            icon: <FaHtml5 color="#E34F26" />
         },
         {
             skill: 'SQL',
-            proficiency: 78,
-            description: 'Strong understanding of relational database concepts, complex SQL queries, and database optimization. Experience with multiple SQL dialects and database management systems.',
+            proficiency: 75,
+            description: 'Proficient in writing complex SQL queries, designing normalized database schemas, and optimizing query performance. Experienced with multiple database systems and able to implement efficient data models for various application requirements.',
             icon: <SiPostgresql color="#4479A1" />
+        },
+        
+        // Frameworks and Technologies
+        {
+            skill: 'React',
+            proficiency: 85,
+            description: 'Advanced React developer with expertise in building complex, performance-optimized applications. Thoroughly experienced with React ecosystem including hooks, context API, custom hooks, and state management solutions like Redux and Zustand.',
+            icon: <FaReact color="#61DAFB" />
+        },
+        {
+            skill: 'Node.js',
+            proficiency: 75,
+            description: 'Proficient in building and deploying Node.js applications with Express. Solid understanding of event-driven architecture, middleware patterns, and RESTful API design. Experienced in implementing authentication, data validation, and real-time features.',
+            icon: <FaNodeJs color="#339933" />
+        },
+        {
+            skill: 'GraphQL',
+            proficiency: 75,
+            description: 'Proficient in building and consuming GraphQL APIs. Experienced in schema design, resolver implementation, and query optimization. Comfortable with Apollo Client/Server for frontend and backend integration of GraphQL services.',
+            icon: <SiGraphql color="#E535AB" />
         },
         {
             skill: 'AWS',
-            proficiency: 75,
-            description: 'Experienced with core AWS services including EC2, S3, Lambda, DynamoDB, and CloudFormation. Capable of designing and deploying scalable cloud infrastructure.',
+            proficiency: 70,
+            description: 'Proficient in core AWS services and cloud architecture. Capable of deploying and managing applications using EC2, S3, Lambda, and DynamoDB. Experienced in creating secure, scalable infrastructure with appropriate IAM policies.',
             icon: <SiAmazonwebservices color="#FF9900" />
         },
         {
             skill: 'Docker',
-            proficiency: 82,
-            description: 'Skilled in containerization with Docker, including creating optimized images, multi-container applications with Docker Compose, and CI/CD integration.',
+            proficiency: 70,
+            description: 'Proficient in containerization with Docker. Capable of creating optimized images, setting up multi-container applications with Docker Compose, and implementing development workflows that leverage containers for consistency across environments.',
             icon: <FaDocker color="#2496ED" />
         },
         {
             skill: 'Git',
             proficiency: 90,
-            description: 'Advanced Git user with experience in complex workflows, branch management strategies, and resolving merge conflicts. Comfortable with both CLI and GUI tools.',
+            description: 'Expert Git user with mastery of version control workflows. Skilled in managing complex branching strategies, resolving merge conflicts, and leveraging Git for effective team collaboration. Comfortable with both command line operations and GUI tools.',
             icon: <FaGitAlt color="#F05032" />
-        },
-        {
-            skill: 'Java',
-            proficiency: 70,
-            description: 'Experienced in Java development for building robust, scalable applications. Familiar with core Java concepts, OOP principles, and common frameworks like Spring and Hibernate.',
-            icon: <FaJava color="#007396" />
         }
     ];
 
