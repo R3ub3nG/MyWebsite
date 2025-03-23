@@ -229,6 +229,19 @@ const ExperienceSection = ({ itemVariants }) => {
                 "Participated in code reviews and team meetings",
             ],
         },
+        {
+            title: "Software Engineering Intern",
+            company: "Tech Startup",
+            period: "2015 - 2016",
+            description:
+                "Gained hands-on experience in software development as part of an innovative startup team, contributing to both frontend and backend development.",
+            responsibilities: [
+                "Assisted in developing user interface components using JavaScript and React",
+                "Contributed to database design and implementation with MongoDB",
+                "Participated in agile development processes and sprint planning",
+                "Created automated tests to ensure code quality and reliability",
+            ],
+        },
     ];
 
     // Handle next and previous navigation
