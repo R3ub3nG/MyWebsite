@@ -196,7 +196,7 @@ const ExperienceSection = ({ itemVariants }) => {
         {
             title: "Software Engineer Graduate",
             company: "NAB (National Australia Bank)",
-            period: "2021 - Present",
+            period: "Feb 2025 - Present",
             description:
                 "Led development of key features for the company's flagship product, resulting in a 30% increase in user engagement.",
             responsibilities: [
@@ -208,7 +208,7 @@ const ExperienceSection = ({ itemVariants }) => {
         {
             title: "Techonology Summer Intern",
             company: "NAB (National Australia Bank)",
-            period: "2018 - 2021",
+            period: "Nov 2024 - Feb 2025",
             description:
                 "Developed and maintained multiple client websites and web applications using modern JavaScript frameworks.",
             responsibilities: [
@@ -219,8 +219,8 @@ const ExperienceSection = ({ itemVariants }) => {
         },
         {
             title: "Sales Assistant",
-            company: "First Company",
-            period: "2016 - 2018",
+            company: "JD Sports",
+            period: "May 2022 - Present",
             description:
                 "Started career as a junior developer working on frontend development and bug fixes.",
             responsibilities: [
@@ -231,8 +231,8 @@ const ExperienceSection = ({ itemVariants }) => {
         },
         {
             title: "Crew Trainer/Coach",
-            company: "Tech Startup",
-            period: "2015 - 2016",
+            company: "McDonalds",
+            period: "Jun 2018 - Aug 2022",
             description:
                 "Gained hands-on experience in software development as part of an innovative startup team, contributing to both frontend and backend development.",
             responsibilities: [
@@ -266,6 +266,13 @@ const ExperienceSection = ({ itemVariants }) => {
     // Handle timeline step click
     const handleStepClick = (step) => {
         if (!isInView) return;
+        
+        // Set direction based on which step was clicked relative to current step
+        if (step < activeStep) {
+            setDirection("left");
+        } else if (step > activeStep) {
+            setDirection("right");
+        }
         
         setActiveStep(step);
     };
@@ -549,7 +556,11 @@ const ExperienceSection = ({ itemVariants }) => {
                                                 },
                                             }}
                                         >
-                                            {experience.period}
+                                            {experience.period.split(' ').map(part => 
+                                                part.includes('20') ? part : 
+                                                part === 'Present' ? part : 
+                                                ''
+                                            ).filter(Boolean).join(' - ')}
                                         </TimelineStepLabel>
                                     </Tooltip>
                                 </Step>
