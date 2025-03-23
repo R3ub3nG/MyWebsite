@@ -194,8 +194,8 @@ const ExperienceSection = ({ itemVariants }) => {
     // Experience data
     const experiences = [
         {
-            title: "Senior Developer",
-            company: "Company Name",
+            title: "Software Engineer Graduate",
+            company: "NAB (National Australia Bank)",
             period: "2021 - Present",
             description:
                 "Led development of key features for the company's flagship product, resulting in a 30% increase in user engagement.",
@@ -206,8 +206,8 @@ const ExperienceSection = ({ itemVariants }) => {
             ],
         },
         {
-            title: "Web Developer",
-            company: "Previous Company",
+            title: "Techonology Summer Intern",
+            company: "NAB (National Australia Bank)",
             period: "2018 - 2021",
             description:
                 "Developed and maintained multiple client websites and web applications using modern JavaScript frameworks.",
@@ -218,7 +218,7 @@ const ExperienceSection = ({ itemVariants }) => {
             ],
         },
         {
-            title: "Junior Developer",
+            title: "Sales Assistant",
             company: "First Company",
             period: "2016 - 2018",
             description:
@@ -230,7 +230,7 @@ const ExperienceSection = ({ itemVariants }) => {
             ],
         },
         {
-            title: "Software Engineering Intern",
+            title: "Crew Trainer/Coach",
             company: "Tech Startup",
             period: "2015 - 2016",
             description:
@@ -529,7 +529,7 @@ const ExperienceSection = ({ itemVariants }) => {
                                     }}
                                 >
                                     <Tooltip
-                                        title={`View ${experience.title} at ${experience.company}`}
+                                        title={`View ${experience.title} at ${experience.company.split(' ')[0]}`}
                                         placement="top"
                                         arrow
                                     >
