@@ -2,8 +2,6 @@
 
 A modern, responsive portfolio website built with React, Material-UI, and Framer Motion animations. This portfolio showcases my professional experience, technical skills, education, and projects in an interactive and visually appealing format.
 
-![Portfolio Website](.github/screenshot.png)
-
 ## 🚀 Features
 
 - **Interactive UI**: Smooth animations and transitions powered by Framer Motion
