@@ -200,7 +200,7 @@ const ExperienceSection = ({ itemVariants }) => {
             description:
                 "Developing applications using modern programming languages and agile methodologies. Collaborated with cross-functional teams to design and implement scalable solutions, while maintaining code quality through effective testing practices.",
             responsibilities: [
-                "Contributing to a data engineering project aimed at modernizing and uplifting NAB’s data transformation processes",
+                "Contributing to a data engineering project aimed at modernising and uplifting NAB’s data transformation processes",
                 "Developing scalable data pipelines to process and transform data across multiple layers using PySpark and Apache Airflow",
                 "Collaborating with cross-functional teams to ensure efficient data flow and robust transformation logic aligned with changing business requirements",
             ],
@@ -223,11 +223,11 @@ const ExperienceSection = ({ itemVariants }) => {
             company: "JD Sports",
             period: "May 2022 - Present",
             description:
-                "Started career as a junior developer working on frontend development and bug fixes.",
+                "Strong experience in back-of-house operations. Managed inventory systems and maintained organised stockroom while supporting floor staff with product availability. Gained valuable knowledge of retail operations, inventory management processes, and sportswear industry trends.",
             responsibilities: [
-                "Developed and maintained responsive web applications",
-                "Fixed bugs and improved application performance",
-                "Participated in code reviews and team meetings",
+                "Providing quality customer service to complete sales",
+                "Processed stock from deliveries",
+                "Supervising a fast paced BOH environment to ensure efficiency",
             ],
         },
         {
@@ -235,12 +235,11 @@ const ExperienceSection = ({ itemVariants }) => {
             company: "McDonalds",
             period: "Jun 2018 - Aug 2022",
             description:
-                "Gained hands-on experience in software development as part of an innovative startup team, contributing to both frontend and backend development.",
+                "Responsible for onboarding and developing new team members. Demonstrated restaurant procedures and quality standards while ensuring adherence to food safety protocols. Balanced training responsibilities with regular crew duties, providing guidance during peak service periods and supporting management in maintaining operational excellence.",
             responsibilities: [
-                "Assisted in developing user interface components using JavaScript and React",
-                "Contributed to database design and implementation with MongoDB",
-                "Participated in agile development processes and sprint planning",
-                "Created automated tests to ensure code quality and reliability",
+                "Trained new crew members on practises and procedures throughout all departments in the store",
+                "Responsible for managing the kitchen crew during peak hours",
+                "Serving and delivering food to customers over all departments",
             ],
         },
     ];
