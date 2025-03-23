@@ -62,13 +62,13 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
         {
             skill: 'Python',
             proficiency: 90,
-            description: 'Expert Python developer with comprehensive knowledge of the language ecosystem. Proficient in data analysis with Pandas/NumPy, web development with Flask/Django, and automation scripting, applying best practices for clean, efficient, and maintainable code.',
+            description: 'Expert Python developer with comprehensive knowledge of the language ecosystem. Proficient in coding algorithms with various data structures, applying best practices for clean, efficient, and maintainable code.',
             icon: <FaPython color="#3776AB" />
         },
         {
             skill: 'Java',
             proficiency: 85,
-            description: 'Advanced Java programmer with strong object-oriented design principles. Experienced in developing enterprise applications using Spring Boot, implementing design patterns, and optimizing performance for JVM-based systems.',
+            description: 'Advanced Java programmer with strong object-oriented design principles. Knowledge in developing enterprise applications using Spring Boot, implementing design patterns, and optimizing performance for JVM-based systems.',
             icon: <FaJava color="#007396" />
         },
         {
@@ -88,7 +88,7 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
         {
             skill: 'React',
             proficiency: 85,
-            description: 'Advanced React developer with expertise in building complex, performance-optimized applications. Thoroughly experienced with React ecosystem including hooks, context API, custom hooks, and state management solutions like Redux and Zustand.',
+            description: 'Advanced React developer with expertise in building complex, performance-optimized applications. Thoroughly experienced with React ecosystem including hooks, context API, custom hooks, and state management solutions such as Redux.',
             icon: <FaReact color="#61DAFB" />
         },
         {
@@ -106,7 +106,7 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
         {
             skill: 'AWS',
             proficiency: 70,
-            description: 'Proficient in core AWS services and cloud architecture. Capable of deploying and managing applications using EC2, S3, Lambda, and DynamoDB. Experienced in creating secure, scalable infrastructure with appropriate IAM policies.',
+            description: 'Proficient in core AWS services and cloud architecture. Capable of deploying and managing applications using EC2, S3, Lambda, and EMR. Experienced in creating secure infrastructure withappropriate IAM policies as well as scalable services with ELBs and ASGs.',
             icon: <SiAmazonwebservices color="#FF9900" />
         },
         {
