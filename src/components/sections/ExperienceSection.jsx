@@ -198,11 +198,11 @@ const ExperienceSection = ({ itemVariants }) => {
             company: "NAB (National Australia Bank)",
             period: "Feb 2025 - Present",
             description:
-                "Led development of key features for the company's flagship product, resulting in a 30% increase in user engagement.",
+                "Developing applications using modern programming languages and agile methodologies. Collaborated with cross-functional teams to design and implement scalable solutions, while maintaining code quality through effective testing practices.",
             responsibilities: [
-                "Architected and implemented scalable backend solutions",
-                "Mentored junior developers and conducted code reviews",
-                "Optimized application performance and reduced load times by 40%",
+                "Contributing to a data engineering project aimed at modernizing and uplifting NAB’s data transformation processes",
+                "Developing scalable data pipelines to process and transform data across multiple layers using PySpark and Apache Airflow",
+                "Collaborating with cross-functional teams to ensure efficient data flow and robust transformation logic aligned with changing business requirements",
             ],
         },
         {
@@ -210,11 +210,12 @@ const ExperienceSection = ({ itemVariants }) => {
             company: "NAB (National Australia Bank)",
             period: "Nov 2024 - Feb 2025",
             description:
-                "Developed and maintained multiple client websites and web applications using modern JavaScript frameworks.",
+                "Gained hands-on experience with industry-standard technologies and development practices. Applied classroom knowledge to real-world projects while learning professional coding standards, version control systems, and collaborative development workflows under mentorship from senior engineers.",
             responsibilities: [
-                "Built responsive interfaces with React and Material UI",
-                "Implemented RESTful APIs and integrated third-party services",
-                "Collaborated with design team to create intuitive user experiences",
+                "Designed and developed a scalable web application to uplift NAB’s Hiring Process",
+                "Worked with modern and industry standard frameworks and technologies",
+                "Gained experience with cloud infrastructure, CI/CD Pipelines and DevOps best practices",
+                "Collaborated with cross-functional teams and stakeholders in an Agile environment",
             ],
         },
         {
