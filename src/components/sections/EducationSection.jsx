@@ -25,6 +25,7 @@ const EducationSection = ({ itemVariants }) => {
             degree: "AWS Certified Cloud Practitioner",
             institution: "AWS (Amazon Web Services)",
             period: "Dec 2024",
+            intro: "A foundational, high-level understanding of AWS Cloud, services, and terminology.",
             details: [
                 "Validation #: ed4b6e10880e4208a321056eff638da0",
                 <React.Fragment key="validate">
@@ -36,26 +37,23 @@ const EducationSection = ({ itemVariants }) => {
             ]
         },
         {
-            degree: "Relevant Certifications",
-            institution: "Various Institutions",
-            period: "",
-            intro: "Professional certifications that have enhanced my technical expertise:",
+            degree: "Bachelor of Engineering (Honours)",
+            institution: "Monash University, Clayton",
+            period: "2021 - 2025",
+            intro: "Specialisation - Software Engineering",
             details: [
-                "AWS Certified Developer (2022)",
-                "Google Cloud Professional (2021)",
-                "React Advanced Certification (2020)",
-                "MongoDB Database Administrator (2019)"
+                "WAM: 76.293",
+                "GPA: 3.192",
             ]
         },
         {
-            degree: "High School Diploma",
-            institution: "High School Name",
-            period: "2010 - 2014",
+            degree: "VCE",
+            institution: "Blackburn High School",
+            period: "2015 - 2020",
             details: [
-                "Valedictorian",
-                "Advanced Placement: Computer Science, Mathematics",
-                "President of Computer Science Club",
-                "Science Fair Winner - Programming Category"
+                "ATAR: 93.10",
+                "Blackburn High School DUX for Accounting",
+                "VCE Honor Roll for Accounting and Further Mathematics",
             ]
         }
     ];
