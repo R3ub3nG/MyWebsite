@@ -22,14 +22,17 @@ const EducationSection = ({ itemVariants }) => {
     // Education data
     const education = [
         {
-            degree: "Bachelor of Science in Computer Science",
-            institution: "University Name",
-            period: "2014 - 2018",
+            degree: "AWS Certified Cloud Practitioner",
+            institution: "AWS (Amazon Web Services)",
+            period: "Dec 2024",
             details: [
-                "GPA: 3.8/4.0",
-                "Dean's List: All semesters",
-                "Senior Project: AI-powered recommendation system",
-                "Relevant coursework: Data Structures, Algorithms, Database Systems"
+                "Validation #: ed4b6e10880e4208a321056eff638da0",
+                <React.Fragment key="validate">
+                    Validate at: <a href="https://aws.amazon.com/verification" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>https://aws.amazon.com/verification</a>
+                </React.Fragment>,
+                <React.Fragment key="badge">
+                    View my badge <a href="https://www.credly.com/badges/fbfa3c1a-3ca2-40d2-8bec-b2edf806beff/public_url" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>here</a>
+                </React.Fragment>
             ]
         },
         {
