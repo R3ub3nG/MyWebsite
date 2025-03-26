@@ -115,14 +115,22 @@ export const SectionProvider = ({ children }) => {
             setActiveSection(id);
             setIsManuallySet(true);
 
-            // Calculate the scroll position
-            const elementTop = element.offsetTop - scrollContainer.offsetTop;
-
-            // Scroll to the section
-            scrollContainer.scrollTo({
-                top: elementTop,
-                behavior: "smooth",
-            });
+            // Get all section elements to determine section index
+            const allSections = Array.from(document.querySelectorAll('#scrollContainer > div > section'));
+            const sectionIndex = allSections.findIndex(section => section.id === id);
+            
+            if (sectionIndex !== -1) {
+                // Calculate target position based on section index and viewport height
+                const viewportHeight = window.innerHeight - 64;
+                const targetPosition = sectionIndex * viewportHeight;
+                
+                // More responsive scrolling approach
+                // Directly scroll to target with smooth behavior
+                scrollContainer.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
         }
     };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Box, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import CustomAppBar from './CustomAppBar';
@@ -54,80 +54,71 @@ const itemVariants = {
 const Dashboard = ({ toggleColorMode }) => {
     const theme = useTheme();
     const scrollContainerRef = useRef(null);
-
-    // Fix for external mouse wheel scrolling issue
+    const [isScrolling, setIsScrolling] = useState(false);
+    const isSnapScrollingRef = useRef(false);
+    
+    // Setup enhanced scrolling behavior
     useEffect(() => {
         const scrollContainer = document.getElementById('scrollContainer');
         if (!scrollContainer) return;
-
-        // Track wheel activity and scroll positions
-        let wheelEvents = 0;
-        let lastScrollTop = scrollContainer.scrollTop;
-        let stuckAtPosition = null;
-        let stuckCount = 0;
-
-        const handleWheel = (e) => {
-            // Count wheel events to detect continuous scrolling
-            wheelEvents++;
+        
+        let scrollTimeout;
+        
+        const handleScroll = () => {
+            // Skip if we're already in the middle of a snap scroll
+            if (isSnapScrollingRef.current) return;
             
-            // Get current scroll position 
-            const currentScrollTop = scrollContainer.scrollTop;
+            // Set scrolling state
+            setIsScrolling(true);
             
-            // Check if we're stuck at the same position
-            if (currentScrollTop === lastScrollTop && e.deltaY !== 0) {
-                // If we're at the same position as before
-                if (stuckAtPosition === currentScrollTop) {
-                    stuckCount++;
-                } else {
-                    // We're stuck at a new position
-                    stuckAtPosition = currentScrollTop;
-                    stuckCount = 1;
-                }
+            // Clear any existing timeout
+            clearTimeout(scrollTimeout);
+            
+            // Set timeout to detect when scrolling stops
+            scrollTimeout = setTimeout(() => {
+                setIsScrolling(false);
                 
-                // If we've been stuck for multiple wheel events, help push through
-                if (stuckCount > 2) {
-                    // Calculate viewport height (section height)
-                    const viewportHeight = window.innerHeight - 64; 
+                // Skip if we're in the middle of a snap scroll
+                if (isSnapScrollingRef.current) return;
+                
+                // Get the viewport height and current scroll position
+                const viewportHeight = window.innerHeight - 64;
+                const scrollTop = scrollContainer.scrollTop;
+                
+                // Determine which section we should be on based on scroll position
+                // Use rounded division to find nearest section
+                const currentSectionIndex = Math.round(scrollTop / viewportHeight);
+                const targetPosition = currentSectionIndex * viewportHeight;
+                
+                // Define a more responsive snap window - 20% of the viewport height
+                const snapThreshold = viewportHeight * 0.2;
+                
+                // Only snap if we're within the snap threshold but not exactly at the snap point
+                const distanceFromSnap = Math.abs(scrollTop - targetPosition);
+                
+                if (distanceFromSnap > 5 && distanceFromSnap < snapThreshold) {
+                    // Flag that we're doing a snap scroll to prevent interference
+                    isSnapScrollingRef.current = true;
                     
-                    // Calculate target position based on scroll direction
-                    const targetPosition = e.deltaY > 0
-                        ? currentScrollTop + viewportHeight
-                        : currentScrollTop - viewportHeight;
-                    
-                    // Small offset to get past the snap point
-                    const offset = e.deltaY > 0 ? 1 : -1;
-                    
-                    // Programmatically scroll past the snap point
-                    requestAnimationFrame(() => {
-                        scrollContainer.scrollTo({
-                            top: targetPosition + offset,
-                            behavior: 'auto' // Use 'auto' for immediate scroll
-                        });
+                    // Smoothly scroll to the proper snap point with quicker animation
+                    scrollContainer.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
                     });
                     
-                    // Reset counters after helping
-                    stuckCount = 0;
-                    stuckAtPosition = null;
+                    // Reset the flag after animation completes - shorter time for quicker response
+                    setTimeout(() => {
+                        isSnapScrollingRef.current = false;
+                    }, 350);
                 }
-            } else {
-                // We're not stuck, reset counters
-                stuckCount = 0;
-                stuckAtPosition = null;
-            }
-            
-            // Update last scroll position
-            lastScrollTop = scrollContainer.scrollTop;
-            
-            // Reset wheel events counter after a delay
-            setTimeout(() => {
-                wheelEvents = 0;
-            }, 200);
+            }, 50); // Shorter timeout for quicker snap response
         };
-
-        scrollContainer.addEventListener('wheel', handleWheel, { passive: true });
+        
+        scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
         
         return () => {
-            scrollContainer.removeEventListener('wheel', handleWheel);
+            scrollContainer.removeEventListener('scroll', handleScroll);
+            clearTimeout(scrollTimeout);
         };
     }, []);
 
@@ -143,10 +134,18 @@ const Dashboard = ({ toggleColorMode }) => {
                     overflowY: 'auto',
                     overflowX: 'hidden',
                     scrollBehavior: 'smooth',
+                    // Use native scrolling with more responsive snap
                     scrollSnapType: { xs: 'none', md: 'y mandatory' },
+                    scrollPaddingTop: '0px',
+                    scrollPaddingBottom: '0px',
                     WebkitOverflowScrolling: 'touch',
                     position: 'relative',
                     zIndex: 1,
+                    // Adjust scroll speed for quicker response
+                    '@media (min-width: 900px)': {
+                        scrollBehavior: 'smooth',
+                        transition: 'scrollTop 0.5s ease-out',
+                    },
                     '& > div': {
                         height: '100%',
                         backfaceVisibility: 'hidden',
@@ -158,7 +157,6 @@ const Dashboard = ({ toggleColorMode }) => {
                     },
                     '& > div > section': {
                         scrollSnapAlign: 'start',
-                        scrollSnapStop: 'always',
                         height: '100%',
                         position: 'relative',
                         zIndex: 'auto'

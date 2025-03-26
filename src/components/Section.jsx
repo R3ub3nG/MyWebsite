@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Box, useTheme } from '@mui/material';
+import { useSectionContext } from './SectionContext';
 
 /**
  * Section component that fills the viewport height
@@ -10,26 +11,48 @@ import { Box, useTheme } from '@mui/material';
  */
 const Section = ({ children, id, bgcolor }) => {
     const theme = useTheme();
+    const sectionRef = useRef(null);
+    const { activeSection } = useSectionContext();
+    
+    // Effect to ensure sections are properly sized
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+        
+        // Ensure exact height for better snapping
+        const updateSectionHeight = () => {
+            const viewportHeight = window.innerHeight;
+            const appBarHeight = 64;
+            section.style.height = `${viewportHeight - appBarHeight}px`;
+        };
+        
+        // Apply on mount and window resize
+        updateSectionHeight();
+        window.addEventListener('resize', updateSectionHeight);
+        
+        return () => {
+            window.removeEventListener('resize', updateSectionHeight);
+        };
+    }, []);
     
     return (
         <Box
             component="section"
             id={id}
             data-section={id}
+            ref={sectionRef}
             sx={{
-                height: { xs: 'auto', md: 'calc(100vh - 64px)' },
+                height: 'calc(100vh - 64px)',
+                minHeight: 'calc(100vh - 64px)',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
                 py: { xs: 4, md: 0 },
                 position: 'relative',
-                scrollSnapAlign: { xs: 'none', md: 'start' },
-                scrollSnapStop: 'always',
+                scrollSnapAlign: 'start',
+                scrollMarginTop: '0px',
                 bgcolor: bgcolor || 'transparent',
-                '&:first-of-type': {
-                    scrollMarginTop: '64px',
-                },
                 overflow: 'hidden',
                 transform: 'translate3d(0, 0, 0)',
                 WebkitTransform: 'translate3d(0, 0, 0)',
@@ -37,7 +60,8 @@ const Section = ({ children, id, bgcolor }) => {
                 WebkitBackfaceVisibility: 'hidden',
                 perspective: 1000,
                 WebkitPerspective: 1000,
-                zIndex: 'auto',
+                zIndex: activeSection === id ? 2 : 1, // Increase z-index for active section
+                transition: 'z-index 0.2s',
                 '& > *': {
                     width: '100%',
                     maxHeight: '100%',
