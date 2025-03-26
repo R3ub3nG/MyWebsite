@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Box, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import CustomAppBar from './CustomAppBar';
@@ -53,12 +53,90 @@ const itemVariants = {
 
 const Dashboard = ({ toggleColorMode }) => {
     const theme = useTheme();
+    const scrollContainerRef = useRef(null);
+
+    // Fix for external mouse wheel scrolling issue
+    useEffect(() => {
+        const scrollContainer = document.getElementById('scrollContainer');
+        if (!scrollContainer) return;
+
+        // Track wheel activity and scroll positions
+        let wheelEvents = 0;
+        let lastScrollTop = scrollContainer.scrollTop;
+        let stuckAtPosition = null;
+        let stuckCount = 0;
+
+        const handleWheel = (e) => {
+            // Count wheel events to detect continuous scrolling
+            wheelEvents++;
+            
+            // Get current scroll position 
+            const currentScrollTop = scrollContainer.scrollTop;
+            
+            // Check if we're stuck at the same position
+            if (currentScrollTop === lastScrollTop && e.deltaY !== 0) {
+                // If we're at the same position as before
+                if (stuckAtPosition === currentScrollTop) {
+                    stuckCount++;
+                } else {
+                    // We're stuck at a new position
+                    stuckAtPosition = currentScrollTop;
+                    stuckCount = 1;
+                }
+                
+                // If we've been stuck for multiple wheel events, help push through
+                if (stuckCount > 2) {
+                    // Calculate viewport height (section height)
+                    const viewportHeight = window.innerHeight - 64; 
+                    
+                    // Calculate target position based on scroll direction
+                    const targetPosition = e.deltaY > 0
+                        ? currentScrollTop + viewportHeight
+                        : currentScrollTop - viewportHeight;
+                    
+                    // Small offset to get past the snap point
+                    const offset = e.deltaY > 0 ? 1 : -1;
+                    
+                    // Programmatically scroll past the snap point
+                    requestAnimationFrame(() => {
+                        scrollContainer.scrollTo({
+                            top: targetPosition + offset,
+                            behavior: 'auto' // Use 'auto' for immediate scroll
+                        });
+                    });
+                    
+                    // Reset counters after helping
+                    stuckCount = 0;
+                    stuckAtPosition = null;
+                }
+            } else {
+                // We're not stuck, reset counters
+                stuckCount = 0;
+                stuckAtPosition = null;
+            }
+            
+            // Update last scroll position
+            lastScrollTop = scrollContainer.scrollTop;
+            
+            // Reset wheel events counter after a delay
+            setTimeout(() => {
+                wheelEvents = 0;
+            }, 200);
+        };
+
+        scrollContainer.addEventListener('wheel', handleWheel, { passive: true });
+        
+        return () => {
+            scrollContainer.removeEventListener('wheel', handleWheel);
+        };
+    }, []);
 
     return (
         <Box sx={{ height: '100vh', overflow: 'hidden' }}>
             <CustomAppBar toggleColorMode={toggleColorMode} />
             <Box
                 id="scrollContainer"
+                ref={scrollContainerRef}
                 sx={{
                     height: 'calc(100vh - 64px)',
                     mt: '64px',
