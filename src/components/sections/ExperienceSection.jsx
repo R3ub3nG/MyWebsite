@@ -210,7 +210,7 @@ const ExperienceSection = ({ itemVariants }) => {
             company: "NAB (National Australia Bank)",
             period: "Nov 2024 - Feb 2025",
             description:
-                "Gained hands-on experience with industry-standard technologies and development practices. Applied classroom knowledge to real-world projects while learning professional coding standards, version control systems, and collaborative development workflows under mentorship from senior engineers.",
+                "Gained hands-on experience with industry-standard technologies and development practices. Participated in real-world projects while learning professional coding standards, and collaborative development workflows under mentorship from senior engineers.",
             responsibilities: [
                 "Designed and developed a scalable web application to uplift NAB’s Hiring Process",
                 "Worked with modern and industry standard frameworks and technologies",
