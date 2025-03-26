@@ -109,36 +109,9 @@ This project is configured for deployment to GitHub Pages:
 1. Update the `homepage` field in `package.json` with your GitHub Pages URL
 2. Run `npm run deploy` to build and deploy the site
 
-## 🤖 AI-Assisted Development
-
-This portfolio project was developed with the assistance of AI through Cursor IDE:
-
-### AI Integration
-
-- **Code Generation**: Used AI to generate component templates and complex animations
-- **Code Refactoring**: Leveraged AI suggestions for optimizing React components and improving performance
-- **Debugging**: Utilized AI to identify and fix issues in the codebase
-- **Documentation**: Generated comprehensive documentation with AI assistance
-
-### Development Approach
-
-The development process combined traditional coding practices with AI collaboration:
-
-1. **Initial Design**: Hand-crafted wireframes and component structure
-2. **AI Collaboration**: Used Cursor IDE's AI features to accelerate implementation
-3. **Human Refinement**: Fine-tuned AI-generated code for better quality and performance
-4. **Iterative Improvement**: Alternated between AI suggestions and manual coding to achieve the best results
-
-### Benefits
-
-- **Increased Productivity**: Reduced development time for boilerplate code and common patterns
-- **Learning Opportunity**: Discovered new approaches and techniques through AI suggestions
-- **Enhanced Creativity**: Focused more on design decisions while AI handled implementation details
-- **Better Code Quality**: Combined AI efficiency with human oversight for higher quality code
-
-This experimental approach provided valuable insights into how AI can complement traditional web development workflows.
-
 ## 📧 Contact
+
+ - **email**: r3ubng@gmail.com
 
 Feel free to reach out if you have any questions or suggestions!
 
