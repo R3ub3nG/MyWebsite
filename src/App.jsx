@@ -3,6 +3,7 @@ import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import Dashboard from './components/Dashboard';
 import BackgroundEffect from './components/BackgroundEffect';
 import SectionNav from './components/SectionNav';
+import { SectionProvider } from './components/SectionContext';
 import './App.css';
 
 // Create a theme instance
@@ -118,8 +119,10 @@ function App() {
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <BackgroundEffect />
-            <SectionNav />
-            <Dashboard toggleColorMode={toggleColorMode} />
+            <SectionProvider>
+                <Dashboard toggleColorMode={toggleColorMode} />
+                <SectionNav />
+            </SectionProvider>
         </ThemeProvider>
     );
 }

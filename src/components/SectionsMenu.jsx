@@ -9,20 +9,12 @@ import {
     Typography
 } from '@mui/material';
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
-
-// Import the sections data to maintain consistency
-const sections = [
-    { id: "profile", label: "Profile", icon: "👤" },
-    { id: "passions", label: "My Passions", icon: "❤️" },
-    { id: "technical-skills", label: "Technical Skills", icon: "💻" },
-    { id: "soft-skills", label: "Soft Skills", icon: "🤝" },
-    { id: "experience", label: "Experience", icon: "💼" },
-    { id: "education", label: "Education", icon: "🎓" },
-    { id: "projects", label: "Projects", icon: "🚀" },
-];
+import { useSectionContext, sections } from './SectionContext';
 
 const SectionsMenu = () => {
     const [anchorEl, setAnchorEl] = useState(null);
+    const { activeSection, scrollToSection } = useSectionContext();
+    const [menuOpened, setMenuOpened] = useState(false);
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
     const buttonRef = useRef(null);
@@ -42,35 +34,24 @@ const SectionsMenu = () => {
             clearTimeout(timeoutRef.current);
         }
         setAnchorEl(buttonRef.current);
+        setMenuOpened(true);
     };
 
     const handleMouseLeave = () => {
         timeoutRef.current = setTimeout(() => {
             setAnchorEl(null);
+            setMenuOpened(false);
         }, 150); // Small delay to prevent accidental closing
     };
 
-    const scrollToSection = (id) => {
+    const handleSectionClick = (id) => {
         // Close the menu first
         setAnchorEl(null);
+        setMenuOpened(false);
         
         // Simple timeout to ensure menu is closed before scrolling
         setTimeout(() => {
-            const scrollContainer = document.getElementById("scrollContainer");
-            const element = document.getElementById(id);
-
-            if (scrollContainer && element) {
-                console.log(`Scrolling to section: ${id}`);
-                
-                // Calculate the scroll position
-                const elementTop = element.offsetTop - scrollContainer.offsetTop;
-                
-                // Scroll to the section
-                scrollContainer.scrollTo({
-                    top: elementTop,
-                    behavior: "smooth",
-                });
-            }
+            scrollToSection(id);
         }, 50);
     };
 
@@ -115,7 +96,10 @@ const SectionsMenu = () => {
             <Menu
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
-                onClose={() => setAnchorEl(null)}
+                onClose={() => {
+                    setAnchorEl(null);
+                    setMenuOpened(false);
+                }}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'right',
@@ -166,37 +150,51 @@ const SectionsMenu = () => {
                     exit: 200
                 }}
                 // Close when clicked outside
-                onBackdropClick={() => setAnchorEl(null)}
+                onBackdropClick={() => {
+                    setAnchorEl(null);
+                    setMenuOpened(false);
+                }}
                 onClick={(e) => e.stopPropagation()}
             >
-                {sections.map((section, index) => (
-                    <MenuItem 
-                        key={section.id}
-                        onClick={() => scrollToSection(section.id)}
-                        sx={{
-                            py: 1.25,
-                            px: 2,
-                            color: 'inherit',
-                            transition: 'background-color 0.2s ease-in-out',
-                            borderBottom: index !== sections.length - 1 ? 1 : 0,
-                            borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)',
-                            cursor: 'pointer',
-                            '&:hover': {
-                                bgcolor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
-                            }
-                        }}
-                    >
-                        <ListItemIcon sx={{ 
-                            fontSize: '1.1rem', 
-                            minWidth: 32, 
-                            color: 'inherit',
-                            ml: 0.5
-                        }}>
-                            {section.icon}
-                        </ListItemIcon>
-                        <ListItemText primary={section.label} sx={{ ml: 1 }} />
-                    </MenuItem>
-                ))}
+                {sections.map((section, index) => {
+                    // Only show active highlighting if menu has been opened by user
+                    const isActive = menuOpened && section.id === activeSection;
+                    
+                    return (
+                        <MenuItem 
+                            key={section.id}
+                            onClick={() => handleSectionClick(section.id)}
+                            sx={{
+                                py: 1.25,
+                                px: 2,
+                                color: isActive ? theme.palette.primary.main : 'inherit',
+                                bgcolor: isActive 
+                                    ? (isDarkMode ? 'rgba(25, 118, 210, 0.1)' : 'rgba(25, 118, 210, 0.05)')
+                                    : 'transparent',
+                                fontWeight: isActive ? 600 : 400,
+                                transition: 'background-color 0.2s ease-in-out, color 0.2s ease-in-out',
+                                borderBottom: index !== sections.length - 1 ? 1 : 0,
+                                borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)',
+                                cursor: 'pointer',
+                                '&:hover': {
+                                    bgcolor: isActive
+                                        ? (isDarkMode ? 'rgba(25, 118, 210, 0.15)' : 'rgba(25, 118, 210, 0.1)')
+                                        : (isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)'),
+                                }
+                            }}
+                        >
+                            <ListItemIcon sx={{ 
+                                fontSize: '1.1rem', 
+                                minWidth: 32, 
+                                color: isActive ? theme.palette.primary.main : 'inherit',
+                                ml: 0.5
+                            }}>
+                                {section.icon}
+                            </ListItemIcon>
+                            <ListItemText primary={section.label} sx={{ ml: 1 }} />
+                        </MenuItem>
+                    );
+                })}
             </Menu>
         </Box>
     );
