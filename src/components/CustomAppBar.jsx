@@ -9,11 +9,13 @@ import {
 } from '@mui/material';
 import ThemeToggle from './ThemeToggle';
 import SectionsMenu from './SectionsMenu';
+import { useSectionContext } from './SectionContext';
 import logoImage from '../images/MyLogo.png';
 
 const CustomAppBar = ({ toggleColorMode }) => {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
+    const { scrollToSection } = useSectionContext();
 
     return (
         <MuiAppBar 
@@ -34,10 +36,16 @@ const CustomAppBar = ({ toggleColorMode }) => {
                         id="logo-image"
                         src={logoImage} 
                         alt="Logo" 
+                        onClick={() => scrollToSection("profile")}
                         sx={{ 
                             width: 40, 
                             height: 40, 
                             mr: 2,
+                            cursor: 'pointer',
+                            '&:hover': {
+                                transform: 'scale(1.05)',
+                                transition: 'transform 0.2s'
+                            }
                         }} 
                     />
                     <Typography
