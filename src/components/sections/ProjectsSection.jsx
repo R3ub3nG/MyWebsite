@@ -249,7 +249,7 @@ const ProjectsSection = ({ itemVariants }) => {
                 </motion.div>
             </Container>
 
-            {/* Expanded Project Overlay - Now outside of Container for full viewport coverage */}
+            {/* Project details fullscreen view */}
             <AnimatePresence>
                 {expandedProject && (
                     <motion.div
@@ -471,6 +471,7 @@ const ProjectsSection = ({ itemVariants }) => {
                                                     border: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
                                                 }}
                                             >
+                                                {/* Using AnimatePresence for smooth transitions between slides */}
                                                 <AnimatePresence mode="wait">
                                                     <motion.div
                                                         key={currentSlide}
@@ -489,7 +490,7 @@ const ProjectsSection = ({ itemVariants }) => {
                                                     />
                                                 </AnimatePresence>
                                                 
-                                                {/* Navigation Arrows */}
+                                                {/* Left/right nav buttons */}
                                                 <Box sx={{ 
                                                     position: 'absolute', 
                                                     top: 0, 
@@ -527,7 +528,7 @@ const ProjectsSection = ({ itemVariants }) => {
                                                     </IconButton>
                                                 </Box>
                                                 
-                                                {/* Image Counter */}
+                                                {/* Dots for quick navigation between slides */}
                                                 <Box 
                                                     sx={{
                                                         position: 'absolute',

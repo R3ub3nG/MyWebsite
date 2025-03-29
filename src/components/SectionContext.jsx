@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 
-// Section definitions - kept consistent across the application
+// Navigation sections with their emojis
 export const sections = [
     { id: "profile", label: "Profile", icon: "👤" },
     { id: "passions", label: "My Passions", icon: "❤️" },
@@ -11,20 +11,20 @@ export const sections = [
     { id: "projects", label: "Projects", icon: "🚀" },
 ];
 
-// Create the context
+// Set up React context
 const SectionContext = createContext();
 
-// Custom hook to use the section context
+// Easy access hook
 export const useSectionContext = () => useContext(SectionContext);
 
-// Provider component
+// Context provider wrapper
 export const SectionProvider = ({ children }) => {
     const [activeSection, setActiveSection] = useState(null);
     const [isManuallySet, setIsManuallySet] = useState(false);
 
-    // Memoize the scroll handler to prevent recreating it on each render
+    // Monitor scrolling to highlight current section in nav
     const handleScroll = useCallback(() => {
-        // Skip scroll detection if section was manually set recently
+        // Don't override manual navigation choices
         if (isManuallySet) return;
 
         // Get the scroll container
@@ -41,11 +41,11 @@ export const SectionProvider = ({ children }) => {
 
         if (sectionElements.length === 0) return;
 
-        // Calculate which section is most visible in the viewport
+        // Figure out which section takes up most of the screen
         const scrollTop = scrollContainer.scrollTop;
         const viewportHeight = scrollContainer.clientHeight;
 
-        // For all sections, find which one is most visible
+        // Find the most visible section
         let bestSection = null;
         let bestVisibility = 0;
 
@@ -105,7 +105,7 @@ export const SectionProvider = ({ children }) => {
         }
     }, [isManuallySet]);
 
-    // Scroll to section function
+    // Handle navigation clicks
     const scrollToSection = (id) => {
         const scrollContainer = document.getElementById("scrollContainer");
         const element = document.getElementById(id);
@@ -115,7 +115,7 @@ export const SectionProvider = ({ children }) => {
             setActiveSection(id);
             setIsManuallySet(true);
 
-            // Get all section elements to determine section index
+            // Find the section's position in the page
             const allSections = Array.from(document.querySelectorAll('#scrollContainer > div > section'));
             const sectionIndex = allSections.findIndex(section => section.id === id);
             

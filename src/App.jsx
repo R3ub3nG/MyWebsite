@@ -6,7 +6,7 @@ import SectionNav from './components/SectionNav';
 import { SectionProvider } from './components/SectionContext';
 import './App.css';
 
-// Create a theme instance
+// My custom MUI theme with dark/light mode support
 const getTheme = (mode) => createTheme({
     palette: {
         mode,
@@ -38,7 +38,7 @@ const getTheme = (mode) => createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: 12,
-                    // Add slight transparency to papers to show background through
+                    // Semi-transparent background so the animated bg shows through
                     backgroundColor: mode === 'dark' 
                         ? 'rgba(66, 66, 66, 0.7)' 
                         : 'rgba(255, 255, 255, 0.7)',
@@ -50,7 +50,7 @@ const getTheme = (mode) => createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: 12,
-                    // Add slight transparency to cards to show background through
+                    // Lower opacity for cards to layer nicely on the bg
                     backgroundColor: mode === 'dark' 
                         ? 'rgba(66, 66, 66, 0.6)' 
                         : 'rgba(255, 255, 255, 0.6)',
@@ -104,15 +104,15 @@ const getTheme = (mode) => createTheme({
 });
 
 function App() {
-    // State to track the current theme mode
+    // Default to light mode
     const [mode, setMode] = useState('light');
     
-    // Toggle between light and dark mode
+    // Switch theme function passed to the toggle button
     const toggleColorMode = () => {
         setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
     };
 
-    // Memoize the theme to prevent unnecessary re-renders
+    // Only regenerate theme when mode changes
     const theme = useMemo(() => getTheme(mode), [mode]);
 
     return (

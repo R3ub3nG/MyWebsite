@@ -249,7 +249,7 @@ const PassionsSection = ({ itemVariants }) => {
                 </motion.div>
             </motion.div>
 
-            {/* Expanded Card Overlay */}
+            {/* Fullscreen passion details */}
             <AnimatePresence>
                 {expandedPassion && (
                     <motion.div

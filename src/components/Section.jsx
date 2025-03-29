@@ -14,19 +14,19 @@ const Section = ({ children, id, bgcolor }) => {
     const sectionRef = useRef(null);
     const { activeSection } = useSectionContext();
     
-    // Effect to ensure sections are properly sized
+    // Make sure each section is exactly viewport height minus the header
     useEffect(() => {
         const section = sectionRef.current;
         if (!section) return;
         
-        // Ensure exact height for better snapping
+        // Recalculate the section height
         const updateSectionHeight = () => {
             const viewportHeight = window.innerHeight;
-            const appBarHeight = 64;
+            const appBarHeight = 64; // Header height
             section.style.height = `${viewportHeight - appBarHeight}px`;
         };
         
-        // Apply on mount and window resize
+        // Run on load and when window resizes
         updateSectionHeight();
         window.addEventListener('resize', updateSectionHeight);
         
@@ -60,7 +60,7 @@ const Section = ({ children, id, bgcolor }) => {
                 WebkitBackfaceVisibility: 'hidden',
                 perspective: 1000,
                 WebkitPerspective: 1000,
-                zIndex: activeSection === id ? 2 : 1, // Increase z-index for active section
+                zIndex: activeSection === id ? 2 : 1, // Active section gets higher stacking order
                 transition: 'z-index 0.2s',
                 '& > *': {
                     width: '100%',

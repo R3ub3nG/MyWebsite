@@ -3,7 +3,7 @@ import { Box, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import CustomAppBar from './CustomAppBar';
 
-// Import section components
+// Pull in all the section components
 import Section from "./Section";
 import ProfileSection from "./sections/ProfileSection";
 import PassionsSection from "./sections/PassionsSection";
@@ -19,7 +19,7 @@ import SectionNav from "./SectionNav";
 const containerVariants = {
     hidden: { 
         opacity: 0,
-        willChange: 'opacity, transform' // Optimize performance
+        willChange: 'opacity, transform' // Helps with GPU acceleration
     },
     visible: {
         opacity: 1,
@@ -57,7 +57,7 @@ const Dashboard = ({ toggleColorMode }) => {
     const [isScrolling, setIsScrolling] = useState(false);
     const isSnapScrollingRef = useRef(false);
     
-    // Setup enhanced scrolling behavior
+    // Custom snap scrolling behavior with external mouse support
     useEffect(() => {
         const scrollContainer = document.getElementById('scrollContainer');
         if (!scrollContainer) return;
@@ -93,7 +93,7 @@ const Dashboard = ({ toggleColorMode }) => {
                 // Define a more responsive snap window - 20% of the viewport height
                 const snapThreshold = viewportHeight * 0.2;
                 
-                // Only snap if we're within the snap threshold but not exactly at the snap point
+                // If close to a section boundary, snap to it
                 const distanceFromSnap = Math.abs(scrollTop - targetPosition);
                 
                 if (distanceFromSnap > 5 && distanceFromSnap < snapThreshold) {
@@ -134,7 +134,7 @@ const Dashboard = ({ toggleColorMode }) => {
                     overflowY: 'auto',
                     overflowX: 'hidden',
                     scrollBehavior: 'smooth',
-                    // Use native scrolling with more responsive snap
+                    // Only use snap scrolling on desktop
                     scrollSnapType: { xs: 'none', md: 'y mandatory' },
                     scrollPaddingTop: '0px',
                     scrollPaddingBottom: '0px',
@@ -181,37 +181,31 @@ const Dashboard = ({ toggleColorMode }) => {
                     animate="visible"
                     variants={containerVariants}
                 >
-                    {/* Profile Section */}
+                    {/* Portfolio sections in display order */}
                     <Section id="profile">
                         <ProfileSection itemVariants={itemVariants} />
                     </Section>
 
-                    {/* Passions Section */}
                     <Section id="passions">
                         <PassionsSection itemVariants={itemVariants} />
                     </Section>
 
-                    {/* Technical Skills Section */}
                     <Section id="technical-skills">
                         <TechnicalSkillsSection itemVariants={itemVariants} />
                     </Section>
 
-                    {/* Soft Skills Section */}
                     <Section id="soft-skills">
                         <SoftSkillsSection itemVariants={itemVariants} />
                     </Section>
 
-                    {/* Experience Section */}
                     <Section id="experience">
                         <ExperienceSection itemVariants={itemVariants} />
                     </Section>
 
-                    {/* Education Section */}
                     <Section id="education">
                         <EducationSection itemVariants={itemVariants} />
                     </Section>
 
-                    {/* Projects Section */}
                     <Section id="projects">
                         <ProjectsSection itemVariants={itemVariants} />
                     </Section>

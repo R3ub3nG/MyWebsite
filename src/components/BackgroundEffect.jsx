@@ -6,7 +6,7 @@ const BackgroundEffect = () => {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
 
-    // Tech symbols and keywords that will float in the background
+    // Cool tech symbols to float around
     const techElements = [
         { content: '</>', size: '2.5rem' },
         { content: '{...}', size: '2.2rem' },
@@ -25,23 +25,22 @@ const BackgroundEffect = () => {
         { content: '<div>', size: '2.5rem' }
     ];
 
-    // Create random positions and animations for the elements
+    // Set up random floating animation paths
     const elements = techElements.map((el, index) => {
-        // Helper function to get random position within viewport
+        // Get a random screen position
         const getRandomPosition = () => ({
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight
         });
 
-        // Generate multiple positions for animation
+        // Make 4 waypoints for each element to float between
         const positions = Array(4).fill(null).map(() => getRandomPosition());
 
         return {
             ...el,
             positions,
             duration: 10 + Math.random() * 10,
-            // Reduce delay between elements to make them appear faster
-            delay: index * 0.1
+            delay: index * 0.1 // Stagger the animations
         };
     });
 
@@ -59,7 +58,7 @@ const BackgroundEffect = () => {
                 overflow: 'hidden',
             }}
         >
-            {/* Animated background gradient */}
+            {/* Subtle background gradient that slowly shifts */}
             <motion.div
                 initial={{
                     background: isDarkMode 
@@ -95,7 +94,7 @@ const BackgroundEffect = () => {
                 }}
             />
 
-            {/* Floating tech elements */}
+            {/* The floating code symbols */}
             {elements.map((element, index) => (
                 <motion.div
                     key={index}
@@ -140,7 +139,7 @@ const BackgroundEffect = () => {
                 </motion.div>
             ))}
 
-            {/* Primary glow effect */}
+            {/* Center glow effect */}
             <motion.div
                 initial={{
                     opacity: 0.4,
@@ -171,7 +170,7 @@ const BackgroundEffect = () => {
                 }}
             />
 
-            {/* Secondary glow effect */}
+            {/* Bottom-right glow */}
             <motion.div
                 initial={{
                     opacity: 0.3,

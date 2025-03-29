@@ -250,7 +250,7 @@ const SoftSkillsSection = ({ itemVariants }) => {
                 </motion.div>
             </motion.div>
 
-            {/* Expanded Card Overlay */}
+            {/* Expanded soft skill view */}
             <AnimatePresence>
                 {expandedSkill && (
                     <motion.div

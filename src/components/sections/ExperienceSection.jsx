@@ -200,7 +200,7 @@ const ExperienceSection = ({ itemVariants }) => {
             description:
                 "Developing applications using modern programming languages and agile methodologies. Collaborated with cross-functional teams to design and implement scalable solutions, while maintaining code quality through effective testing practices.",
             responsibilities: [
-                "Contributing to a data engineering project aimed at modernising and uplifting NAB’s data transformation processes",
+                "Contributing to a data engineering project aimed at modernising and uplifting NAB's data transformation processes",
                 "Developing scalable data pipelines to process and transform data across multiple layers using PySpark and Apache Airflow",
                 "Collaborating with cross-functional teams to ensure efficient data flow and robust transformation logic aligned with changing business requirements",
             ],
@@ -212,7 +212,7 @@ const ExperienceSection = ({ itemVariants }) => {
             description:
                 "Gained hands-on experience with industry-standard technologies and development practices. Participated in real-world projects while learning professional coding standards, and collaborative development workflows under mentorship from senior engineers.",
             responsibilities: [
-                "Designed and developed a scalable web application to uplift NAB’s Hiring Process",
+                "Designed and developed a scalable web application to uplift NAB's Hiring Process",
                 "Worked with modern and industry standard frameworks and technologies",
                 "Gained experience with cloud infrastructure, CI/CD Pipelines and DevOps best practices",
                 "Collaborated with cross-functional teams and stakeholders in an Agile environment",
@@ -501,7 +501,7 @@ const ExperienceSection = ({ itemVariants }) => {
                         </Typography>
                         <Divider sx={{ mb: 3 }} />
 
-                        {/* Timeline Stepper */}
+                        {/* Job history timeline */}
                         <Stepper
                             alternativeLabel
                             activeStep={activeStep}
@@ -567,7 +567,7 @@ const ExperienceSection = ({ itemVariants }) => {
                             ))}
                         </Stepper>
 
-                        {/* Experience Card Container */}
+                        {/* Current job details card */}
                         <Box
                             sx={{
                                 position: "relative",
@@ -694,7 +694,7 @@ const ExperienceSection = ({ itemVariants }) => {
                                 )}
                             </AnimatePresence>
                         </Box>
-                        {/* Navigation Buttons */}
+                        {/* Prev/next job controls */}
                         <Box
                             sx={{
                                 position: "absolute",
