@@ -20,8 +20,8 @@ import {
     Close as CloseIcon,
     Info as InfoIcon,
     Launch as LaunchIcon,
-    ArrowForwardIos as ArrowForwardIcon,
-    ArrowBackIos as ArrowBackIcon
+    ArrowForward as ArrowForwardIcon,
+    ArrowBack as ArrowBackIcon
 } from '@mui/icons-material';
 
 const ProjectsSection = ({ itemVariants }) => {
@@ -509,10 +509,16 @@ const ProjectsSection = ({ itemVariants }) => {
                                                             color: 'white',
                                                             '&:hover': {
                                                                 bgcolor: 'rgba(0, 0, 0, 0.6)',
-                                                            }
+                                                            },
+                                                            display: 'flex',
+                                                            justifyContent: 'center',
+                                                            alignItems: 'center',
+                                                            width: '40px',
+                                                            height: '40px',
+                                                            padding: 0
                                                         }}
                                                     >
-                                                        <ArrowBackIcon />
+                                                        <ArrowBackIcon sx={{ fontSize: '1.8rem' }} />
                                                     </IconButton>
                                                     <IconButton 
                                                         onClick={nextSlide}
@@ -521,10 +527,16 @@ const ProjectsSection = ({ itemVariants }) => {
                                                             color: 'white',
                                                             '&:hover': {
                                                                 bgcolor: 'rgba(0, 0, 0, 0.6)',
-                                                            }
+                                                            },
+                                                            display: 'flex',
+                                                            justifyContent: 'center',
+                                                            alignItems: 'center',
+                                                            width: '40px',
+                                                            height: '40px',
+                                                            padding: 0
                                                         }}
                                                     >
-                                                        <ArrowForwardIcon />
+                                                        <ArrowForwardIcon sx={{ fontSize: '1.8rem' }} />
                                                     </IconButton>
                                                 </Box>
                                                 
@@ -548,9 +560,15 @@ const ProjectsSection = ({ itemVariants }) => {
                                                                 borderRadius: '50%',
                                                                 backgroundColor: currentSlide === index 
                                                                     ? theme.palette.primary.main 
-                                                                    : 'rgba(255, 255, 255, 0.5)',
+                                                                    : isDarkMode 
+                                                                        ? 'rgba(255, 255, 255, 0.5)' 
+                                                                        : 'rgba(0, 0, 0, 0.4)',
                                                                 transition: 'all 0.3s ease',
-                                                                cursor: 'pointer'
+                                                                cursor: 'pointer',
+                                                                border: '1px solid',
+                                                                borderColor: isDarkMode
+                                                                    ? 'rgba(255, 255, 255, 0.2)'
+                                                                    : 'rgba(0, 0, 0, 0.1)'
                                                             }}
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
