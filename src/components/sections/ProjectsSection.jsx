@@ -19,13 +19,34 @@ import {
     GitHub as GitHubIcon,
     Close as CloseIcon,
     Info as InfoIcon,
-    Launch as LaunchIcon
+    Launch as LaunchIcon,
+    ArrowForwardIos as ArrowForwardIcon,
+    ArrowBackIos as ArrowBackIcon
 } from '@mui/icons-material';
 
 const ProjectsSection = ({ itemVariants }) => {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
     const [expandedProject, setExpandedProject] = useState(null);
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    const nextSlide = (e) => {
+        if (e) e.stopPropagation();
+        if (expandedProject?.images) {
+            setCurrentSlide((prev) => 
+                prev === expandedProject.images.length - 1 ? 0 : prev + 1
+            );
+        }
+    };
+
+    const prevSlide = (e) => {
+        if (e) e.stopPropagation();
+        if (expandedProject?.images) {
+            setCurrentSlide((prev) => 
+                prev === 0 ? expandedProject.images.length - 1 : prev - 1
+            );
+        }
+    };
 
     // Projects data
     const projects = [
@@ -44,7 +65,13 @@ const ProjectsSection = ({ itemVariants }) => {
                 "Order tracking system",
                 "Admin dashboard for inventory management"
             ],
-            techDetails: "React, Redux, Node.js, Express, MongoDB, Material-UI, JWT Authentication, Stripe Payment Integration, AWS Deployment"
+            techDetails: "React, Redux, Node.js, Express, MongoDB, Material-UI, JWT Authentication, Stripe Payment Integration, AWS Deployment",
+            images: [
+                "/src/images/projects/ecommerce-1.jpg",
+                "/src/images/projects/ecommerce-2.jpg",
+                "/src/images/projects/ecommerce-3.jpg",
+                "/src/images/projects/ecommerce-4.jpg"
+            ]
         },
         {
             title: "AI Content Generator",
@@ -60,7 +87,12 @@ const ProjectsSection = ({ itemVariants }) => {
                 "Content quality evaluation metrics",
                 "API endpoints for integration with other platforms"
             ],
-            techDetails: "Python, TensorFlow, BERT, Flask, React, Redux, Docker, CI/CD Pipeline, Cloud Deployment"
+            techDetails: "Python, TensorFlow, BERT, Flask, React, Redux, Docker, CI/CD Pipeline, Cloud Deployment",
+            images: [
+                "/src/images/projects/ai-generator-1.jpg",
+                "/src/images/projects/ai-generator-2.jpg",
+                "/src/images/projects/ai-generator-3.jpg"
+            ]
         },
         {
             title: "Portfolio Website",
@@ -76,17 +108,26 @@ const ProjectsSection = ({ itemVariants }) => {
                 "Optimized performance metrics",
                 "Accessible design following WCAG guidelines"
             ],
-            techDetails: "React, Material-UI, Framer Motion, React Router, CSS-in-JS, Responsive Design, Vite"
+            techDetails: "React, Material-UI, Framer Motion, React Router, CSS-in-JS, Responsive Design, Vite",
+            images: [
+                "/src/images/projects/portfolio-1.jpg",
+                "/src/images/projects/portfolio-2.jpg",
+                "/src/images/projects/portfolio-3.jpg",
+                "/src/images/projects/portfolio-4.jpg",
+                "/src/images/projects/portfolio-5.jpg"
+            ]
         }
     ];
 
     const handleCardClick = (project) => {
         setExpandedProject(project);
+        setCurrentSlide(0); // Reset to first slide when opening a project
     };
 
     const handleCloseExpanded = (e) => {
         if (e) e.stopPropagation();
         setExpandedProject(null);
+        setCurrentSlide(0);
     };
 
     return (
@@ -406,6 +447,120 @@ const ProjectsSection = ({ itemVariants }) => {
                                             </Box>
                                         </Grid>
                                     </Grid>
+                                    
+                                    {/* Project Images Slideshow */}
+                                    {expandedProject.images && expandedProject.images.length > 0 && (
+                                        <Box sx={{ mt: 5 }}>
+                                            <Divider sx={{ mb: 4 }} />
+                                            <Typography
+                                                variant="h6"
+                                                fontWeight="bold"
+                                                gutterBottom
+                                                sx={{ mb: 3 }}
+                                            >
+                                                Project Gallery
+                                            </Typography>
+                                            
+                                            <Box 
+                                                sx={{ 
+                                                    position: 'relative',
+                                                    width: '100%',
+                                                    height: { xs: '200px', sm: '300px', md: '400px' },
+                                                    borderRadius: '8px',
+                                                    overflow: 'hidden',
+                                                    border: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
+                                                }}
+                                            >
+                                                <AnimatePresence mode="wait">
+                                                    <motion.div
+                                                        key={currentSlide}
+                                                        initial={{ opacity: 0, x: 100 }}
+                                                        animate={{ opacity: 1, x: 0 }}
+                                                        exit={{ opacity: 0, x: -100 }}
+                                                        transition={{ duration: 0.3 }}
+                                                        style={{
+                                                            position: 'absolute',
+                                                            width: '100%',
+                                                            height: '100%',
+                                                            backgroundImage: `url(${expandedProject.images[currentSlide]})`,
+                                                            backgroundSize: 'cover',
+                                                            backgroundPosition: 'center',
+                                                        }}
+                                                    />
+                                                </AnimatePresence>
+                                                
+                                                {/* Navigation Arrows */}
+                                                <Box sx={{ 
+                                                    position: 'absolute', 
+                                                    top: 0, 
+                                                    bottom: 0, 
+                                                    left: 0, 
+                                                    right: 0, 
+                                                    display: 'flex', 
+                                                    justifyContent: 'space-between',
+                                                    alignItems: 'center',
+                                                    padding: '0 16px',
+                                                }}>
+                                                    <IconButton 
+                                                        onClick={prevSlide}
+                                                        sx={{
+                                                            bgcolor: 'rgba(0, 0, 0, 0.4)',
+                                                            color: 'white',
+                                                            '&:hover': {
+                                                                bgcolor: 'rgba(0, 0, 0, 0.6)',
+                                                            }
+                                                        }}
+                                                    >
+                                                        <ArrowBackIcon />
+                                                    </IconButton>
+                                                    <IconButton 
+                                                        onClick={nextSlide}
+                                                        sx={{
+                                                            bgcolor: 'rgba(0, 0, 0, 0.4)',
+                                                            color: 'white',
+                                                            '&:hover': {
+                                                                bgcolor: 'rgba(0, 0, 0, 0.6)',
+                                                            }
+                                                        }}
+                                                    >
+                                                        <ArrowForwardIcon />
+                                                    </IconButton>
+                                                </Box>
+                                                
+                                                {/* Image Counter */}
+                                                <Box 
+                                                    sx={{
+                                                        position: 'absolute',
+                                                        bottom: '16px',
+                                                        left: '50%',
+                                                        transform: 'translateX(-50%)',
+                                                        display: 'flex',
+                                                        gap: '8px'
+                                                    }}
+                                                >
+                                                    {expandedProject.images.map((_, index) => (
+                                                        <Box 
+                                                            key={index}
+                                                            sx={{
+                                                                width: '10px',
+                                                                height: '10px',
+                                                                borderRadius: '50%',
+                                                                backgroundColor: currentSlide === index 
+                                                                    ? theme.palette.primary.main 
+                                                                    : 'rgba(255, 255, 255, 0.5)',
+                                                                transition: 'all 0.3s ease',
+                                                                cursor: 'pointer'
+                                                            }}
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setCurrentSlide(index);
+                                                            }}
+                                                        />
+                                                    ))}
+                                                </Box>
+                                            </Box>
+                                        </Box>
+                                    )}
                                 </CardContent>
                             </Card>
                         </motion.div>
