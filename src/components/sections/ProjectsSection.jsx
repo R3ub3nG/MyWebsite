@@ -52,7 +52,7 @@ const ProjectsSection = ({ itemVariants }) => {
     const projects = [
         {
             title: "Personal Portfolio Website",
-            tech: "React • Material UI • Framer Motion",
+            tech: "React • Material UI • Framer Motion • Node.js",
             description: "An interactive portfolio website with smooth animations, responsive design, and dark/light mode support.",
             repoUrl: "https://github.com/reubengue/MyWebsite",
             liveUrl: "https://reubengue.github.io/MyWebsite",
@@ -65,7 +65,7 @@ const ProjectsSection = ({ itemVariants }) => {
                 "Responsive design for all device sizes",
                 "Dark/light mode theme switching"
             ],
-            techDetails: "React 19, Material UI v6, Framer Motion, Context API, CSS-in-JS, Responsive Design, GitHub Pages",
+            techDetails: "React 19, Material UI v6, Framer Motion, Context API, CSS-in-JS, Node.js, GitHub Pages",
             images: [
                 "/src/images/projects/portfolio-1.jpg",
                 "/src/images/projects/portfolio-2.jpg",
@@ -74,24 +74,24 @@ const ProjectsSection = ({ itemVariants }) => {
             ]
         },
         {
-            title: "AI Content Generator",
-            tech: "Python • TensorFlow • Flask",
-            description: "An AI-powered application that generates custom content based on user inputs using natural language processing.",
-            repoUrl: "https://github.com/yourusername/ai-content-generator",
-            liveUrl: "https://example.com/ai-generator",
-            detailedDescription: "This AI-powered content generation platform uses advanced natural language processing to create high-quality, customized text based on user inputs. The system is built with a deep learning model trained on diverse datasets to understand context and generate relevant content.\n\nThe application features a Python backend with TensorFlow for the AI model, wrapped in a Flask API server. The frontend is a responsive web application that allows users to input parameters, select generation options, and receive real-time content suggestions.\n\nThe project demonstrates my expertise in artificial intelligence, machine learning, and natural language processing. It also showcases my ability to create practical applications of these technologies with user-friendly interfaces that make advanced AI capabilities accessible to non-technical users.",
+            title: "Counting and Sorting",
+            tech: "Vaadin • Spring Boot • FastAPI • Docker • Maven • MySQL",
+            description: "A real-time inventory management system designed to streamline stock tracking and replenishment with a user-friendly interface.",
+            repoUrl: "https://github.com/yourusername/counting-and-sorting",
+            liveUrl: "https://example.com/counting-and-sorting",
+            detailedDescription: "The Counting and Sorting project is an inventory management and stock replenishment system aimed at providing real-time stock tracking with minimal maintenance efforts. It is designed for store managers and administrators, particularly in liquor stores, to manage stock levels efficiently and generate shopping lists based on low stock alerts.\n\nOne of its standout features is a plugin system that allows developers to extend functionality by integrating additional tools and data sources. The system is built using a microservices architecture, ensuring scalability, maintainability, and independent service deployment.\n\nWith secure authentication, efficient data management, and robust transaction logging, the system enhances stock visibility and minimizes stock maintenance time, helping businesses operate more smoothly.",
             highlights: [
-                "Custom-trained NLP model for content generation",
-                "User-friendly interface for generating different content types",
-                "Real-time content suggestions and editing",
-                "Content quality evaluation metrics",
-                "API endpoints for integration with other platforms"
+                "Real-time stock tracking and updates",
+                "User-friendly interface for efficient inventory management",
+                "Automated shopping list generation based on stock levels",
+                "Microservices architecture for scalability and maintainability",
+                "Secure authentication and transaction logging"
             ],
-            techDetails: "Python, TensorFlow, BERT, Flask, React, Redux, Docker, CI/CD Pipeline, Cloud Deployment",
+            techDetails: "Vaadin, Spring Boot, FastAPI, Docker, Maven, MySQL, Microservices, REST APIs, Secure Authentication",
             images: [
-                "/src/images/projects/ai-generator-1.jpg",
-                "/src/images/projects/ai-generator-2.jpg",
-                "/src/images/projects/ai-generator-3.jpg"
+                "/src/images/projects/counting-and-sorting-1.jpg",
+                "/src/images/projects/counting-and-sorting-2.jpg",
+                "/src/images/projects/counting-and-sorting-3.jpg"
             ]
         },
         {
@@ -226,7 +226,7 @@ const ProjectsSection = ({ itemVariants }) => {
                                                             {project.description}
                                                         </Typography>
                                                     </Box>
-                                                    <Box sx={{ mt: 'auto', pt: 2, display: 'flex', justifyContent: 'flex-end' }}>
+                                                    <Box sx={{ mt: 'auto', display: 'flex', justifyContent: 'flex-end' }}>
                                                         <IconButton 
                                                             color="primary" 
                                                             aria-label="github repository"
