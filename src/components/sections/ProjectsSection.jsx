@@ -76,10 +76,10 @@ const ProjectsSection = ({ itemVariants }) => {
         {
             title: "Counting and Sorting",
             tech: "Vaadin • Spring Boot • FastAPI • Docker • Maven • MySQL",
-            description: "A real-time inventory management system designed to streamline stock tracking and replenishment with a user-friendly interface.",
+            description: "A Monash Project creating a real-time inventory management system designed to streamline stock tracking and replenishment.",
             repoUrl: "https://github.com/yourusername/counting-and-sorting",
             liveUrl: "https://example.com/counting-and-sorting",
-            detailedDescription: "The Counting and Sorting project is an inventory management and stock replenishment system aimed at providing real-time stock tracking with minimal maintenance efforts. It is designed for store managers and administrators, particularly in liquor stores, to manage stock levels efficiently and generate shopping lists based on low stock alerts.\n\nOne of its standout features is a plugin system that allows developers to extend functionality by integrating additional tools and data sources. The system is built using a microservices architecture, ensuring scalability, maintainability, and independent service deployment.\n\nWith secure authentication, efficient data management, and robust transaction logging, the system enhances stock visibility and minimizes stock maintenance time, helping businesses operate more smoothly.",
+            detailedDescription: "Counting and Sorting was developed as a large group project at Monash University using agile methodologies. We employed sprint planning and weekly standups, allowing us to efficiently adapt to changing requirements while gaining valuable software development experience.\n\nThe Counting and Sorting project is an inventory management and stock replenishment system aimed at providing real-time stock tracking with minimal maintenance efforts. It is designed for store managers and administrators, particularly in liquor stores, to manage stock levels efficiently and generate shopping lists based on low stock alerts.\n\nOne of its standout features is a plugin system that allows developers to extend functionality by integrating additional tools and data sources. The system is built using a microservices architecture, ensuring scalability, maintainability, and independent service deployment.\n\nWith secure authentication, efficient data management, and robust transaction logging, the system enhances stock visibility and minimizes stock maintenance time, helping businesses operate more smoothly.",
             highlights: [
                 "Real-time stock tracking and updates",
                 "User-friendly interface for efficient inventory management",
@@ -95,26 +95,25 @@ const ProjectsSection = ({ itemVariants }) => {
             ]
         },
         {
-            title: "Portfolio Website",
-            tech: "React • Material UI • Framer Motion",
-            description: "A responsive personal portfolio website with smooth animations and dark mode support.",
-            repoUrl: "https://github.com/yourusername/portfolio-website",
-            liveUrl: "https://example.com/portfolio",
-            detailedDescription: "This portfolio website showcases my projects, skills, and professional background in an interactive and visually appealing format. The site is built with React and features smooth animations powered by Framer Motion that enhance the user experience without compromising performance.\n\nThe design is fully responsive, providing an optimal viewing experience across all device sizes from mobile phones to large desktop monitors. The implementation includes a dark/light mode toggle that respects user preferences and provides comfortable viewing in different lighting conditions.\n\nThe architecture follows modern React practices with functional components and hooks, clean code organization, and optimized performance. The project demonstrates my frontend development skills, design sensibilities, and attention to detail in creating engaging user experiences.",
+            title: "Fiery Dragons",
+            tech: "Python • PyGame • PyInstaller • JSON • Figma",
+            description: "A collaborative digital card game developed at Monash University with a focus on object-oriented programming and design patterns.",
+            repoUrl: "https://github.com/reubengue/fiery-dragons",
+            liveUrl: "https://fiery-dragons.com",
+            detailedDescription: "Fiery Dragons was a group project at Monash University where we created a digital version of the Fiery Dragons board game focused on applying object-oriented programming principles. We emphasized proper software design patterns to build a maintainable and well-structured codebase.\n\nThe game was built using PyGame with JSON for data storage. I worked closely with team members on game architecture, mechanics implementation, and interface design. We created detailed UI mockups and user flows in Figma before development to ensure a cohesive vision.\n\nOur collaborative approach involved regular peer feedback sessions and iterative improvements. We used PyInstaller to package the game for easy distribution and testing. This project strengthened both my technical skills and teamwork abilities while applying software engineering concepts in a practical context.",
             highlights: [
-                "Responsive design for all device sizes",
-                "Dark/light mode theme switching",
-                "Smooth animations and transitions",
-                "Optimized performance metrics",
-                "Accessible design following WCAG guidelines"
+                "Applied OOP principles and design patterns",
+                "Created UI designs and workflows in Figma",
+                "Built with PyGame and JSON data storage",
+                "Packaged as standalone application with PyInstaller",
+                "Focused on team collaboration and design documentation"
             ],
-            techDetails: "React, Material-UI, Framer Motion, React Router, CSS-in-JS, Responsive Design, Vite",
+            techDetails: "Python, PyGame, OOP, Design Patterns, JSON, Figma, PyInstaller",
             images: [
-                "/src/images/projects/portfolio-1.jpg",
-                "/src/images/projects/portfolio-2.jpg",
-                "/src/images/projects/portfolio-3.jpg",
-                "/src/images/projects/portfolio-4.jpg",
-                "/src/images/projects/portfolio-5.jpg"
+                "/src/images/projects/fiery-dragons-1.jpg",
+                "/src/images/projects/fiery-dragons-2.jpg",
+                "/src/images/projects/fiery-dragons-3.jpg",
+                "/src/images/projects/fiery-dragons-4.jpg"
             ]
         }
     ];
