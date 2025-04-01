@@ -51,26 +51,26 @@ const ProjectsSection = ({ itemVariants }) => {
     // Projects data
     const projects = [
         {
-            title: "E-Commerce Platform",
-            tech: "React • Node.js • MongoDB",
-            description: "A full-featured e-commerce platform with product management, shopping cart, and payment processing capabilities.",
-            repoUrl: "https://github.com/yourusername/ecommerce-platform",
-            liveUrl: "https://example.com/ecommerce",
-            detailedDescription: "This comprehensive e-commerce solution provides businesses with a powerful platform to sell products online. The application features a responsive UI built with React and Material-UI, offering intuitive navigation and an optimized shopping experience across all devices.\n\nThe backend is powered by Node.js and Express, with MongoDB serving as the database. Key features include user authentication with JWT, product search and filtering, shopping cart functionality, secure payment processing through Stripe, order management, and an admin dashboard for inventory control.\n\nThe application follows modern web development practices including responsive design, state management with Redux, server-side rendering for SEO optimization, and comprehensive test coverage. This project demonstrates my ability to build complex, full-stack e-commerce solutions that meet real-world business requirements.",
+            title: "Personal Portfolio Website",
+            tech: "React • Material UI • Framer Motion",
+            description: "An interactive portfolio website with smooth animations, responsive design, and dark/light mode support.",
+            repoUrl: "https://github.com/reubengue/MyWebsite",
+            liveUrl: "https://reubengue.github.io/MyWebsite",
+            detailedDescription: "I designed and developed this portfolio website from scratch to showcase my skills, projects, and professional experience. The site features an elegant, modern design with smooth scrolling functionality and interactive elements that create an engaging user experience.\n\nThe website is built with React and leverages Material UI for component styling and layout, with custom theme extensions for a unique visual identity. Framer Motion powers the sophisticated animations throughout the site, from page transitions to micro-interactions that enhance the overall experience.\n\nKey architectural features include a centralized section navigation system, context-based state management, responsive design principles, and optimized performance. The site is fully accessible across all device sizes and includes both light and dark themes that respect user preferences.",
             highlights: [
-                "User authentication and profile management",
-                "Advanced product search and filtering",
-                "Shopping cart and checkout process",
-                "Payment processing integration",
-                "Order tracking system",
-                "Admin dashboard for inventory management"
+                "Snap scrolling with section highlighting",
+                "Interactive project gallery with image slideshow",
+                "Animated tech symbols and background effects",
+                "Expandable cards for detailed information",
+                "Responsive design for all device sizes",
+                "Dark/light mode theme switching"
             ],
-            techDetails: "React, Redux, Node.js, Express, MongoDB, Material-UI, JWT Authentication, Stripe Payment Integration, AWS Deployment",
+            techDetails: "React 19, Material UI v6, Framer Motion, Context API, CSS-in-JS, Responsive Design, GitHub Pages",
             images: [
-                "/src/images/projects/ecommerce-1.jpg",
-                "/src/images/projects/ecommerce-2.jpg",
-                "/src/images/projects/ecommerce-3.jpg",
-                "/src/images/projects/ecommerce-4.jpg"
+                "/src/images/projects/portfolio-1.jpg",
+                "/src/images/projects/portfolio-2.jpg",
+                "/src/images/projects/portfolio-3.jpg",
+                "/src/images/projects/portfolio-4.jpg"
             ]
         },
         {
@@ -314,13 +314,12 @@ const ProjectsSection = ({ itemVariants }) => {
                                     }
                                 }}
                             >
-                                <CardContent sx={{ p: { xs: 3, sm: 5 } }}>
+                                <CardContent sx={{ p: { xs: 3, sm: 5 }, pb: { xs: 6, sm: 8 } }}>
                                     <Box
                                         sx={{
                                             display: "flex",
                                             justifyContent: "space-between",
                                             alignItems: "flex-start",
-                                            mb: 3,
                                             flexWrap: "wrap"
                                         }}
                                     >
@@ -356,7 +355,7 @@ const ProjectsSection = ({ itemVariants }) => {
                                         </IconButton>
                                     </Box>
 
-                                    <Divider sx={{ mb: 4 }} />
+                                    <Divider sx={{ mb: 3 }} />
 
                                     <Grid container spacing={4}>
                                         <Grid item xs={12} md={8}>
@@ -450,7 +449,7 @@ const ProjectsSection = ({ itemVariants }) => {
                                     
                                     {/* Project Images Slideshow */}
                                     {expandedProject.images && expandedProject.images.length > 0 && (
-                                        <Box sx={{ mt: 5 }}>
+                                        <Box sx={{ mt: 5, mb: 2 }}>
                                             <Divider sx={{ mb: 4 }} />
                                             <Typography
                                                 variant="h6"
@@ -465,7 +464,7 @@ const ProjectsSection = ({ itemVariants }) => {
                                                 sx={{ 
                                                     position: 'relative',
                                                     width: '100%',
-                                                    height: { xs: '200px', sm: '300px', md: '400px' },
+                                                    height: { xs: '250px', sm: '350px', md: '570px' },
                                                     borderRadius: '8px',
                                                     overflow: 'hidden',
                                                     border: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
