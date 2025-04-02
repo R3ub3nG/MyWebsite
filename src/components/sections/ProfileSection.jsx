@@ -154,7 +154,7 @@ const ProfileSection = ({ itemVariants }) => {
                                     Software Engineer
                                 </Typography>
                                 <Typography variant="body1" color="rgba(255,255,255,0.9)" paragraph sx={{ fontSize: '1.1rem', maxWidth: '600px', mb: 4 }}>
-                                    I am an innovative and hard-working student in my final year of a Bachelor of Engineering (Honours), specialising in Software Engineering. I have a strong passion for Software Development and I am driven by the positive impact my work can have within my organisation and throughout the wider community.
+                                    I am an innovative and hard-working student in my final year of a Bachelor of Engineering (Honours), specialising in Software Engineering. Currently working at NAB as a Software Engineer Graduate, I can confidently say I have a strong passion for Software Development and I am driven by the positive impact my work can have within my organisation and throughout the wider community.
                                 </Typography>
                                 <Box sx={{ mt: 2, display: 'flex', gap: 2 }}>
                                     <Tooltip title="Visit my GitHub Profile" arrow placement="bottom">
