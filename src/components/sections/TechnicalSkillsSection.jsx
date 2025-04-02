@@ -131,22 +131,23 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
         setExpandedSkill(null);
     };
 
-    // Get proficiency level text based on score
-    const getProficiencyLevel = (score) => {
-        if (score >= 90) return 'Expert';
-        if (score >= 80) return 'Advanced';
-        if (score >= 70) return 'Proficient';
-        if (score >= 60) return 'Intermediate';
-        return 'Beginner';
+    // Get section that the proficiency falls into (1-4)
+    const getProficiencySection = (score) => {
+        if (score >= 90) return 4;
+        if (score >= 75) return 3;
+        if (score >= 60) return 2;
+        return 1;
     };
 
-    // Get color for proficiency bar
-    const getProficiencyColor = (score) => {
-        if (score >= 90) return '#4CAF50'; // Green
-        if (score >= 80) return '#8BC34A'; // Light Green
-        if (score >= 70) return '#CDDC39'; // Lime
-        if (score >= 60) return '#FFC107'; // Amber
-        return '#FF9800'; // Orange
+    // Get colors for blue gradient proficiency bar
+    const getSectionColors = (theme) => {
+        const isDark = theme.palette.mode === 'dark';
+        return {
+            1: isDark ? '#42a5f5' : '#2196f3',    // Light blue
+            2: isDark ? '#1e88e5' : '#1976d2',    // Medium blue
+            3: isDark ? '#1565c0' : '#1565c0',    // Darker blue
+            4: isDark ? '#0d47a1' : '#0d47a1'     // Darkest blue
+        };
     };
 
     // Find the expanded skill data
@@ -439,23 +440,36 @@ const TechnicalSkillsSection = ({ itemVariants }) => {
                                             <Typography variant="h6" fontWeight="medium">
                                                 Proficiency
                                             </Typography>
-                                            <Typography variant="h6" fontWeight="bold" color="primary">
-                                                {getProficiencyLevel(expandedSkillData.proficiency)}
-                                            </Typography>
                                         </Box>
-                                        <LinearProgress 
-                                            variant="determinate" 
-                                            value={expandedSkillData.proficiency} 
-                                            sx={{ 
-                                                height: 12, 
-                                                borderRadius: 6,
-                                                backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-                                                '& .MuiLinearProgress-bar': {
-                                                    backgroundColor: getProficiencyColor(expandedSkillData.proficiency),
-                                                    borderRadius: 6,
-                                                }
-                                            }} 
-                                        />
+                                        
+                                        {/* Segmented proficiency bar with 4 sections */}
+                                        <Box sx={{ 
+                                            display: 'flex', 
+                                            height: 12, 
+                                            borderRadius: 6,
+                                            overflow: 'hidden'
+                                        }}>
+                                            {[1, 2, 3, 4].map((section) => {
+                                                const sectionColors = getSectionColors(theme);
+                                                const skillSection = getProficiencySection(expandedSkillData.proficiency);
+                                                const isActive = section <= skillSection;
+                                                
+                                                return (
+                                                    <Box 
+                                                        key={section}
+                                                        sx={{
+                                                            flex: 1,
+                                                            height: '100%',
+                                                            backgroundColor: isActive 
+                                                                ? sectionColors[section]
+                                                                : isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.08)',
+                                                            borderRight: section < 4 ? `2px solid ${isDarkMode ? 'rgba(0, 0, 0, 0.3)' : 'rgba(255, 255, 255, 0.4)'}` : 'none',
+                                                            transition: 'background-color 0.3s ease'
+                                                        }}
+                                                    />
+                                                );
+                                            })}
+                                        </Box>
                                     </Box>
                                 </CardContent>
                             </Card>
