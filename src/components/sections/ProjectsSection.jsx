@@ -24,27 +24,40 @@ import {
     ArrowBack as ArrowBackIcon
 } from '@mui/icons-material';
 
+// Import project images
+import portfolio1 from '../../images/MyWebsite/1.png';
+import portfolio2 from '../../images/MyWebsite/2.png';
+import portfolio3 from '../../images/MyWebsite/3.png';
+import portfolio4 from '../../images/MyWebsite/4.png';
+
 const ProjectsSection = ({ itemVariants }) => {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
     const [expandedProject, setExpandedProject] = useState(null);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [previousSlide, setPreviousSlide] = useState(0);
+    const [isAnimating, setIsAnimating] = useState(false);
+    const [direction, setDirection] = useState("right");
 
     const nextSlide = (e) => {
         if (e) e.stopPropagation();
-        if (expandedProject?.images) {
-            setCurrentSlide((prev) => 
-                prev === expandedProject.images.length - 1 ? 0 : prev + 1
-            );
+        if (expandedProject?.images && !isAnimating) {
+            setIsAnimating(true);
+            setPreviousSlide(currentSlide);
+            const newSlide = currentSlide === expandedProject.images.length - 1 ? 0 : currentSlide + 1;
+            setDirection("right");
+            setCurrentSlide(newSlide);
         }
     };
 
     const prevSlide = (e) => {
         if (e) e.stopPropagation();
-        if (expandedProject?.images) {
-            setCurrentSlide((prev) => 
-                prev === 0 ? expandedProject.images.length - 1 : prev - 1
-            );
+        if (expandedProject?.images && !isAnimating) {
+            setIsAnimating(true);
+            setPreviousSlide(currentSlide);
+            const newSlide = currentSlide === 0 ? expandedProject.images.length - 1 : currentSlide - 1;
+            setDirection("left");
+            setCurrentSlide(newSlide);
         }
     };
 
@@ -67,10 +80,10 @@ const ProjectsSection = ({ itemVariants }) => {
             ],
             techDetails: "React 19, Material UI v6, Framer Motion, Context API, CSS-in-JS, Node.js, GitHub Pages",
             images: [
-                "/src/images/projects/portfolio-1.jpg",
-                "/src/images/projects/portfolio-2.jpg",
-                "/src/images/projects/portfolio-3.jpg",
-                "/src/images/projects/portfolio-4.jpg"
+                portfolio1,
+                portfolio2,
+                portfolio3,
+                portfolio4
             ]
         },
         {
@@ -127,6 +140,9 @@ const ProjectsSection = ({ itemVariants }) => {
         if (e) e.stopPropagation();
         setExpandedProject(null);
         setCurrentSlide(0);
+        setPreviousSlide(0);
+        setIsAnimating(false);
+        setDirection("right");
     };
 
     return (
@@ -459,8 +475,8 @@ const ProjectsSection = ({ itemVariants }) => {
                                                 Project Gallery
                                             </Typography>
                                             
-                                            <Box 
-                                                sx={{ 
+                                            <Box
+                                                sx={{
                                                     position: 'relative',
                                                     width: '100%',
                                                     height: { xs: '250px', sm: '350px', md: '570px' },
@@ -469,16 +485,46 @@ const ProjectsSection = ({ itemVariants }) => {
                                                     border: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
                                                 }}
                                             >
-                                                {/* Using AnimatePresence for smooth transitions between slides */}
-                                                <AnimatePresence mode="wait">
+                                                <AnimatePresence
+                                                    initial={false}
+                                                    custom={direction}
+                                                    mode="wait"
+                                                    onExitComplete={() => setIsAnimating(false)}
+                                                >
                                                     <motion.div
                                                         key={currentSlide}
-                                                        initial={{ opacity: 0, x: 100 }}
-                                                        animate={{ opacity: 1, x: 0 }}
-                                                        exit={{ opacity: 0, x: -100 }}
-                                                        transition={{ duration: 0.3 }}
+                                                        custom={direction}
+                                                        variants={{
+                                                            hidden: (direction) => ({
+                                                                x: direction === "right" ? 300 : -300,
+                                                                opacity: 0,
+                                                            }),
+                                                            visible: {
+                                                                x: 0,
+                                                                opacity: 1,
+                                                                transition: {
+                                                                    type: "spring",
+                                                                    stiffness: 300,
+                                                                    damping: 30,
+                                                                },
+                                                            },
+                                                            exit: (direction) => ({
+                                                                x: direction === "right" ? -300 : 300,
+                                                                opacity: 0,
+                                                                transition: {
+                                                                    type: "spring",
+                                                                    stiffness: 300,
+                                                                    damping: 30,
+                                                                },
+                                                            }),
+                                                        }}
+                                                        initial="hidden"
+                                                        animate="visible"
+                                                        exit="exit"
                                                         style={{
                                                             position: 'absolute',
+                                                            top: 0,
+                                                            left: 0,
                                                             width: '100%',
                                                             height: '100%',
                                                             backgroundImage: `url(${expandedProject.images[currentSlide]})`,
@@ -488,7 +534,7 @@ const ProjectsSection = ({ itemVariants }) => {
                                                     />
                                                 </AnimatePresence>
                                                 
-                                                {/* Left/right nav buttons */}
+                                                {/* Left/right navigation buttons */}
                                                 <Box sx={{ 
                                                     position: 'absolute', 
                                                     top: 0, 
@@ -538,7 +584,7 @@ const ProjectsSection = ({ itemVariants }) => {
                                                     </IconButton>
                                                 </Box>
                                                 
-                                                {/* Dots for quick navigation between slides */}
+                                                {/* Navigation dots */}
                                                 <Box 
                                                     sx={{
                                                         position: 'absolute',
@@ -570,7 +616,12 @@ const ProjectsSection = ({ itemVariants }) => {
                                                             }}
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
-                                                                setCurrentSlide(index);
+                                                                if (!isAnimating && index !== currentSlide) {
+                                                                    setIsAnimating(true);
+                                                                    setPreviousSlide(currentSlide);
+                                                                    setDirection(index > currentSlide ? "right" : "left");
+                                                                    setCurrentSlide(index);
+                                                                }
                                                             }}
                                                         />
                                                     ))}
