@@ -91,17 +91,6 @@ src/
 - `npm run preview` - Preview the production build locally
 - `npm run deploy` - Deploy to GitHub Pages
 
-## 📱 Responsive Design
-
-The portfolio is fully responsive and optimized for:
-- Mobile devices (< 600px)
-- Tablets (600px - 960px)
-- Desktops (> 960px)
-
-## 🌙 Theme Customization
-
-The application includes a customizable theme with light and dark modes. The theme configuration can be found in `App.jsx`.
-
 ## 🚀 Deployment
 
 This project is configured for deployment to GitHub Pages:

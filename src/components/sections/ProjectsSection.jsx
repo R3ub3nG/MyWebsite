@@ -56,13 +56,13 @@ const ProjectsSection = ({ itemVariants }) => {
             description: "An interactive portfolio website with smooth animations, responsive design, and dark/light mode support.",
             repoUrl: "https://github.com/reubengue/MyWebsite",
             liveUrl: "https://reubengue.github.io/MyWebsite",
-            detailedDescription: "I designed and developed this portfolio website from scratch to showcase my skills, projects, and professional experience. The site features an elegant, modern design with smooth scrolling functionality and interactive elements that create an engaging user experience.\n\nThe website is built with React and leverages Material UI for component styling and layout, with custom theme extensions for a unique visual identity. Framer Motion powers the sophisticated animations throughout the site, from page transitions to micro-interactions that enhance the overall experience.\n\nKey architectural features include a centralized section navigation system, context-based state management, responsive design principles, and optimized performance. The site is fully accessible across all device sizes and includes both light and dark themes that respect user preferences.",
+            detailedDescription: "I designed and developed this portfolio website from scratch to showcase my skills, projects, and professional experience. The site features an elegant, modern design with smooth scrolling functionality and interactive elements that create an engaging user experience.\n\nThe website is built with React and leverages Material UI for component styling and layout, with custom theme extensions for a unique visual identity. Framer Motion powers the sophisticated animations throughout the site, from page transitions to micro-interactions that enhance the overall experience.\n\nKey architectural features include a centralized section navigation system, context-based state management, SEO optimization, and performance enhancements using React best practices. The site implements dynamic content loading, custom scroll behaviors, and intelligent theme switching that respects user preferences while providing a cohesive visual identity.",
             highlights: [
                 "Snap scrolling with section highlighting",
                 "Interactive project gallery with image slideshow",
                 "Animated tech symbols and background effects",
                 "Expandable cards for detailed information",
-                "Responsive design for all device sizes",
+                "Custom scroll behaviors and animations",
                 "Dark/light mode theme switching"
             ],
             techDetails: "React 19, Material UI v6, Framer Motion, Context API, CSS-in-JS, Node.js, GitHub Pages",
