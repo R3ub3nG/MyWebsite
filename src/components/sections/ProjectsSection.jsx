@@ -30,6 +30,16 @@ import portfolio2 from '../../images/MyWebsite/2.png';
 import portfolio3 from '../../images/MyWebsite/3.png';
 import portfolio4 from '../../images/MyWebsite/4.png';
 
+// Add imports for CountingnSorting images
+import countingsorting1 from '../../images/CountingnSorting/1.png';
+import countingsorting2 from '../../images/CountingnSorting/2.png';
+import countingsorting3 from '../../images/CountingnSorting/3.png';
+import countingsorting4 from '../../images/CountingnSorting/4.png';
+import countingsorting5 from '../../images/CountingnSorting/5.png';
+import countingsorting6 from '../../images/CountingnSorting/6.png';
+import countingsorting7 from '../../images/CountingnSorting/7.png';
+import countingsorting8 from '../../images/CountingnSorting/8.png';
+
 const ProjectsSection = ({ itemVariants }) => {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
@@ -69,7 +79,7 @@ const ProjectsSection = ({ itemVariants }) => {
             description: "An interactive portfolio website with smooth animations, responsive design, and dark/light mode support.",
             repoUrl: "https://github.com/reubengue/MyWebsite",
             liveUrl: "https://reubengue.github.io/MyWebsite",
-            detailedDescription: "I designed and developed this portfolio website from scratch to showcase my skills, projects, and professional experience. The site features an elegant, modern design with smooth scrolling functionality and interactive elements that create an engaging user experience.\n\nThe website is built with React and leverages Material UI for component styling and layout, with custom theme extensions for a unique visual identity. Framer Motion powers the sophisticated animations throughout the site, from page transitions to micro-interactions that enhance the overall experience.\n\nKey architectural features include a centralized section navigation system, context-based state management, SEO optimization, and performance enhancements using React best practices. The site implements dynamic content loading, custom scroll behaviors, and intelligent theme switching that respects user preferences while providing a cohesive visual identity.",
+            detailedDescription: "I designed and developed this portfolio website from scratch to showcase my skills, projects, and professional experience. The site features an elegant, modern design with smooth scrolling functionality and interactive elements that create an engaging user experience.\n\nThe website is built with React and leverages Material UI for component styling and layout, with custom theme extensions for a unique visual identity. Framer Motion powers the sophisticated animations throughout the site, from page transitions to micro-interactions that enhance the overall experience.\n\nKey architectural features include a centralized section navigation system, context-based state management, SEO optimization, and performance enhancements using React best practices. The site implements dynamic content loading, custom scroll behaviors, and intelligent theme switching that respects user preferences while providing a cohesive visual identity.\n\nP.S. Your looking at this project right now!",
             highlights: [
                 "Snap scrolling with section highlighting",
                 "Interactive project gallery with image slideshow",
@@ -102,9 +112,14 @@ const ProjectsSection = ({ itemVariants }) => {
             ],
             techDetails: "Vaadin, Spring Boot, FastAPI, Docker, Maven, MySQL, Microservices, REST APIs, Secure Authentication",
             images: [
-                "/src/images/projects/counting-and-sorting-1.jpg",
-                "/src/images/projects/counting-and-sorting-2.jpg",
-                "/src/images/projects/counting-and-sorting-3.jpg"
+                countingsorting1,
+                countingsorting2,
+                countingsorting3,
+                countingsorting4,
+                countingsorting5,
+                countingsorting6,
+                countingsorting7,
+                countingsorting8
             ]
         },
         {
@@ -464,13 +479,13 @@ const ProjectsSection = ({ itemVariants }) => {
                                     
                                     {/* Project Images Slideshow */}
                                     {expandedProject.images && expandedProject.images.length > 0 && (
-                                        <Box sx={{ mt: 5, mb: 2 }}>
+                                        <Box sx={{ mt: 5 }}>
                                             <Divider sx={{ mb: 4 }} />
                                             <Typography
                                                 variant="h6"
                                                 fontWeight="bold"
                                                 gutterBottom
-                                                sx={{ mb: 3 }}
+                                                sx={{ mb: 1 }}
                                             >
                                                 Project Gallery
                                             </Typography>
@@ -479,7 +494,7 @@ const ProjectsSection = ({ itemVariants }) => {
                                                 sx={{
                                                     position: 'relative',
                                                     width: '100%',
-                                                    height: { xs: '250px', sm: '350px', md: '570px' },
+                                                    height: { xs: '100px', sm: '700px', md: '630px' },
                                                     borderRadius: '8px',
                                                     overflow: 'hidden',
                                                     border: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
