@@ -40,6 +40,12 @@ import countingsorting6 from '../../images/CountingnSorting/6.png';
 import countingsorting7 from '../../images/CountingnSorting/7.png';
 import countingsorting8 from '../../images/CountingnSorting/8.png';
 
+// Add imports for FieryDragons images
+import fieryDragons1 from '../../images/FieryDragons/1.png';
+import fieryDragons2 from '../../images/FieryDragons/2.png';
+import fieryDragons3 from '../../images/FieryDragons/3.png';
+import fieryDragons4 from '../../images/FieryDragons/4.png';
+
 const ProjectsSection = ({ itemVariants }) => {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
@@ -77,8 +83,8 @@ const ProjectsSection = ({ itemVariants }) => {
             title: "Personal Portfolio Website",
             tech: "React • Material UI • Framer Motion • Node.js",
             description: "An interactive portfolio website with smooth animations, responsive design, and dark/light mode support.",
-            repoUrl: "https://github.com/reubengue/MyWebsite",
-            liveUrl: "https://reubengue.github.io/MyWebsite",
+            repoUrl: "https://github.com/R3ub3nG/MyWebsite",
+            liveUrl: "https://r3ub3ng.github.io/MyWebsite/",
             detailedDescription: "I designed and developed this portfolio website from scratch to showcase my skills, projects, and professional experience. The site features an elegant, modern design with smooth scrolling functionality and interactive elements that create an engaging user experience.\n\nThe website is built with React and leverages Material UI for component styling and layout, with custom theme extensions for a unique visual identity. Framer Motion powers the sophisticated animations throughout the site, from page transitions to micro-interactions that enhance the overall experience.\n\nKey architectural features include a centralized section navigation system, context-based state management, SEO optimization, and performance enhancements using React best practices. The site implements dynamic content loading, custom scroll behaviors, and intelligent theme switching that respects user preferences while providing a cohesive visual identity.\n\nP.S. Your looking at this project right now!",
             highlights: [
                 "Snap scrolling with section highlighting",
@@ -100,8 +106,7 @@ const ProjectsSection = ({ itemVariants }) => {
             title: "Counting and Sorting",
             tech: "Vaadin • Spring Boot • FastAPI • Docker • Maven • MySQL",
             description: "A Monash Project creating a real-time inventory management system designed to streamline stock tracking and replenishment.",
-            repoUrl: "https://github.com/yourusername/counting-and-sorting",
-            liveUrl: "https://example.com/counting-and-sorting",
+            repoUrl: "https://github.com/Monash-FIT3170/Counting-and-Sorting",
             detailedDescription: "Counting and Sorting was developed as a large group project at Monash University using agile methodologies. We employed sprint planning and weekly standups, allowing us to efficiently adapt to changing requirements while gaining valuable software development experience.\n\nThe Counting and Sorting project is an inventory management and stock replenishment system aimed at providing real-time stock tracking with minimal maintenance efforts. It is designed for store managers and administrators, particularly in liquor stores, to manage stock levels efficiently and generate shopping lists based on low stock alerts.\n\nOne of its standout features is a plugin system that allows developers to extend functionality by integrating additional tools and data sources. The system is built using a microservices architecture, ensuring scalability, maintainability, and independent service deployment.\n\nWith secure authentication, efficient data management, and robust transaction logging, the system enhances stock visibility and minimizes stock maintenance time, helping businesses operate more smoothly.",
             highlights: [
                 "Real-time stock tracking and updates",
@@ -126,8 +131,7 @@ const ProjectsSection = ({ itemVariants }) => {
             title: "Fiery Dragons",
             tech: "Python • PyGame • PyInstaller • JSON • Figma",
             description: "A collaborative digital card game developed at Monash University with a focus on object-oriented programming and design patterns.",
-            repoUrl: "https://github.com/reubengue/fiery-dragons",
-            liveUrl: "https://fiery-dragons.com",
+            repoUrl: "https://git.infotech.monash.edu/FIT3077/fit3077-s1-2024/CL_Monday06pm_Team013",
             detailedDescription: "Fiery Dragons was a group project at Monash University where we created a digital version of the Fiery Dragons board game focused on applying object-oriented programming principles. We emphasized proper software design patterns to build a maintainable and well-structured codebase.\n\nThe game was built using PyGame with JSON for data storage. I worked closely with team members on game architecture, mechanics implementation, and interface design. We created detailed UI mockups and user flows in Figma before development to ensure a cohesive vision.\n\nOur collaborative approach involved regular peer feedback sessions and iterative improvements. We used PyInstaller to package the game for easy distribution and testing. This project strengthened both my technical skills and teamwork abilities while applying software engineering concepts in a practical context.",
             highlights: [
                 "Applied OOP principles and design patterns",
@@ -138,10 +142,10 @@ const ProjectsSection = ({ itemVariants }) => {
             ],
             techDetails: "Python, PyGame, OOP, Design Patterns, JSON, Figma, PyInstaller",
             images: [
-                "/src/images/projects/fiery-dragons-1.jpg",
-                "/src/images/projects/fiery-dragons-2.jpg",
-                "/src/images/projects/fiery-dragons-3.jpg",
-                "/src/images/projects/fiery-dragons-4.jpg"
+                fieryDragons1,
+                fieryDragons2,
+                fieryDragons3,
+                fieryDragons4
             ]
         }
     ];
